@@ -5,6 +5,7 @@
  */
 package javaapplicationpi;
 
+import services.DisponibilityService;
 import services.SubServices;
 import util.MyConnection;
 
@@ -22,8 +23,11 @@ public class JavaApplicationPI {
         
         MyConnection cnx = MyConnection.getInstance() ; 
         SubServices subserv = new SubServices(); 
-        System.out.println(subserv.subListe());
-        subserv.UpdateStateSub("Cancel", 101);
+        //System.out.println(subserv.subListe());
+        //subserv.UpdateStateSub("Cancel", 101);
+        DisponibilityService dispoService = new DisponibilityService() ;
+        System.out.println(dispoService.disponibilityListe(1));
+        dispoService.deleteDisponibility(49);
     }
     
 }
