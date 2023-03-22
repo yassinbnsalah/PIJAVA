@@ -5,6 +5,9 @@
  */
 package javaapplicationpi;
 
+import services.SubServices;
+import util.MyConnection;
+
 /**
  *
  * @author yacin
@@ -16,6 +19,11 @@ public class JavaApplicationPI {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        MyConnection cnx = MyConnection.getInstance() ; 
+        SubServices subserv = new SubServices(); 
+        System.out.println(subserv.subListe());
+        subserv.UpdateStateSub("Cancel", 101);
     }
     
 }
