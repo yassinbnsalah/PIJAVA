@@ -7,39 +7,137 @@ package models;
 
 /**
  *
- * @author yacin
+ * @author Fedi
  */
-public class User {
-    private int id ; 
-    private String cin ; 
 
-    public User() {
+public class User{
+    private int id;
+    private int CIN;
+    private String Name;
+    private int Numero;
+    private String Email;
+    private String Adresse;
+    private String Password;
+    private String roles;
+    public static User Current_User;
+    
+
+    public User(){
     }
-
-    public User(int id, String cin) {
+    
+    public User(int id, int CIN, String Name, int Numero, String Email, String Adresse, String Password, String roles) {
         this.id = id;
-        this.cin = cin;
+        this.CIN = CIN;
+        this.Name = Name;
+        this.Numero = Numero;
+        this.Email = Email;
+        this.Adresse = Adresse;
+        this.Password = Password;
+        this.roles= roles;
     }
 
+    public User(int CIN, String Name, int Numero, String Email, String Adresse, String Password) {
+        this.CIN = CIN;
+        this.Name = Name;
+        this.Numero = Numero;
+        this.Email = Email;
+        this.Adresse = Adresse;
+        this.Password = Password;
+    }
+     public User(int CIN, String Name, int Numero, String Email, String Adresse) {
+        this.CIN = CIN;
+        this.Name = Name;
+        this.Numero = Numero;
+        this.Email = Email;
+        this.Adresse = Adresse;
+      
+    }
+      public User(int id,int CIN, String Name, int Numero, String Email, String Adresse) {
+        this.id = id;
+        this.CIN = CIN;
+        this.Name = Name;
+        this.Numero = Numero;
+        this.Email = Email;
+        this.Adresse = Adresse;
+      
+    }
+  public static User getCurrent_User() {
+        return Current_User;
+    }
+
+    public static void setCurrent_User(User Current_User) {
+        User.Current_User = Current_User;
+    }
     public int getId() {
         return id;
-    }
-
-    public String getCin() {
-        return cin;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public int getCIN() {
+        return CIN;
+    }
+
+    public void setCIN(int CIN) {
+        this.CIN = CIN;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public int getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(int Numero) {
+        this.Numero = Numero;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getAdresse() {
+        return Adresse;
+    }
+
+    public void setAdresse(String Adresse) {
+        this.Adresse = Adresse;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String Password) {
+        this.Password = Password;
+    }
+    
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", cin=" + cin + '}';
+        return "Users{" + "CIN=" + CIN + ", Name=" + Name + ", Numero=" + Numero + ", Email=" + Email + ", Adresse=" + Adresse + ", Password=" + Password + '}';
     }
     
+    
 }
+
+
