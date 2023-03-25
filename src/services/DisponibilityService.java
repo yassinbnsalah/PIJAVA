@@ -92,9 +92,9 @@ public class DisponibilityService {
         }
 
     }
-    
-    public void deleteDisponibility (int id){
-         try {
+
+    public void deleteDisponibility(int id) {
+        try {
             String req = "DELETE FROM `disponibility` WHERE id = ?";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
             pst.setInt(1, id);
