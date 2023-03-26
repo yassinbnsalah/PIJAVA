@@ -22,11 +22,11 @@ public class OrderLineService {
         try {
             String req = "INSERT INTO `order_line`(`product_id`, `related_order_id`, `quantity`, `price`) VALUES (?,?,?,?)";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
-            pst.setInt(1, 1);
-            pst.setInt(2, orderline.getRelatedOrder().getId()) ;
+            pst.setInt(1, orderline.getProduct_id());
+            pst.setInt(2, orderline.getRelatedOrder().getId());
             pst.setInt(3, orderline.getQuantity());
             pst.setFloat(4, orderline.getPrice());
-            ResultSet rs = pst.executeQuery();
+            pst.executeUpdate();
             System.out.println("orderline created successfully !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

@@ -10,11 +10,12 @@ package models;
  * @author yacin
  */
 public class OrderLine {
-    
-    private int id ; 
-    private Order relatedOrder ; 
-    private int quantity ; 
-    private float price ; 
+
+    private int id;
+    private Order relatedOrder;
+    private int quantity;
+    private float price;
+    private int product_id;
 
     public OrderLine() {
     }
@@ -42,6 +43,10 @@ public class OrderLine {
         return price;
     }
 
+    public int getProduct_id() {
+        return product_id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -58,10 +63,13 @@ public class OrderLine {
         this.price = price;
     }
 
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
+    }
+
     @Override
     public String toString() {
-        return "OrderLine{" + "id=" + id + ", relatedOrder=" + relatedOrder + ", quantity=" + quantity + ", price=" + price + "}\n";
+        return "OrderLine{" + "id=" + id + ", relatedOrder=" + relatedOrder + ", quantity=" + quantity + ", price=" + price + ", product_id=" + product_id + '}';
     }
-    
-    
+
 }

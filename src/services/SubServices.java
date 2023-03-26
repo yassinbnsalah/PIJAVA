@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import models.Subscription;
 import util.MyConnection;
 import models.User;
+import util.EmailManager;
 
 /**
  *
@@ -21,21 +22,44 @@ import models.User;
  */
 public class SubServices {
 
-    public void AddSubscription(Subscription sub, int idUser) {
+    public void AddSubscription(Subscription sub) {
         try {
             String req = "INSERT INTO `subscription`( `user_id`, `date_sub`, `date_expire`, `type`,"
                     + " `paiement_type`, `amount`, `state`, `reference`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
-            pst.setInt(1, idUser);
-            Date dateToday = new java.sql.Date(System.currentTimeMillis());
+            pst.setInt(1, sub.getId_user());
             pst.setDate(2, sub.getDatesub());
-            pst.setDate(3, sub.getDateExpire());
+            Date dateExpire = new java.sql.Date(System.currentTimeMillis());
+            if (sub.getType().equals("1")) {
+                pst.setDate(3, java.sql.Date.valueOf(
+                        dateExpire.toLocalDate().plusDays(30)));
+                sub.setDateExpire(java.sql.Date.valueOf(
+                        dateExpire.toLocalDate().plusDays(30)));
+            } else if (sub.getType().equals("2")) {
+                pst.setDate(3, java.sql.Date.valueOf(
+                        new java.sql.Date(System.currentTimeMillis()).toLocalDate().plusDays(90)));
+                sub.setDateExpire(java.sql.Date.valueOf(
+                        dateExpire.toLocalDate().plusDays(90)));
+            } else {
+                pst.setDate(3, java.sql.Date.valueOf(
+                        new java.sql.Date(System.currentTimeMillis()).toLocalDate().plusDays(120)));
+                sub.setDateExpire(java.sql.Date.valueOf(
+                        dateExpire.toLocalDate().plusDays(120)));
+            }
             pst.setString(4, sub.getType());
             pst.setString(5, sub.getPaiementMethod());
             pst.setInt(6, sub.getAmount());
             pst.setString(7, sub.getState());
             pst.setString(8, sub.getReference());
             pst.executeUpdate();
+            UserService userService = new UserService();
+            User user = userService.userById(sub.getId_user());
+            EmailManager em = new EmailManager();
+            String message = "<h3> you received new sub with reference " + sub.getReference() + " and your "
+                    + "sub will expire at " + sub.getDateExpire() + " thank you </h3>";
+            String subject = "Subscription Information";
+            em.SendMail(user.getEmail(), message, subject);
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -74,7 +98,7 @@ public class SubServices {
             String req = "UPDATE `subscription` SET `state`= ? WHERE id = ?";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
             pst.setInt(2, id);
-            
+
             pst.setString(1, State);
             pst.executeUpdate();
             System.out.println(" Subscription State updated !");
@@ -83,14 +107,13 @@ public class SubServices {
         }
 
     }
-    
-    public void DeleteSub (int id){
-          try {
+
+    public void DeleteSub(int id) {
+        try {
             String req = "DELETE FROM `subscription` WHERE id = ?";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
             pst.setInt(1, id);
-            
-            
+
             pst.executeUpdate();
             System.out.println(" Subscription State Deleted !");
         } catch (SQLException ex) {

@@ -36,7 +36,10 @@ public class OrderService {
             pst.setString(8, order.getPaiementmethod());
             pst.setBoolean(9, true);
             pst.executeUpdate();
+            int idOrder = this.OrderIDByReference(order.getReference());
+            order.setId(idOrder);
             for (OrderLine orderline : orderlines) {
+                orderline.setRelatedOrder(order);
                 orderlineService.addOrderline(orderline);
             }
             System.out.println(" Order ajouté !");
@@ -72,6 +75,56 @@ public class OrderService {
         }
 
         return liste;
+    }
+
+    public int OrderIDByReference(String reference) {
+        int id = 0;
+        try {
+            String req = "SELECT * FROM `order` WHERE reference = ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setString(1, reference);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                id = rs.getInt(1);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return id;
+    }
+
+    public Order orderByID(int id) {
+        OrderLineService orderlineservice = new OrderLineService();
+        Order order = new Order();
+        try {
+            String req = "SELECT * FROM `order` WHERE id = ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                order.setId(rs.getInt(1));
+                order.setDateOrder(rs.getDate("date_order"));
+                order.setNote(rs.getString("note"));
+                order.setPaiementmethod(rs.getString("paiementmethod"));
+                order.setPrice(rs.getInt("price"));
+                order.setReference(rs.getString("reference"));
+                order.setShippingadress(rs.getString("shippingadress"));
+                order.setState(rs.getString("state"));
+                order.setOrderline(orderlineservice.orderlineListe(id));
+                /*order.setNom(rs.getString("nom"));
+                order.setPrenom(rs.getString("prenom"));
+                order.setAge(rs.getInt("age"));
+                order.setCin(rs.getString("cin"));*/
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return order;
     }
 
     public void updateStateOrder(int id, String state) {
