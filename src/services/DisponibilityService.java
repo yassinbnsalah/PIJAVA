@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import models.Disponibility;
+import models.User;
 import util.MyConnection;
 
 /**
@@ -18,6 +19,7 @@ import util.MyConnection;
  */
 public class DisponibilityService {
 
+   
     public void AddDisponibility(Disponibility dispo) {
         try {
             String req = "INSERT INTO `disponibility`(`doctor_id`, `date_dispo`, `heure_start`, `heure_end`, `note`, `state`)"
@@ -66,6 +68,7 @@ public class DisponibilityService {
         return liste;
     }
 
+  
     public void updateStateDisponibility(int id) {
         try {
             String req = "SELECT * FROM `disponibility` WHERE id = ?";
@@ -106,5 +109,7 @@ public class DisponibilityService {
             System.out.println(ex.getMessage());
         }
     }
+
+   
 
 }

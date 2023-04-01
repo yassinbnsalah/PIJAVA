@@ -114,11 +114,6 @@ public class OrderService {
                 order.setShippingadress(rs.getString("shippingadress"));
                 order.setState(rs.getString("state"));
                 order.setOrderline(orderlineservice.orderlineListe(id));
-                /*order.setNom(rs.getString("nom"));
-                order.setPrenom(rs.getString("prenom"));
-                order.setAge(rs.getInt("age"));
-                order.setCin(rs.getString("cin"));*/
-
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
