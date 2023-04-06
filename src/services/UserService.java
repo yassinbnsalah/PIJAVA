@@ -6,6 +6,7 @@
 package services;
 
 
+import interfaces.UserInterface;
 import models.User;
 import util.MyConnection;
 import java.sql.Connection;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
  *
  * @author Fedi
  */
-public class UserService {
+public class UserService implements UserInterface{
     
     Connection cnx2;
     public UserService(){
