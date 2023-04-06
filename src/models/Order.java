@@ -13,16 +13,18 @@ import java.util.ArrayList;
  * @author yacin
  */
 public class Order {
-    private int id ; 
-    private String reference ; 
-    private Date dateOrder ; 
-    private String state ; 
-    private int price ; 
-    private String shippingadress ; 
-    private String note ;
-    private String paiementmethod ; 
-    private ArrayList<OrderLine> orderline ; 
-    
+
+    private int id;
+    private String reference;
+    private Date dateOrder;
+    private String state;
+    private int price;
+    private String shippingadress;
+    private String note;
+    private String paiementmethod;
+    private User owner;
+    private ArrayList<OrderLine> orderline;
+
     public Order() {
     }
 
@@ -73,6 +75,10 @@ public class Order {
         return orderline;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -109,16 +115,17 @@ public class Order {
         this.orderline = orderline;
     }
 
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", reference=" + reference + ","
+        return "Order{" + "id=" + id + ", reference=" + reference
+                + ", Owner=" + owner.getName() + ""
                 + " dateOrder=" + dateOrder + ", state=" + state + ", "
                 + "price=" + price + ", shippingadress=" + shippingadress + ", note=" + note + ","
                 + " paiementmethod=" + paiementmethod + ",\n orderlines=" + orderline + "}\n";
     }
 
-  
-    
-    
-    
 }

@@ -20,6 +20,14 @@ public class OrderLine {
     public OrderLine() {
     }
 
+    public OrderLine(int id, int quantity, float price, int product_id) {
+        this.id = id;
+        this.quantity = quantity;
+        this.price = price;
+        this.product_id = product_id;
+    }
+
+    
     public OrderLine(int id, Order relatedOrder, int quantity, float price) {
         this.id = id;
         this.relatedOrder = relatedOrder;

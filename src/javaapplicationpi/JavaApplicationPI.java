@@ -5,12 +5,24 @@
  */
 package javaapplicationpi;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import services.SubServices;
 import util.EmailManager;
 import util.MyConnection;
@@ -19,6 +31,7 @@ import models.Disponibility;
 import models.OrderLine;
 import models.Order;
 import services.DisponibilityService;
+import services.GenerateInvoice;
 import services.OrderService;
 import services.TicketService;
 import services.UserService;
@@ -41,6 +54,8 @@ public class JavaApplicationPI {
          * ************************************************
          */
         MyConnection cnx = MyConnection.getInstance();
+
+       
         /**
          * ************************************************
          * *************** YESSINE IS WORK ******************
@@ -156,6 +171,11 @@ public class JavaApplicationPI {
          * ****** ORDER DETAILS ************
          */
         // System.out.println(orderservice.orderByID(64));
+        Order orderID = orderservice.orderByID(16);
+        // orderservice.GenerateInvoice(orderID);
+        GenerateInvoice Inv = new GenerateInvoice(); 
+        // MATJARABHEECH HEDHY KHATER FYHA URL MTA INVOICE YEKHDEM KEN 3AL PC MTE3I 
+        //Inv.createPDF(orderID);
         /**
          * ****** UPDATE ORDER STATE ************
          */
@@ -166,11 +186,10 @@ public class JavaApplicationPI {
          * *************** FEDI IS WORK ******************
          * ***********************************************
          */
-       /* UserService userserv = new UserService();
+        /* UserService userserv = new UserService();
         System.out.println(userserv.userListe());
         TicketService ticketserv = new TicketService();
         System.out.println(ticketserv.listTicket());*/
-      
     }
 
 }

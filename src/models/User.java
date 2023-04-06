@@ -14,7 +14,7 @@ public class User{
     private int id;
     private String CIN;
     private String Name;
-    private int Numero;
+    private String Numero;
     private String Email;
     private String Adresse;
     private String Password;
@@ -25,7 +25,7 @@ public class User{
     public User(){
     }
     
-    public User(int id, String CIN, String Name, int Numero, String Email, String Adresse, String Password, String roles) {
+    public User(int id, String CIN, String Name, String Numero, String Email, String Adresse, String Password, String roles) {
         this.id = id;
         this.CIN = CIN;
         this.Name = Name;
@@ -36,7 +36,7 @@ public class User{
         this.roles= roles;
     }
 
-    public User(String CIN, String Name, int Numero, String Email, String Adresse, String Password) {
+    public User(String CIN, String Name, String Numero, String Email, String Adresse, String Password) {
         this.CIN = CIN;
         this.Name = Name;
         this.Numero = Numero;
@@ -44,7 +44,7 @@ public class User{
         this.Adresse = Adresse;
         this.Password = Password;
     }
-     public User(String CIN, String Name, int Numero, String Email, String Adresse) {
+     public User(String CIN, String Name, String Numero, String Email, String Adresse) {
         this.CIN = CIN;
         this.Name = Name;
         this.Numero = Numero;
@@ -52,7 +52,7 @@ public class User{
         this.Adresse = Adresse;
       
     }
-      public User(int id,String CIN, String Name, int Numero, String Email, String Adresse) {
+      public User(int id,String CIN, String Name, String Numero, String Email, String Adresse) {
         this.id = id;
         this.CIN = CIN;
         this.Name = Name;
@@ -92,11 +92,11 @@ public class User{
         this.Name = Name;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return Numero;
     }
 
-    public void setNumero(int Numero) {
+    public void setNumero(String Numero) {
         this.Numero = Numero;
     }
 

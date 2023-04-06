@@ -37,7 +37,7 @@ public class UserService {
             PreparedStatement pst = cnx2.prepareStatement(req);
             pst.setString(1, user.getCIN());
             pst.setString(2, user.getName());
-            pst.setInt(3, user.getNumero());
+            pst.setString(3, user.getNumero());
             pst.setString(4, user.getEmail());
             pst.setString(5, user.getAdresse());
             pst.setString(6, user.getPassword());
@@ -92,7 +92,7 @@ public class UserService {
             PreparedStatement pst = cnx2.prepareStatement(requete2);
             pst.setString(1, user.getCIN());
             pst.setString(2, user.getName());
-            pst.setInt(3, user.getNumero());
+            pst.setString(3, user.getNumero());
             pst.setString(4, user.getEmail());
             pst.setString(5, user.getAdresse());
             pst.setInt(6, user.getId());
@@ -119,7 +119,7 @@ public class UserService {
                 usr.setEmail(rs.getString("email"));
                 usr.setAdresse(rs.getString("adresse"));
                 usr.setCIN(rs.getString("cin"));
-
+                usr.setNumero(rs.getString("numero"));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

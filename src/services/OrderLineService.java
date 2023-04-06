@@ -45,6 +45,7 @@ public class OrderLineService {
                 orderLine.setId(rs.getInt(1));
                 orderLine.setPrice(rs.getFloat("price"));
                 orderLine.setQuantity(rs.getInt("quantity"));
+                orderLine.setProduct_id(rs.getInt("product_id"));
                 listeOrderLine.add(orderLine);
             }
         } catch (SQLException ex) {

@@ -5,13 +5,26 @@
  */
 package services;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javaapplicationpi.JavaApplicationPI;
 import models.Order;
 import models.OrderLine;
+import models.User;
 import util.MyConnection;
 
 /**
@@ -98,13 +111,14 @@ public class OrderService {
     public Order orderByID(int id) {
         OrderLineService orderlineservice = new OrderLineService();
         Order order = new Order();
+        UserService userservice = new UserService();
         try {
             String req = "SELECT * FROM `order` WHERE id = ?";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-
+                System.out.println(rs.getString("client_id"));
                 order.setId(rs.getInt(1));
                 order.setDateOrder(rs.getDate("date_order"));
                 order.setNote(rs.getString("note"));
@@ -113,12 +127,14 @@ public class OrderService {
                 order.setReference(rs.getString("reference"));
                 order.setShippingadress(rs.getString("shippingadress"));
                 order.setState(rs.getString("state"));
+                User user = userservice.userById(Integer.parseInt(rs.getString("client_id")));
+                order.setOwner(user);
                 order.setOrderline(orderlineservice.orderlineListe(id));
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
+        System.out.println("Order : "+order);
         return order;
     }
 
@@ -136,4 +152,68 @@ public class OrderService {
         }
     }
 
+    /* public void printInvoice(Order order){
+        String sourceFile = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\JavaApplicationPI\\src\\report\\Invoice.jrxml";
+        try { 
+             
+            JasperReport jf = JasperCompileManager.compileReport(sourceFile);
+             System.out.println("ODNE");
+            HashMap<String,Object> para = new HashMap<>() ;
+            para.put("Owner","yessinehnee");
+            ArrayList<OrderLine> ordline = new ArrayList<>() ; 
+            for (OrderLine orderline : order.getOrderline()) {
+               ordline.add(new OrderLine(orderline.getId(), orderline.getQuantity(), orderline.getPrice(), 2));
+            }
+            //JRBeanCollectionDataSource jcs = new JRBeanCollectionDataSource(ordline);
+           // JasperPrint jp = JasperFillManager.fillReport(jf, para , jcs );
+            System.out.println("ODNE");
+            //JasperViewer.viewReport(jp);
+        } catch (JRException ex) {
+            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }*/
+    public void GenerateInvoice(Order order){
+        
+            try {
+                String reference = order.getReference()+".pdf";
+                
+            String filePath = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\Invoices\\"+reference;
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            Paragraph pra = new Paragraph("Invoice Reference "+reference);
+            document.add(pra);
+            // add table 
+            
+            PdfPTable table = new PdfPTable(4); 
+            PdfPCell c1 = new PdfPCell(new Phrase("Product")); 
+            table.addCell(c1); 
+            
+            c1 = new PdfPCell(new Phrase("Price Product")); 
+            table.addCell(c1); 
+              c1 = new PdfPCell(new Phrase("Quantity")); 
+            table.addCell(c1); 
+              c1 = new PdfPCell(new Phrase("Price Slote")); 
+            table.addCell(c1); 
+            
+            table.setHeaderRows(1);
+            
+            table.addCell("X1");
+            table.addCell("250DT");
+            table.addCell("2");
+              table.addCell("500");
+            
+            document.add(table);
+            // create Image 
+            document.add(Image.getInstance("D:\\telechargement\\pilogo.png"));
+            document.close();
+            
+            
+            System.out.println("finished");
+        } catch (Exception ex) {
+            Logger.getLogger(JavaApplicationPI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+    }
 }
