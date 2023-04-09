@@ -122,7 +122,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" + "id=" + id + ", reference=" + reference
-                + ", Owner=" + owner.getName() + ""
+                + ", Owner=  "
                 + " dateOrder=" + dateOrder + ", state=" + state + ", "
                 + "price=" + price + ", shippingadress=" + shippingadress + ", note=" + note + ","
                 + " paiementmethod=" + paiementmethod + ",\n orderlines=" + orderline + "}\n";

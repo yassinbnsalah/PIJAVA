@@ -6,6 +6,7 @@
 package models;
 
 import java.sql.Date;
+import javafx.scene.control.Button;
 
 /**
  *
@@ -20,10 +21,24 @@ public class Disponibility {
     private String state ; 
     private User doctor ; 
     private int id_doctor ; 
+    private Button update ; 
+    
 
     public Disponibility() {
+        this.update = new Button("update"); 
     }
 
+    public Disponibility(String heureStart, String heureEnd, String note, String state, int id_doctor) {
+        this.heureStart = heureStart;
+        this.heureEnd = heureEnd;
+        this.dateDispo = dateDispo;
+        this.note = note;
+        this.state = state;
+        this.id_doctor = id_doctor;
+         this.update = new Button("update"); 
+    }
+
+    
     public Disponibility(int id, String heureStart, String heureEnd, Date dateDispo, String note, String state, int id_doctor) {
         this.id = id;
         this.heureStart = heureStart;
@@ -32,6 +47,7 @@ public class Disponibility {
         this.note = note;
         this.state = state;
         this.id_doctor = id_doctor;
+         this.update = new Button("update"); 
     }
 
     public int getId() {
@@ -96,6 +112,14 @@ public class Disponibility {
 
     public void setId_doctor(int id_doctor) {
         this.id_doctor = id_doctor;
+    }
+
+    public void setUpdate(Button update) {
+        this.update = update;
+    }
+
+    public Button getUpdate() {
+        return update;
     }
 
     @Override

@@ -35,25 +35,34 @@ public class SubServices {
                         dateExpire.toLocalDate().plusDays(30)));
                 sub.setDateExpire(java.sql.Date.valueOf(
                         dateExpire.toLocalDate().plusDays(30)));
+                sub.setAmount(80);
             } else if (sub.getType().equals("2")) {
                 pst.setDate(3, java.sql.Date.valueOf(
                         new java.sql.Date(System.currentTimeMillis()).toLocalDate().plusDays(90)));
                 sub.setDateExpire(java.sql.Date.valueOf(
                         dateExpire.toLocalDate().plusDays(90)));
+                 sub.setAmount(180);
             } else {
                 pst.setDate(3, java.sql.Date.valueOf(
                         new java.sql.Date(System.currentTimeMillis()).toLocalDate().plusDays(120)));
                 sub.setDateExpire(java.sql.Date.valueOf(
                         dateExpire.toLocalDate().plusDays(120)));
+                 sub.setAmount(360);
             }
+            // GENERATE REFERENCE 
+            
+            UserService userService = new UserService();
+            User user = userService.userById(sub.getId_user());
+            sub.setState("Confirmed");
+            String reference = "SUB-"+user.getName().toUpperCase()+"-"+sub.getDatesub().toString() ; 
+            sub.setReference(reference);
             pst.setString(4, sub.getType());
             pst.setString(5, sub.getPaiementMethod());
             pst.setInt(6, sub.getAmount());
             pst.setString(7, sub.getState());
             pst.setString(8, sub.getReference());
             pst.executeUpdate();
-            UserService userService = new UserService();
-            User user = userService.userById(sub.getId_user());
+            
             EmailManager em = new EmailManager();
             String message = "<h3> you received new sub with reference " + sub.getReference() + " and your "
                     + "sub will expire at " + sub.getDateExpire() + " thank you </h3>";
@@ -67,7 +76,7 @@ public class SubServices {
     }
 
     public ArrayList<Subscription> subListe() {
-        String req = "SELECT * FROM `subscription` ";
+        String req = "SELECT * FROM `subscription`  ";
         ArrayList<Subscription> subs = new ArrayList<>();
         try {
             Statement st = MyConnection.getInstance().getCnx().createStatement();
@@ -83,6 +92,9 @@ public class SubServices {
                 sub.setReference(rs.getString("reference"));
                 sub.setState(rs.getString("state"));
                 sub.setId_user(rs.getInt("user_id"));
+                UserService userservice = new UserService(); 
+                User userOwner = userservice.userById(rs.getInt("user_id"));
+                sub.setUser(userOwner);
                 // add user by id here from FEDI 
                 subs.add(sub);
 

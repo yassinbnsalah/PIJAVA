@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.paint.Color;
 import models.Disponibility;
 
 /**
@@ -125,6 +126,64 @@ public class UserService {
             System.out.println(ex.getMessage());
         }
         return usr;
+    }
+    
+     public User userByEmail(String email) {
+        User usr = new User();
+        try {
+
+            String req = "SELECT * FROM `user` WHERE email = ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setString(1, email);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                usr.setId(rs.getInt(1));
+                usr.setName(rs.getString("name"));
+                usr.setEmail(rs.getString("email"));
+                usr.setAdresse(rs.getString("adresse"));
+                usr.setCIN(rs.getString("cin"));
+                usr.setNumero(rs.getString("numero"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return usr;
+    }
+    
+     public String LoginUser(String txtUsername , String txtPassword ) {
+        String status = "";
+        String email = txtUsername;
+        String password = txtPassword;
+        System.out.println("email is " + email);
+        System.out.println("password is " + password);
+        if (email.isEmpty() || password.isEmpty()) {
+           
+            status = "Empty Credits";
+        } else {
+            //query
+            String sql = "SELECT * FROM user Where email = ? and password = ?";
+            try {
+               PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(sql);
+                preparedStatement.setString(1, email);
+                preparedStatement.setString(2, password);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                if (!resultSet.next()) {
+                    status = "email/password false";
+                } else {
+                
+                       String Role = resultSet.getString("roles");
+                       System.out.println("Role is "+Role);
+                 
+                    status = "success";
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.getMessage());
+                status = "Exception";
+            }
+        }
+
+        return status;
     }
 
    

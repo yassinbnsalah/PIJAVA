@@ -1,0 +1,201 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import java.net.URL;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import models.Disponibility;
+import models.User;
+import models.Subscription;
+import services.SubServices;
+import services.UserService;
+
+/**
+ * FXML Controller class
+ *
+ * @author yacin
+ */
+public class SubscriptionListeController implements Initializable {
+    
+    ObservableList<Subscription> SubsList = FXCollections.observableArrayList();
+    /* @FXML
+    private TableColumn<Subscription, String> SubReference;*/
+    // private TableColumn<Subscription, String> Datesubscription;
+    @FXML
+    private TableView<Subscription> SubTable;
+    @FXML
+    private TableColumn<Subscription, String> ColSubReference;
+    @FXML
+    private TableColumn<Subscription, String> ColDatesubscription;
+    @FXML
+    private TableColumn<Subscription, String> Coldateexpiration;
+    @FXML
+    private TableColumn<Subscription, String> Coltype;
+    @FXML
+    private TableColumn<Subscription, String> ColpaiementType;
+    @FXML
+    private TableColumn<Subscription, String> Colamount;
+    @FXML
+    private TableColumn<Subscription, String> Colstate;
+    @FXML
+    private ComboBox<String> CBClEmail;
+    @FXML
+    private ComboBox<String> CBType;
+    @FXML
+    private ComboBox<String> CBPaiType;
+    @FXML
+    private DatePicker DatePick;
+    @FXML
+    private TextField emailFld;
+    @FXML
+    private TextField paiementTypeFld;
+    @FXML
+    private TextField DateSubsc;
+    @FXML
+    private TextField DateExpirationfld;
+    @FXML
+    private ComboBox<String> CBType1;
+    
+    private int IDsubscriptionToUpdate;
+    
+    public int getIDsubscriptionToUpdate() {
+        return IDsubscriptionToUpdate;
+    }
+    
+    public void setIDsubscriptionToUpdate(int IDsubscriptionToUpdate) {
+        this.IDsubscriptionToUpdate = IDsubscriptionToUpdate;
+    }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        this.LoadDataForAddSubscription();
+        this.refreshTable();
+    }
+    
+    private void LoadDataForAddSubscription() {
+        UserService userservice = new UserService();
+        ArrayList<User> userListe = userservice.userListe();
+        for (User user : userListe) {
+            CBClEmail.getItems().add(user.getEmail());
+        }
+        CBType.getItems().add("1 Month");
+        CBType.getItems().add("3 Months");
+        CBType.getItems().add("6 Months");
+        
+        CBPaiType.getItems().add("Cash");
+        CBPaiType.getItems().add("Cheque");
+    }
+    
+    private void refreshTable() {
+        SubServices subservice = new SubServices();
+        SubsList.clear();
+        SubsList.addAll(subservice.subListe());
+        SubTable.setItems(SubsList);
+        ColSubReference.setCellValueFactory(new PropertyValueFactory<>("reference"));
+        ColDatesubscription.setCellValueFactory(new PropertyValueFactory<>("datesub"));
+        Coldateexpiration.setCellValueFactory(new PropertyValueFactory<>("dateExpire"));
+        Coltype.setCellValueFactory(new PropertyValueFactory<>("type"));
+        ColpaiementType.setCellValueFactory(new PropertyValueFactory<>("paiementMethod"));
+        Colamount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        Colstate.setCellValueFactory(new PropertyValueFactory<>("state"));
+        
+        SubTable.setRowFactory(tv -> {
+            TableRow<Subscription> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event
+                    -> {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    CBType1.getItems().clear();
+                    int myIndex = SubTable.getSelectionModel().getSelectedIndex();
+                    int id = Integer.parseInt(String.valueOf(SubTable.getItems().get(myIndex).getId()));
+                    this.setIDsubscriptionToUpdate(id);
+                    System.out.println("Email is " + String.valueOf(SubTable.getItems().get(myIndex).getUser().getEmail()));
+                    emailFld.setText(String.valueOf(SubTable.getItems().get(myIndex).getUser().getEmail()));
+                    paiementTypeFld.setText(String.valueOf(SubTable.getItems().get(myIndex).getPaiementMethod()));
+                    DateSubsc.setText(String.valueOf(SubTable.getItems().get(myIndex).getDatesub()));
+                    DateExpirationfld.setText(String.valueOf(SubTable.getItems().get(myIndex).getDateExpire()));
+                    
+                    CBType1.getItems().add("Confirmed");
+                    if (String.valueOf(SubTable.getItems().get(myIndex).getState()).equals("Suspended")) {
+                        CBType1.getItems().add("Insuspend");
+                    } else {
+                        CBType1.getItems().add("Suspend");
+                    }
+                    CBType1.getItems().add("Cancel");
+                    
+                }
+            });
+            return myRow;
+        });
+        
+    }
+    
+    @FXML
+    private void CreateSubscription(ActionEvent event) {
+        SubServices subservice = new SubServices();
+        UserService userservice = new UserService();
+        User user = userservice.userByEmail(CBClEmail.getValue());        
+        Subscription sub = new Subscription();        
+        sub.setId_user(user.getId());
+        sub.setDatesub(Date.valueOf(DatePick.valueProperty().getValue()));
+        String type = CBType.getValue();
+        if (type.equals("1 Month")) {
+            sub.setType("1");
+        } else if (type.equals("3 Months")) {
+            sub.setType("2");            
+        } else {
+            sub.setType("3");
+        }
+        sub.setPaiementMethod(CBPaiType.getValue());
+        subservice.AddSubscription(sub);
+        
+        clearForms();
+        refreshTable();
+    }
+    
+    @FXML
+    private void updateSubscription(ActionEvent event) {
+        SubServices subservice = new SubServices();
+        subservice.UpdateStateSub(CBType1.getValue(), this.getIDsubscriptionToUpdate());
+        clearForms();
+        refreshTable();
+    }
+    
+    private void clearForms() {
+        emailFld.setText("");
+        paiementTypeFld.setText("");
+        DateSubsc.setText("");
+        DateExpirationfld.setText("");
+        CBType1.getItems().clear();
+        DatePick.setValue(null);
+        this.setIDsubscriptionToUpdate(0);
+    }
+    
+    @FXML
+    private void deleteSubscription(ActionEvent event) {
+        SubServices subservice = new SubServices();
+        subservice.DeleteSub(IDsubscriptionToUpdate);
+        clearForms();
+        refreshTable();
+    }
+    
+}

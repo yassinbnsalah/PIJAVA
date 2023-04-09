@@ -20,28 +20,34 @@ import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import models.Order; 
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.internet.MimeBodyPart;
+import models.Order;
 import models.OrderLine;
+import util.EmailManager;
+
 /**
  *
  * @author yacin
  */
 public class GenerateInvoice {
 
-    public void createPDF( Order order) {
+    public void createPDF(Order order) {
 
         try {
-             String reference = "INV"+ order.getId()+".pdf";
-                
-            String filePath = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\Invoices\\"+reference; 
-            System.out.println("reference"+filePath);
+            String reference = "INV" + order.getId() + ".pdf";
+
+            String filePath = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\Invoices\\" + reference;
+            System.out.println("reference" + filePath);
             OutputStream file = new FileOutputStream(new File(filePath));
             Document document = new Document();
             PdfWriter.getInstance(document, file);
 
             //Inserting Image in PDF
             Image image = Image.getInstance("D:\\telechargement\\pilogo.png");//Header Image
-            image.scaleAbsolute(540f, 72f);//image width,height 
+            image.scaleAbsolute(50f, 50f);//image width,height 
 
             PdfPTable irdTable = new PdfPTable(2);
             irdTable.addCell(getIRDCell("Invoice No"));
@@ -82,16 +88,14 @@ public class GenerateInvoice {
             billTable.addCell(getBillHeaderCell("Unit Price"));
             billTable.addCell(getBillHeaderCell("Qty"));
             billTable.addCell(getBillHeaderCell("Amount"));
-             for (OrderLine orderline : order.getOrderline()) {
-                 billTable.addCell(getBillRowCell(Integer.toString(orderline.getId())));
-            billTable.addCell(getBillRowCell(Integer.toString(orderline.getProduct_id())));
-            billTable.addCell(getBillRowCell("Nokia Lumia 610 \n IMI:WQ361989213 "));
-            billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice())+"DT"));
-            billTable.addCell(getBillRowCell(Integer.toString(orderline.getQuantity())));
-            billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice()*orderline.getQuantity())+"DT"));
-             }
-            
-
+            for (OrderLine orderline : order.getOrderline()) {
+                billTable.addCell(getBillRowCell(Integer.toString(orderline.getId())));
+                billTable.addCell(getBillRowCell(Integer.toString(orderline.getProduct_id())));
+                billTable.addCell(getBillRowCell("Nokia Lumia 610 \n IMI:WQ361989213 "));
+                billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice()) + "DT"));
+                billTable.addCell(getBillRowCell(Integer.toString(orderline.getQuantity())));
+                billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice() * orderline.getQuantity()) + "DT"));
+            }
 
             billTable.addCell(getBillRowCell(" "));
             billTable.addCell(getBillRowCell(""));
@@ -190,9 +194,9 @@ public class GenerateInvoice {
 
             PdfPTable accounts = new PdfPTable(2);
             accounts.setWidthPercentage(100);
-           
+
             accounts.addCell(getAccountsCell("Total"));
-            accounts.addCell(getAccountsCellR(Integer.toString(order.getPrice())+"DT"));
+            accounts.addCell(getAccountsCellR(Integer.toString(order.getPrice()) + "DT"));
             PdfPCell summaryR = new PdfPCell(accounts);
             summaryR.setColspan(3);
             billTable.addCell(summaryR);
@@ -219,7 +223,9 @@ public class GenerateInvoice {
             file.close();
 
             System.out.println("Pdf created successfully..");
-
+           
+            EmailManager em = new EmailManager();
+            em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
         } catch (Exception e) {
             e.printStackTrace();
         }

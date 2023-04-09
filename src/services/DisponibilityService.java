@@ -19,7 +19,6 @@ import util.MyConnection;
  */
 public class DisponibilityService {
 
-   
     public void AddDisponibility(Disponibility dispo) {
         try {
             String req = "INSERT INTO `disponibility`(`doctor_id`, `date_dispo`, `heure_start`, `heure_end`, `note`, `state`)"
@@ -68,7 +67,6 @@ public class DisponibilityService {
         return liste;
     }
 
-  
     public void updateStateDisponibility(int id) {
         try {
             String req = "SELECT * FROM `disponibility` WHERE id = ?";
@@ -110,6 +108,23 @@ public class DisponibilityService {
         }
     }
 
-   
+    public void updateDisponibilityData(Disponibility dispo) {
+        try {
+            String req = "UPDATE `disponibility`"
+                    + " SET `date_dispo`=?,"
+                    + "`heure_start`=?,`heure_end`=?,`note`=? WHERE id =  ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setDate(1, dispo.getDateDispo());
+            pst.setString(2, dispo.getHeureStart());
+            pst.setString(3, dispo.getHeureEnd());
+            pst.setString(4, dispo.getNote());
+            pst.setInt(5, dispo.getId());
+            pst.executeUpdate();
+            System.out.println(" disponibility Updated !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
 
 }

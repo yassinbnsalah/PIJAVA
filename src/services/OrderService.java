@@ -22,9 +22,14 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javaapplicationpi.JavaApplicationPI;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.internet.MimeBodyPart;
 import models.Order;
 import models.OrderLine;
 import models.User;
+import util.EmailManager;
 import util.MyConnection;
 
 /**
@@ -56,6 +61,7 @@ public class OrderService {
                 orderlineService.addOrderline(orderline);
             }
             System.out.println(" Order ajouté !");
+           
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -134,7 +140,7 @@ public class OrderService {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        System.out.println("Order : "+order);
+        System.out.println("Order : " + order);
         return order;
     }
 
@@ -172,48 +178,47 @@ public class OrderService {
             Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
         }
     }*/
-    public void GenerateInvoice(Order order){
-        
-            try {
-                String reference = order.getReference()+".pdf";
-                
-            String filePath = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\Invoices\\"+reference;
+    public void GenerateInvoice(Order order) {
+
+        try {
+            String reference = order.getReference() + ".pdf";
+
+            String filePath = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\Invoices\\" + reference;
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            Paragraph pra = new Paragraph("Invoice Reference "+reference);
+            Paragraph pra = new Paragraph("Invoice Reference " + reference);
             document.add(pra);
             // add table 
-            
-            PdfPTable table = new PdfPTable(4); 
-            PdfPCell c1 = new PdfPCell(new Phrase("Product")); 
-            table.addCell(c1); 
-            
-            c1 = new PdfPCell(new Phrase("Price Product")); 
-            table.addCell(c1); 
-              c1 = new PdfPCell(new Phrase("Quantity")); 
-            table.addCell(c1); 
-              c1 = new PdfPCell(new Phrase("Price Slote")); 
-            table.addCell(c1); 
-            
+
+            PdfPTable table = new PdfPTable(4);
+            PdfPCell c1 = new PdfPCell(new Phrase("Product"));
+            table.addCell(c1);
+
+            c1 = new PdfPCell(new Phrase("Price Product"));
+            table.addCell(c1);
+            c1 = new PdfPCell(new Phrase("Quantity"));
+            table.addCell(c1);
+            c1 = new PdfPCell(new Phrase("Price Slote"));
+            table.addCell(c1);
+
             table.setHeaderRows(1);
-            
+
             table.addCell("X1");
             table.addCell("250DT");
             table.addCell("2");
-              table.addCell("500");
-            
+            table.addCell("500");
+
             document.add(table);
             // create Image 
             document.add(Image.getInstance("D:\\telechargement\\pilogo.png"));
             document.close();
-            
-            
+
             System.out.println("finished");
         } catch (Exception ex) {
             Logger.getLogger(JavaApplicationPI.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }
 }
