@@ -71,6 +71,8 @@ public class OrderService {
     public ArrayList<Order> OrderListe() {
         ArrayList<Order> liste = new ArrayList<>();
         OrderLineService orderlineservice = new OrderLineService();
+        UserService userservice = new UserService(); 
+        User user ; 
         try {
             String req = "SELECT * FROM `order` ";
             Statement st = MyConnection.getInstance().getCnx().createStatement();
@@ -86,6 +88,8 @@ public class OrderService {
                 order.setReference(rs.getString("reference"));
                 order.setShippingadress(rs.getString("shippingadress"));
                 order.setState(rs.getString("state"));
+                user = userservice.userById(rs.getInt("client_id"));
+                order.setOwnerEmail(user.getEmail());
                 order.setOrderline(orderlineservice.orderlineListe(rs.getInt(1)));
                 liste.add(order);
             }

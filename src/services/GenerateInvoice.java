@@ -225,7 +225,7 @@ public class GenerateInvoice {
             System.out.println("Pdf created successfully..");
            
             EmailManager em = new EmailManager();
-            em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
+          //  em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
         } catch (Exception e) {
             e.printStackTrace();
         }

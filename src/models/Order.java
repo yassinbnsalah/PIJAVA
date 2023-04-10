@@ -23,6 +23,7 @@ public class Order {
     private String note;
     private String paiementmethod;
     private User owner;
+    private String OwnerEmail ; 
     private ArrayList<OrderLine> orderline;
 
     public Order() {
@@ -79,6 +80,10 @@ public class Order {
         return owner;
     }
 
+    public String getOwnerEmail() {
+        return OwnerEmail;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -117,6 +122,10 @@ public class Order {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public void setOwnerEmail(String OwnerEmail) {
+        this.OwnerEmail = OwnerEmail;
     }
 
     @Override
