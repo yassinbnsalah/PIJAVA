@@ -1,0 +1,299 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.ResourceBundle;
+import java.util.TreeSet;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import models.Disponibility;
+import services.UserService;
+import models.User;
+import services.ProductService;
+import models.Product;
+import models.OrderLine;
+import services.OrderService;
+import models.Order;
+
+/**
+ * FXML Controller class
+ *
+ * @author yacin
+ */
+public class CreateOrderController implements Initializable {
+
+    HashSet<OrderLine> TreeOrderLine = new HashSet<>();
+    private OrderLine orderline;
+    @FXML
+    private TextField nameuserTxt;
+    @FXML
+    private TextField phoneusertxt;
+    @FXML
+    private TextField adressUserTxt;
+    @FXML
+    private TextField emailUserTxt;
+    @FXML
+    private TableView<User> tableUser;
+    @FXML
+    private TableColumn<User, String> colNameUser;
+    @FXML
+    private TableColumn<User, String> ColEmailUser;
+    @FXML
+    private TableColumn<User, String> ColPhoneUser;
+    @FXML
+    private TextField txtsearshUser;
+
+    ObservableList<User> UserList = FXCollections.observableArrayList();
+    ObservableList<Product> ProductList = FXCollections.observableArrayList();
+    ObservableList<OrderLine> OrderLineListe = FXCollections.observableArrayList();
+    @FXML
+    private TableView<Product> productTable;
+    @FXML
+    private TableColumn<Product, String> ProductNameCol;
+    @FXML
+    private TableColumn<Product, String> descriptionCol;
+    @FXML
+    private TableColumn<Product, String> BuyPriceCol;
+    @FXML
+    private TableColumn<Product, String> SellPriceColl;
+    @FXML
+    private TableColumn<Product, String> quantityCol;
+    @FXML
+    private TableColumn<Product, String> categoryCol;
+    @FXML
+    private TextField productNametxt;
+    @FXML
+    private TextField productSellPricetxt;
+    @FXML
+    private TextField productBuyPricetxt;
+    @FXML
+    private TextField qte;
+    @FXML
+    private Button updateOrderLine;
+    @FXML
+    private TableView<OrderLine> orderlinetable;
+    @FXML
+    private TableColumn<OrderLine, String> productnamecol;
+    @FXML
+    private TableColumn<OrderLine, String> sellpriceordercol;
+    @FXML
+    private TableColumn<OrderLine, String> quantityorderCol;
+    @FXML
+    private TableColumn<OrderLine, String> priceColl;
+    @FXML
+    private TextField shppingtxt;
+    @FXML
+    private TextArea NoteTxt;
+
+    private User ownerOrder;
+    @FXML
+    private Button btnorderCreate;
+
+    public User getOwnerOrder() {
+        return ownerOrder;
+    }
+
+    public void setOwnerOrder(User ownerOrder) {
+        this.ownerOrder = ownerOrder;
+    }
+
+    public OrderLine getOrderline() {
+        return orderline;
+    }
+
+    public void setOrderline(OrderLine orderline) {
+        this.orderline = orderline;
+    }
+    private int IDPRODUCT;
+
+    public int getIDPRODUCT() {
+        return IDPRODUCT;
+    }
+
+    public void setIDPRODUCT(int IDPRODUCT) {
+        this.IDPRODUCT = IDPRODUCT;
+    }
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        loadTableUser();
+        loadTableProduct();
+    }
+
+    public void loadTableUser() {
+        UserService userservice = new UserService();
+        UserList.clear();
+        UserList.addAll(userservice.userListe());
+        tableUser.setItems(UserList);
+        colNameUser.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        ColEmailUser.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        ColPhoneUser.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
+        tableUser.setRowFactory(tv -> {
+            TableRow<User> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event
+                    -> {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    int myIndex = tableUser.getSelectionModel().getSelectedIndex();
+                    int id = Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getId()));
+
+                    nameuserTxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getName()));
+                    adressUserTxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getAdresse()));
+                    emailUserTxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getEmail()));
+                    phoneusertxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getNumero()));
+                    User user = userservice.userById(id);
+                    this.setOwnerOrder(user);
+                }
+            });
+            return myRow;
+        });
+    }
+
+    public void loadTableProduct() {
+        ProductService productService = new ProductService();
+        ProductList.clear();
+        ProductList.addAll(productService.listeProduct());
+        productTable.setItems(ProductList);
+        ProductNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        BuyPriceCol.setCellValueFactory(new PropertyValueFactory<>("buyprice"));
+        SellPriceColl.setCellValueFactory(new PropertyValueFactory<>("sellprice"));
+        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        categoryCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        productTable.setRowFactory(tv -> {
+            TableRow<Product> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event
+                    -> {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    int myIndex = productTable.getSelectionModel().getSelectedIndex();
+                    int id = Integer.parseInt(String.valueOf(productTable.getItems().get(myIndex).getId()));
+                    setIDPRODUCT(id);
+                    productNametxt.setText(String.valueOf(productTable.getItems().get(myIndex).getName()));
+                    productSellPricetxt.setText(String.valueOf(productTable.getItems().get(myIndex).getSellprice()));
+                    productBuyPricetxt.setText(String.valueOf(productTable.getItems().get(myIndex).getBuyprice()));
+                    Boolean test = false;
+                    Iterator iterator = TreeOrderLine.iterator();
+                    while (iterator.hasNext()) {
+                        OrderLine obj = (OrderLine) iterator.next();
+                        if (obj.getProduct_name().equals(productTable.getItems().get(myIndex).getName())) {
+                            test = true;
+                            qte.setText(String.valueOf(obj.getQuantity()));
+                        }
+                    }
+                    if (test == false) {
+                        qte.setText("0");
+                    }
+                }
+            });
+            return myRow;
+        }
+        );
+    }
+
+    @FXML
+    private void updateOrderLineitem(ActionEvent event) {
+        System.out.println("create orderline");
+        OrderLine orderline2 = new OrderLine();
+        orderline2.setProduct_id(IDPRODUCT);
+        orderline2.setProduct_name(productNametxt.getText());
+        orderline2.setProduct_price(Float.parseFloat(productSellPricetxt.getText()));
+        orderline2.setQuantity(Integer.parseInt(qte.getText()));
+        orderline2.setPrice(orderline2.getQuantity() * orderline2.getProduct_price());
+        if (TreeOrderLine.contains(orderline2)) {
+            TreeOrderLine.remove(orderline2);
+        }
+        TreeOrderLine.add(orderline2);
+        System.out.println(TreeOrderLine);
+        OrderLineListe.clear();
+        OrderLineListe.addAll(TreeOrderLine);
+        LoadOrderLine();
+    }
+
+    public void LoadOrderLine() {
+        orderlinetable.setItems(OrderLineListe);
+        productnamecol.setCellValueFactory(new PropertyValueFactory<>("product_name"));
+        sellpriceordercol.setCellValueFactory(new PropertyValueFactory<>("product_price"));
+        quantityorderCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        priceColl.setCellValueFactory(new PropertyValueFactory<>("price"));
+        orderlinetable.setRowFactory(tv -> {
+            TableRow<OrderLine> myRow2 = new TableRow<>();
+            myRow2.setOnMouseClicked(event2
+                    -> {
+                if (event2.getClickCount() == 1 && (!myRow2.isEmpty())) {
+                    int myIndex = orderlinetable.getSelectionModel().getSelectedIndex();
+                    int id = Integer.parseInt(String.valueOf(orderlinetable.getItems().get(myIndex).getId()));
+                    setIDPRODUCT(id);
+                    productNametxt.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_name()));
+                    productSellPricetxt.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_price()));
+                    productBuyPricetxt.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_price()));
+                    qte.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getQuantity()));
+
+                }
+            });
+            return myRow2;
+        });
+    }
+
+    @FXML
+    private void deleteOrderLine(ActionEvent event) {
+        OrderLine orderline2 = new OrderLine();
+
+        orderline2.setProduct_name(productNametxt.getText());
+        orderline2.setProduct_price(Float.parseFloat(productSellPricetxt.getText()));
+        orderline2.setQuantity(Integer.parseInt(qte.getText()));
+        orderline2.setPrice(orderline2.getQuantity() * orderline2.getProduct_price());
+        if (TreeOrderLine.contains(orderline2)) {
+            TreeOrderLine.remove(orderline2);
+        }
+        OrderLineListe.clear();
+        OrderLineListe.addAll(TreeOrderLine);
+        LoadOrderLine();
+    }
+
+    @FXML
+    private void createOrder(ActionEvent event) {
+        OrderService orderservice = new OrderService();
+        Order order = new Order();
+        String reference = "#" + this.getOwnerOrder().getName().toUpperCase() + String.valueOf(new java.sql.Date(System.currentTimeMillis()));
+        order.setReference(reference);
+        order.setState("Confirmed");
+        order.setShippingadress(shppingtxt.getText());
+        order.setDateOrder(new java.sql.Date(System.currentTimeMillis()));
+        order.setNote(NoteTxt.getText());
+        order.setPaiementmethod("Cash");
+        order.setOwner(ownerOrder);
+        orderservice.AddOrder(order, TreeOrderLine);
+        System.out.println("SUIIII");
+        try{
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+            Parent root = loader.load();
+            btnorderCreate.getScene().setRoot(root);
+        }catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+}

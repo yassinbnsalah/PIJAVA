@@ -81,10 +81,11 @@ public interface Iservice<T> {
     public void UpdateStateTicket(String State, int id);
 
     public void SupprimerTicket(int id);
-    
-     public List<Ticket> listTicket();
-         public List<Ticket> recupererUser(int ident) ;
-         
-         public ObservableList<Ticket> getall();
-         
+
+    public List<Ticket> listTicket();
+
+    public List<Ticket> recupererUser(int ident);
+
+    public ObservableList<Ticket> getall();
+
 }

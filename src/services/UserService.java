@@ -63,6 +63,7 @@ public class UserService {
                 user.setCIN(rs.getString("CIN"));
                 user.setName(rs.getString("Name"));
                 user.setEmail(rs.getString("Email"));
+                user.setNumero(rs.getString("Numero"));
                 user.setAdresse(rs.getString("Adresse"));
                 user.setPassword(rs.getString("Password"));
                 liste.add(user);

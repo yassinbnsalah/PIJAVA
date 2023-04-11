@@ -5,11 +5,13 @@
  */
 package models;
 
+import java.util.Objects;
+
 /**
  *
  * @author yacin
  */
-public class OrderLine {
+public class OrderLine  {
 
     private int id;
     private Order relatedOrder;
@@ -17,7 +19,7 @@ public class OrderLine {
     private float price;
     private int product_id;
     private String product_name ; 
-    private int product_price ; 
+    private float product_price ; 
 
     public OrderLine() {
     }
@@ -61,7 +63,7 @@ public class OrderLine {
         return product_name;
     }
 
-    public int getProduct_price() {
+    public float getProduct_price() {
         return product_price;
     }
 
@@ -89,13 +91,39 @@ public class OrderLine {
         this.product_name = product_name;
     }
 
-    public void setProduct_price(int product_price) {
+    public void setProduct_price(float product_price) {
         this.product_price = product_price;
     }
 
     @Override
     public String toString() {
-        return "OrderLine{" + "id=" + id + ", relatedOrder=" + relatedOrder + ", quantity=" + quantity + ", price=" + price + ", product_id=" + product_id + '}';
+        return "OrderLine{" + "id=" + id + ", product_name=" + product_name + ", quantity=" + quantity + ", price=" + price + ", product_id=" + product_id + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.id;
+        hash = 37 * hash + Objects.hashCode(this.product_name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final OrderLine other = (OrderLine) obj;
+        if (!Objects.equals(this.product_name, other.product_name)) {
+            return false;
+        }
+        return true;
     }
 
 }

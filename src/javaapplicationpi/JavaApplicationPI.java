@@ -33,7 +33,8 @@ public class JavaApplicationPI extends Application {
         //Parent rootD= FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
         //  Parent rootD = FXMLLoader.load(getClass().getResource("/view/Medecin/disponibilityListe.fxml"));
         //  Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
-        Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+        //  Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+        Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/CreateOrder.fxml"));
         Scene scene = new Scene(rootD);
 
         stage.setScene(scene);

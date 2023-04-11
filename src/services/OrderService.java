@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javaapplicationpi.JavaApplicationPI;
@@ -38,7 +40,7 @@ import util.MyConnection;
  */
 public class OrderService {
 
-    public void AddOrder(Order order, ArrayList<OrderLine> orderlines) {
+    public void AddOrder(Order order, HashSet<OrderLine> orderlines) {
         OrderLineService orderlineService = new OrderLineService();
         try {
             String req = "INSERT INTO `order`(`client_id`, `reference`, `state`, `price`, `shippingadress`, `date_order`, `note`,"
