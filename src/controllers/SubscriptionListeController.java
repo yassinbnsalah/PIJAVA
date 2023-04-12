@@ -5,15 +5,20 @@
  */
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -76,19 +81,19 @@ public class SubscriptionListeController implements Initializable {
     
     private int IDsubscriptionToUpdate;
     @FXML
-    private Button btnOverview;
-    @FXML
     private Button btnOrders;
     @FXML
-    private Button btnCustomers;
-    @FXML
-    private Button btnMenus;
-    @FXML
-    private Button btnPackages;
-    @FXML
-    private Button btnSettings;
-    @FXML
     private Button btnSignout;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnSubscription;
+    @FXML
+    private Button btnProduct;
+    @FXML
+    private Button btnCategory;
+    @FXML
+    private Button btnTicket;
     
     public int getIDsubscriptionToUpdate() {
         return IDsubscriptionToUpdate;
@@ -211,6 +216,17 @@ public class SubscriptionListeController implements Initializable {
         subservice.DeleteSub(IDsubscriptionToUpdate);
         clearForms();
         refreshTable();
+    }
+
+    @FXML
+    private void GoToOrderListe(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);  
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

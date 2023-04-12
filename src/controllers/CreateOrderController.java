@@ -12,6 +12,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 import java.util.TreeSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -108,6 +111,22 @@ public class CreateOrderController implements Initializable {
     private User ownerOrder;
     @FXML
     private Button btnorderCreate;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnOrders;
+    @FXML
+    private Button btnSubscription;
+    @FXML
+    private Button btnProduct;
+    @FXML
+    private Button btnCategory;
+    @FXML
+    private Button btnTicket;
+    @FXML
+    private Button btnSignout;
+    @FXML
+    private Label lblerror;
 
     public User getOwnerOrder() {
         return ownerOrder;
@@ -296,4 +315,20 @@ public class CreateOrderController implements Initializable {
         }
         
     }
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
+    }
+
+      @FXML
+    private void GoToSubscriptionListe(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);  
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

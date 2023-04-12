@@ -5,14 +5,21 @@
  */
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -34,6 +41,24 @@ import services.OrderService;
 public class OrderListeController implements Initializable {
 
     private int IDOrderToUpdate;
+    @FXML
+    private Button btnOrders;
+    @FXML
+    private Button btnSignout;
+    @FXML
+    private Button btnSubscription;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnProduct;
+    @FXML
+    private Button btnCategory;
+    @FXML
+    private Button btnTicket;
+    @FXML
+    private Button btnCreateOrder;
+    @FXML
+    private Label Referencelbl;
 
     public int getIDOrderToUpdate() {
         return IDOrderToUpdate;
@@ -132,7 +157,7 @@ public class OrderListeController implements Initializable {
                     stateCombo.getItems().add("Shipped");
                     stateCombo.getItems().add("Canceled");
                     stateCombo.getItems().add("Done");
-
+                    Referencelbl.setText(OrderTable.getItems().get(myIndex).getReference());
                     this.setIDOrderToUpdate(OrderTable.getItems().get(myIndex).getId());
                     OrderLineList.addAll(orderlineService.orderlineListe(this.getIDOrderToUpdate()));
                     orderlineTable.setItems(OrderLineList);
@@ -178,8 +203,33 @@ public class OrderListeController implements Initializable {
         
     }
 
+   
+
     @FXML
-    private void CreateOrder(ActionEvent event) {
+    private void GoToSubscriptionListe(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);  
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+    @FXML
+    private void GoToCreateOrder(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/CreateOrder.fxml"));
+            Parent root = loader.load();
+            btnCreateOrder.getScene().setRoot(root);  
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    private void handleClicks(ActionEvent event) {
     }
 
 }
