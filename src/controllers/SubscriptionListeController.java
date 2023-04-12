@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
@@ -74,6 +75,20 @@ public class SubscriptionListeController implements Initializable {
     private ComboBox<String> CBType1;
     
     private int IDsubscriptionToUpdate;
+    @FXML
+    private Button btnOverview;
+    @FXML
+    private Button btnOrders;
+    @FXML
+    private Button btnCustomers;
+    @FXML
+    private Button btnMenus;
+    @FXML
+    private Button btnPackages;
+    @FXML
+    private Button btnSettings;
+    @FXML
+    private Button btnSignout;
     
     public int getIDsubscriptionToUpdate() {
         return IDsubscriptionToUpdate;
@@ -196,6 +211,10 @@ public class SubscriptionListeController implements Initializable {
         subservice.DeleteSub(IDsubscriptionToUpdate);
         clearForms();
         refreshTable();
+    }
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
     }
     
 }
