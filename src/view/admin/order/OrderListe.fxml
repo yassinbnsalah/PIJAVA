@@ -22,9 +22,9 @@
                <font>
                   <Font name="Arial" size="36.0" />
                </font></Label>
-            <Button fx:id="btnCreateOrder" layoutX="861.0" layoutY="32.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="291.0" text="Create Order">
+            <Button fx:id="btnCreateOrder" layoutX="861.0" layoutY="32.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="291.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
                <font>
-                  <Font size="19.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
             </Button>
             <AnchorPane layoutX="1171.0" layoutY="32.0" prefHeight="690.0" prefWidth="446.0" style="-fx-background-color: #f7f7f7;">
@@ -43,18 +43,24 @@
                   <Label layoutX="23.0" layoutY="369.0" prefHeight="17.0" prefWidth="95.0" text="Order Lines" />
                   <TableView fx:id="orderlineTable" layoutX="31.0" layoutY="398.0" prefHeight="194.0" prefWidth="368.0">
                     <columns>
-                      <TableColumn fx:id="productNameCol" prefWidth="111.0" text="Product Name" />
-                      <TableColumn fx:id="productPricecol" prefWidth="87.0" text="Price product" />
-                        <TableColumn fx:id="quantitycol" prefWidth="75.0" text="Quantity" />
-                        <TableColumn fx:id="pricelinecol" prefWidth="94.0" text="Price Line" />
+                      <TableColumn fx:id="productNameCol" prefWidth="111.0" style="-fx-background-color: #f5f4f8;" text="Product Name" />
+                      <TableColumn fx:id="productPricecol" prefWidth="87.0" style="-fx-background-color: #f5f4f8;" text="Price product" />
+                        <TableColumn fx:id="quantitycol" prefWidth="75.0" style="-fx-background-color: #f5f4f8;" text="Quantity" />
+                        <TableColumn fx:id="pricelinecol" prefWidth="94.0" style="-fx-background-color: #f5f4f8;" text="Price Line" />
                     </columns>
                   </TableView>
                   <Label layoutX="23.0" layoutY="298.0" prefHeight="17.0" prefWidth="95.0" text="State Order : " />
                   <Label layoutX="23.0" layoutY="337.0" prefHeight="17.0" prefWidth="95.0" text="Update State To :" />
-                  <Button layoutX="241.0" layoutY="630.0" mnemonicParsing="false" onAction="#updateOrderState" prefHeight="25.0" prefWidth="148.0" text="Update Order" />
-                  <Button layoutX="44.0" layoutY="630.0" mnemonicParsing="false" onAction="#GenerateInvoicehere" prefHeight="25.0" prefWidth="148.0" text="Generate Invoice" />
-                  <ComboBox fx:id="stateCombo" layoutX="134.0" layoutY="333.0" prefHeight="25.0" prefWidth="162.0" />
-                  <Label fx:id="Referencelbl" layoutX="164.0" layoutY="19.0" prefHeight="18.0" prefWidth="238.0" style="-fx-background-color: #ccb3ff;">
+                  <Button layoutX="241.0" layoutY="630.0" mnemonicParsing="false" onAction="#updateOrderState" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: #51a0c2;" text="Update Order" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <Button layoutX="44.0" layoutY="630.0" mnemonicParsing="false" onAction="#GenerateInvoicehere" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: #19cb98;" text="Generate Invoice" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font></Button>
+                  <ComboBox fx:id="stateCombo" layoutX="134.0" layoutY="333.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #e4e3e9;" />
+                  <Label fx:id="Referencelbl" layoutX="164.0" layoutY="19.0" prefHeight="18.0" prefWidth="171.0" style="-fx-background-color: #e3dcff;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
@@ -67,22 +73,26 @@
                   <TextField fx:id="orderStatetxt" disable="true" layoutX="134.0" layoutY="293.0" prefHeight="26.0" prefWidth="162.0" />
                </children>
             </AnchorPane>
-            <TableView fx:id="OrderTable" layoutX="24.0" layoutY="101.0" prefHeight="622.0" prefWidth="1134.0">
+            <TableView fx:id="OrderTable" layoutX="24.0" layoutY="101.0" prefHeight="622.0" prefWidth="1134.0" style="-fx-background-color: #f5f4f8;">
               <columns>
-                <TableColumn fx:id="ColOrderReference" prefWidth="245.6000213623047" text="Order Reference" />
-                <TableColumn fx:id="ColOrderOwner" minWidth="0.800018310546875" prefWidth="176.0" text="Order Owner" />
-                  <TableColumn fx:id="ColOrderDate" minWidth="0.0" prefWidth="150.4000244140625" text="Date Order" />
-                  <TableColumn fx:id="ColShippingAdress" prefWidth="136.0" text="Shipping Adresse" />
-                  <TableColumn fx:id="ColPaiementMethod" prefWidth="163.19989013671875" text="Paiement Method" />
-                  <TableColumn fx:id="ColPrice" prefWidth="139.199951171875" text="Price" />
-                  <TableColumn fx:id="ColState" prefWidth="119.2000732421875" text="State" />
+                <TableColumn fx:id="ColOrderReference" prefWidth="245.6000213623047" style="-fx-background-color: #f5f4f8;" text="Order Reference" />
+                <TableColumn fx:id="ColOrderOwner" minWidth="0.800018310546875" prefWidth="176.0" style="-fx-background-color: #f5f4f8;" text="Order Owner" />
+                  <TableColumn fx:id="ColOrderDate" minWidth="0.0" prefWidth="150.4000244140625" style="-fx-background-color: #f5f4f8;" text="Date Order" />
+                  <TableColumn fx:id="ColShippingAdress" prefWidth="136.0" style="-fx-background-color: #f5f4f8;" text="Shipping Adresse" />
+                  <TableColumn fx:id="ColPaiementMethod" prefWidth="163.19989013671875" style="-fx-background-color: #f5f4f8;" text="Paiement Method" />
+                  <TableColumn fx:id="ColPrice" prefWidth="139.199951171875" style="-fx-background-color: #f5f4f8;" text="Price" />
+                  <TableColumn fx:id="ColState" prefWidth="119.2000732421875" style="-fx-background-color: #f5f4f8;" text="State" />
               </columns>
             </TableView>
+            <Label fx:id="errorlbl" layoutX="440.0" layoutY="45.0" prefHeight="18.0" prefWidth="122.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
           
            
             </children>
         </AnchorPane>
-      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e4c6ff;">
+      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -97,7 +107,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Client" textFill="#000000">
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -118,7 +128,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Orders" textFill="#000000">
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Orders" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +143,7 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Subscriptions" textFill="#000000">
+            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Subscriptions" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -148,7 +158,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Products">
+            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -163,7 +173,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Category">
+            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -178,7 +188,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnTicket" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Ticket" textFill="#101010">
+            <Button fx:id="btnTicket" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Ticket" textFill="#101010">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -193,7 +203,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Sign Out">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Sign Out">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

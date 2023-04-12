@@ -14,10 +14,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import models.Disponibility ; 
+import javafx.stage.Stage;
+import models.Disponibility;
 import services.DisponibilityService;
+
 /**
  * FXML Controller class
  *
@@ -35,6 +38,8 @@ public class AddDisponnibilityController implements Initializable {
     private TextArea txtNode;
     @FXML
     private Button btnCreate;
+    @FXML
+    private Label lblerrortxt;
 
     /**
      * Initializes the controller class.
@@ -42,15 +47,48 @@ public class AddDisponnibilityController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+        lblerrortxt.setVisible(false);
+    }
+
+    public boolean verifyHoure(String ch) {
+        int ind = ch.indexOf(":");
+        String heure = ch.substring(0, ind);
+        String minute = ch.substring(ind + 1, ch.length());
+        int heurestart;
+        int minuteStart;
+        try {
+            heurestart = Integer.parseInt(heure);
+            minuteStart = Integer.parseInt(minute);
+        } catch (Exception ex) {
+            return false;
+        }
+        if (heurestart > 23 || minuteStart > 60) {
+            return false;
+        }
+        return true;
+    }
 
     @FXML
     private void OnHandleClickCreate(ActionEvent event) {
-        Disponibility dispo = new Disponibility(txtHeureStart.getText(),  txtHeureEnd.getText(),  txtNode.getText(),  "Available",  1); 
-        dispo.setDateDispo(Date.valueOf(DateDispo.valueProperty().getValue()));
-        DisponibilityService dispoService = new DisponibilityService(); 
-        dispoService.AddDisponibility(dispo);
-        System.out.println("Disponnibility created succeffuly");
+        verifyHoure(txtHeureStart.getText());
+        if (txtHeureStart.getText().length() != 0 && txtHeureEnd.getText().length() != 0 && txtNode.getText().length() != 0
+                && verifyHoure(txtHeureStart.getText()) && verifyHoure(txtHeureEnd.getText())) {
+
+            Disponibility dispo = new Disponibility(txtHeureStart.getText(), txtHeureEnd.getText(), txtNode.getText(), "Available", 1);
+            dispo.setDateDispo(Date.valueOf(DateDispo.valueProperty().getValue()));
+            DisponibilityService dispoService = new DisponibilityService();
+            dispoService.AddDisponibility(dispo);
+           // DisponibilityListeController adc = new DisponibilityListeController();
+            //adc.refreshTable();
+            System.out.println("Disponnibility created succeffuly");
+            Stage stage = (Stage) btnCreate.getScene().getWindow();
+            // do what you have to do
+            stage.close();
+        } else {
+            lblerrortxt.setVisible(true);
+            lblerrortxt.setText("No Data Founded");
+        }
+
     }
-    
+
 }

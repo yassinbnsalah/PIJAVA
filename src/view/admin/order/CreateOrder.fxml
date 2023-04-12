@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateOrderController">
      <children>
-      <AnchorPane layoutX="250.0" prefHeight="752.0" prefWidth="1652.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="238.0" prefHeight="752.0" prefWidth="1652.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="26.0" layoutY="37.0" text="Create Order :">
                <font>
@@ -28,9 +28,9 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="17.0" layoutY="78.0" prefHeight="18.0" prefWidth="90.0" text="User Name :" />
+                  <Label layoutX="14.0" layoutY="78.0" prefHeight="18.0" prefWidth="90.0" text="User Name :" />
                   <TextField fx:id="nameuserTxt" disable="true" layoutX="121.0" layoutY="74.0" prefHeight="26.0" prefWidth="179.0" />
-                  <Label layoutX="14.0" layoutY="114.0" prefHeight="18.0" prefWidth="78.0" text="User Phone :" />
+                  <Label layoutX="14.0" layoutY="114.0" prefHeight="18.0" prefWidth="122.0" text="User Phone :" />
                   <TextField fx:id="phoneusertxt" disable="true" layoutX="121.0" layoutY="110.0" prefHeight="26.0" prefWidth="179.0" />
                   <Label layoutX="14.0" layoutY="192.0" prefHeight="18.0" prefWidth="78.0" text="Adress :" />
                   <TextField fx:id="adressUserTxt" disable="true" layoutX="121.0" layoutY="188.0" prefHeight="26.0" prefWidth="179.0" />
@@ -78,16 +78,22 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="51.0" layoutY="68.0" prefHeight="18.0" prefWidth="101.0" text="Product Name : " />
-                  <Label layoutX="51.0" layoutY="110.0" prefHeight="18.0" prefWidth="101.0" text="Product Sell Price :" />
-                  <Label layoutX="51.0" layoutY="149.0" prefHeight="18.0" prefWidth="101.0" text="Product Buy Price :" />
-                  <TextField fx:id="productNametxt" disable="true" layoutX="172.0" layoutY="64.0" prefHeight="26.0" prefWidth="222.0" />
-                  <TextField fx:id="productSellPricetxt" disable="true" layoutX="172.0" layoutY="106.0" prefHeight="26.0" prefWidth="222.0" />
-                  <TextField fx:id="productBuyPricetxt" disable="true" layoutX="172.0" layoutY="145.0" prefHeight="26.0" prefWidth="222.0" />
+                  <Label layoutX="51.0" layoutY="68.0" prefHeight="18.0" prefWidth="158.0" text="Product Name : " />
+                  <Label layoutX="51.0" layoutY="110.0" prefHeight="18.0" prefWidth="158.0" text="Product Sell Price :" />
+                  <Label layoutX="51.0" layoutY="149.0" prefHeight="18.0" prefWidth="158.0" text="Product Buy Price :" />
+                  <TextField fx:id="productNametxt" disable="true" layoutX="236.0" layoutY="64.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="productSellPricetxt" disable="true" layoutX="237.0" layoutY="106.0" prefHeight="26.0" prefWidth="157.0" />
+                  <TextField fx:id="productBuyPricetxt" disable="true" layoutX="236.0" layoutY="145.0" prefHeight="26.0" prefWidth="158.0" />
                   <Label layoutX="437.0" layoutY="68.0" prefHeight="18.0" prefWidth="101.0" text="Quantity :" />
                   <TextField fx:id="qte" layoutX="498.0" layoutY="64.0" prefHeight="26.0" prefWidth="102.0" />
-                  <Button fx:id="updateOrderLine" layoutX="446.0" layoutY="146.0" mnemonicParsing="false" onAction="#updateOrderLineitem" prefHeight="26.0" prefWidth="170.0" text="Update IT" />
-                  <Button layoutX="446.0" layoutY="106.0" mnemonicParsing="false" onAction="#deleteOrderLine" prefHeight="26.0" prefWidth="170.0" text="Delete this orderLine" />
+                  <Button fx:id="updateOrderLine" layoutX="446.0" layoutY="146.0" mnemonicParsing="false" onAction="#updateOrderLineitem" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #6ad2ff;" text="Update IT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="446.0" layoutY="106.0" mnemonicParsing="false" onAction="#deleteOrderLine" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #e53f3c;" text="Delete this orderLine" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="1062.0" layoutY="91.0" prefHeight="402.0" prefWidth="566.0" style="-fx-background-color: #f7f7f7;">
@@ -120,11 +126,17 @@
                   <TextField fx:id="txtsearshUser" layoutX="4.0" layoutY="65.0" prefHeight="26.0" prefWidth="296.0" />
                </children>
             </AnchorPane>
-            <Button fx:id="btnorderCreate" layoutX="1336.0" layoutY="25.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="26.0" prefWidth="274.0" text="Create Order" />
-            <Label fx:id="lblerror" layoutX="491.0" layoutY="46.0" prefHeight="18.0" prefWidth="418.0" textFill="RED" />
+            <Button fx:id="btnorderCreate" layoutX="1336.0" layoutY="25.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="35.0" prefWidth="274.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font></Button>
+            <Label fx:id="lblerror" layoutX="491.0" layoutY="46.0" prefHeight="18.0" prefWidth="418.0" style="-fx-background-color: #fad9d8;" textFill="#5c596d">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
          </children>
       </AnchorPane>
-      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e4c6ff;">
+      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -139,7 +151,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Client" textFill="#000000">
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -160,7 +172,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Orders" textFill="#000000">
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Orders" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -175,7 +187,7 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Subscriptions" textFill="#000000">
+            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Subscriptions" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -190,7 +202,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Products">
+            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -205,7 +217,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Category">
+            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -220,7 +232,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnTicket" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Ticket" textFill="#101010">
+            <Button fx:id="btnTicket" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Ticket" textFill="#101010">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -235,7 +247,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e4c6ff;" text="Sign Out">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Sign Out">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

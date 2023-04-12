@@ -47,7 +47,7 @@ public class GenerateInvoice {
 
             //Inserting Image in PDF
             Image image = Image.getInstance("D:\\telechargement\\pilogo.png");//Header Image
-            image.scaleAbsolute(50f, 50f);//image width,height 
+            image.scaleAbsolute(100f, 100f);//image width,height 
 
             PdfPTable irdTable = new PdfPTable(2);
             irdTable.addCell(getIRDCell("Invoice No"));
@@ -71,11 +71,11 @@ public class GenerateInvoice {
             Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 13, Font.BOLD);
             fs.addFont(font);
             Phrase bill = fs.process("Bill To"); // customer information
-            Paragraph name = new Paragraph(order.getOwner().getName());
+            Paragraph name = new Paragraph("Order Owner :"+order.getOwner().getName());
             name.setIndentationLeft(20);
-            Paragraph contact = new Paragraph(order.getOwner().getNumero());
+            Paragraph contact = new Paragraph("Order Phone :"+order.getOwner().getNumero());
             contact.setIndentationLeft(20);
-            Paragraph address = new Paragraph(order.getOwner().getAdresse());
+            Paragraph address = new Paragraph("Order Adress :"+order.getOwner().getAdresse());
             address.setIndentationLeft(20);
 
             PdfPTable billTable = new PdfPTable(6); //one page contains 15 records 
@@ -91,7 +91,7 @@ public class GenerateInvoice {
             for (OrderLine orderline : order.getOrderline()) {
                 billTable.addCell(getBillRowCell(Integer.toString(orderline.getId())));
                 billTable.addCell(getBillRowCell(Integer.toString(orderline.getProduct_id())));
-                billTable.addCell(getBillRowCell("Nokia Lumia 610 \n IMI:WQ361989213 "));
+                billTable.addCell(getBillRowCell("description here "));
                 billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice()) + "DT"));
                 billTable.addCell(getBillRowCell(Integer.toString(orderline.getQuantity())));
                 billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice() * orderline.getQuantity()) + "DT"));

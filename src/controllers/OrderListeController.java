@@ -59,6 +59,8 @@ public class OrderListeController implements Initializable {
     private Button btnCreateOrder;
     @FXML
     private Label Referencelbl;
+    @FXML
+    private Label errorlbl;
 
     public int getIDOrderToUpdate() {
         return IDOrderToUpdate;
@@ -175,11 +177,17 @@ public class OrderListeController implements Initializable {
 
     @FXML
     private void updateOrderState(ActionEvent event) {
-        System.out.println("order state Updated");
+        if(this.getIDOrderToUpdate() != 0){
+              System.out.println("order state Updated");
         OrderService orderService = new OrderService();
         orderService.updateStateOrder(this.getIDOrderToUpdate(), stateCombo.getValue());
         clearForm();
         refereshTable();
+        }else{
+           
+            errorlbl.setText("No Order Clicked");
+       }
+      
 
     }
 
@@ -196,11 +204,15 @@ public class OrderListeController implements Initializable {
 
     @FXML
     private void GenerateInvoicehere(ActionEvent event) {
+         if(this.getIDOrderToUpdate() != 0){
         GenerateInvoice GI = new GenerateInvoice() ; 
         OrderService orderservice = new OrderService() ;
         Order order = orderservice.orderByID(IDOrderToUpdate); 
         GI.createPDF(order);
-        
+         }else{
+           
+            errorlbl.setText("No Order Clicked");
+       }
     }
 
    

@@ -47,6 +47,7 @@ public class LoginController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lblErrors.setVisible(false);
         // TODO
     }
 
@@ -74,7 +75,7 @@ public class LoginController implements Initializable {
     }
 
     private void setLblError(Color color, String text) {
-        lblErrors.setTextFill(color);
+        lblErrors.setVisible(true);
         lblErrors.setText(text);
         System.out.println(text);
     }

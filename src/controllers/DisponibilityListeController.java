@@ -45,6 +45,10 @@ import util.MyConnection;
  */
 public class DisponibilityListeController implements Initializable {
 
+    public DisponibilityListeController() {
+      
+    }
+
     private int IDToUpdate;
     @FXML
     private Button updatebtn;
@@ -114,7 +118,8 @@ public class DisponibilityListeController implements Initializable {
         }
     }
 
-    private void refreshTable() {
+  
+    public void refreshTable() {
         DisponibilityService dispservice = new DisponibilityService();
         DispoList.clear();
         DispoList.addAll(dispservice.disponibilityListe(1));

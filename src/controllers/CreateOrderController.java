@@ -159,6 +159,7 @@ public class CreateOrderController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        lblerror.setVisible(false);
         loadTableUser();
         loadTableProduct();
     }
@@ -294,38 +295,50 @@ public class CreateOrderController implements Initializable {
 
     @FXML
     private void createOrder(ActionEvent event) {
-        OrderService orderservice = new OrderService();
-        Order order = new Order();
-        String reference = "#" + this.getOwnerOrder().getName().toUpperCase() + String.valueOf(new java.sql.Date(System.currentTimeMillis()));
-        order.setReference(reference);
-        order.setState("Confirmed");
-        order.setShippingadress(shppingtxt.getText());
-        order.setDateOrder(new java.sql.Date(System.currentTimeMillis()));
-        order.setNote(NoteTxt.getText());
-        order.setPaiementmethod("Cash");
-        order.setOwner(ownerOrder);
-        orderservice.AddOrder(order, TreeOrderLine);
-        System.out.println("SUIIII");
-        try{
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
-            Parent root = loader.load();
-            btnorderCreate.getScene().setRoot(root);
-        }catch(IOException ex){
-            System.out.println(ex.getMessage());
+        int leng = TreeOrderLine.size();
+        int lengShipp = shppingtxt.getText().length(); 
+        if (leng != 0 && this.getOwnerOrder()!= null && lengShipp != 0) {
+            OrderService orderservice = new OrderService();
+            Order order = new Order();
+            String reference = "#" + this.getOwnerOrder().getName().toUpperCase() + String.valueOf(new java.sql.Date(System.currentTimeMillis()));
+            order.setReference(reference);
+            order.setState("Confirmed");
+            order.setShippingadress(shppingtxt.getText());
+            order.setDateOrder(new java.sql.Date(System.currentTimeMillis()));
+            order.setNote(NoteTxt.getText());
+            order.setPaiementmethod("Cash");
+            order.setOwner(ownerOrder);
+            int price = 0;
+            for (OrderLine orderline : TreeOrderLine) {
+                price = price + (int) orderline.getPrice();
+            }
+            order.setPrice(price);
+            orderservice.AddOrder(order, TreeOrderLine);
+            System.out.println("SUIIII");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+                Parent root = loader.load();
+                btnorderCreate.getScene().setRoot(root);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }else{
+            lblerror.setVisible(true);
+            lblerror.setText("Please check your info before you create Order");
         }
-        
+
     }
 
     @FXML
     private void handleClicks(ActionEvent event) {
     }
 
-      @FXML
+    @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
             Parent root = loader.load();
-            btnSubscription.getScene().setRoot(root);  
+            btnSubscription.getScene().setRoot(root);
         } catch (IOException ex) {
             Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
         }
