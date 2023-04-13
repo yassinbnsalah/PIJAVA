@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TicketListeController">
+    <children>
+        <TableView fx:id="TableTicket" layoutX="251.0" layoutY="142.0" prefHeight="483.0" prefWidth="675.0">
+            <columns>
+                <TableColumn fx:id="colTitle" prefWidth="107.19998168945312" text="Title" />
+                <TableColumn fx:id="colSubjectTicket" prefWidth="174.40003967285156" text="Subject" />
+                <TableColumn fx:id="ColDateTicket" prefWidth="115.20001220703125" text="Date to send" />
+                <TableColumn fx:id="ColOwner" prefWidth="118.39996337890625" text="Owner" />
+                <TableColumn fx:id="ColState" prefWidth="157.60003662109375" text="State" />
+            </columns>
+        </TableView>
+      <AnchorPane layoutX="930.0" layoutY="243.0" prefHeight="352.0" prefWidth="335.0" style="-fx-background-color: #e4e4e4;">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="198.0" text="                     Ticket">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="139.0" prefHeight="17.0" prefWidth="62.0" text="Subject" />
+            <TextArea fx:id="SubjectTXT" disable="true" layoutX="125.0" layoutY="125.0" prefHeight="62.0" prefWidth="174.0" />
+            <Button layoutX="186.0" layoutY="313.0" mnemonicParsing="false" onAction="#SupprimerTicket" style="-fx-background-color: #e53f3c;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <TextField fx:id="titleTxt" disable="true" layoutX="125.0" layoutY="65.0" prefHeight="25.0" prefWidth="174.0" />
+            <Label layoutX="18.0" layoutY="69.0" prefHeight="17.0" prefWidth="93.0" text="Title" />
+            <Button fx:id="updatebtn2" layoutX="18.0" layoutY="313.0" mnemonicParsing="false" onAction="#UpdateStateTicket" prefHeight="26.0" prefWidth="134.0" style="-fx-background-color: #6ad2ff;" text="Update State" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+          <Label layoutX="262.0" layoutY="89.0" prefHeight="62.0" prefWidth="267.0" text="Ticket" textFill="#030303">
+              <font>
+                  <Font name="Agency FB" size="41.0" />
+              </font>
+          </Label>
+          <Button fx:id="btnAddTicket" layoutX="614.0" layoutY="89.0" mnemonicParsing="false" onAction="#CreateNewTicket" prefHeight="44.0" prefWidth="255.0" style="-fx-background-color: #754ffe;" text="Create New Ticket" textFill="WHITE">
+              <font>
+                  <Font name="System Bold" size="18.0" />
+              </font>
+          </Button>
+      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/util/Images/jimmy-fallon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Jimmy Fallon" textFill="#3b3b3b">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Orders" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Open_Envelope_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Subscriptions" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Xbox_Menu_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnTicket" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Ticket" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Ticket" textFill="#101010">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Slider__32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Sign Out">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

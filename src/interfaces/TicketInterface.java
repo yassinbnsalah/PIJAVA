@@ -15,7 +15,7 @@ import models.Ticket;
  */
 public interface TicketInterface {
      public void ajouterTicket(Ticket t);
-     public void UpdateStateTicket(String State, int id);
+     public void UpdateStateTicket(int id);
      public void SupprimerTicket(int id);
      public List<Ticket> listTicket();
      public List<Ticket> recupererUser(int ident);

@@ -12,7 +12,7 @@ package models;
 
 public class User{
     private int id;
-    private int CIN;
+    private String CIN;
     private String Name;
     private int Numero;
     private String Email;
@@ -25,7 +25,7 @@ public class User{
     public User(){
     }
     
-    public User(int id, int CIN, String Name, int Numero, String Email, String Adresse, String Password, String roles) {
+    public User(int id, String CIN, String Name, int Numero, String Email, String Adresse, String Password, String roles) {
         this.id = id;
         this.CIN = CIN;
         this.Name = Name;
@@ -36,7 +36,7 @@ public class User{
         this.roles= roles;
     }
 
-    public User(int CIN, String Name, int Numero, String Email, String Adresse, String Password) {
+    public User(String CIN, String Name, int Numero, String Email, String Adresse, String Password) {
         this.CIN = CIN;
         this.Name = Name;
         this.Numero = Numero;
@@ -44,7 +44,7 @@ public class User{
         this.Adresse = Adresse;
         this.Password = Password;
     }
-     public User(int CIN, String Name, int Numero, String Email, String Adresse) {
+     public User(String CIN, String Name, int Numero, String Email, String Adresse) {
         this.CIN = CIN;
         this.Name = Name;
         this.Numero = Numero;
@@ -52,7 +52,7 @@ public class User{
         this.Adresse = Adresse;
       
     }
-      public User(int id,int CIN, String Name, int Numero, String Email, String Adresse) {
+      public User(int id,String CIN, String Name, int Numero, String Email, String Adresse) {
         this.id = id;
         this.CIN = CIN;
         this.Name = Name;
@@ -68,6 +68,21 @@ public class User{
     public static void setCurrent_User(User Current_User) {
         User.Current_User = Current_User;
     }
+
+    public User(String CIN, String Name, String Adresse, String Password, String Email, int Numero) {
+       this.CIN = CIN;
+        this.Name = Name;
+        this.Numero = Numero;
+        this.Email = Email;
+        this.Adresse = Adresse;
+        this.Password = Password;
+    }
+
+  
+
+  
+
+    
     public int getId() {
         return id;
     }
@@ -76,11 +91,11 @@ public class User{
         this.id = id;
     }
 
-    public int getCIN() {
+    public String getCIN() {
         return CIN;
     }
 
-    public void setCIN(int CIN) {
+    public void setCIN(String CIN) {
         this.CIN = CIN;
     }
 

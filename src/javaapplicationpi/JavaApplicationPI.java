@@ -56,55 +56,10 @@ public class JavaApplicationPI {
          * *************** User  CREATION ***********
          * ***********************************************
          */
-        User user = new User();
-        user.setCIN(14326640);
-        user.setName("Fedi");
-        user.setNumero(93293311);
-        user.setEmail("Fedi@gmail.com");
-        user.setAdresse("Ariana");
-        user.setPassword("Fedi123:");
+
         
-        /**
-         * *****************************************************
-         * ************** userserv.AddUser(user); *********
-         * ******************************************************
-         */
-/**
-         * ************************************************
-         * *************** Ticket MANAGMENT ***********
-         * ***********************************************
-         */
-         TicketService ticketserv = new TicketService();
-       
-         /**
-         * ************************************************
-         * *************** Ticket LISTE ***********
-         * ***********************************************
-         */
-        // System.out.println(ticketserv.listTicket());*/
-      
-        /**
-         * ****** CREATE Ticket ******
-         */
-        Ticket ticket = new Ticket();
-        ticket.setDateticket(new java.sql.Date(System.currentTimeMillis()));
-        ticket.setMessage("i cant log my acount");
-        ticket.setTitre("Password Problem");
-        ticket.setId_user(1);
-         /**
-         * *****************************************************
-         * **************   ticketserv.ajouterTicket(ticket);  *********
-         * ******************************************************
-         */
-      
-        /**
-         * ****** DELETE Ticket ******
-         */
-        // ticketserv.SupprimerTicket(15);/**DONE**/
-        /**
-         * ****** UPDATE STATE Ticket ******
-         */
-        // ticketserv.UpdateStateTicket("Confirmed",16);
+        userserv.supprimerUtilisateur(71); 
+
 
       
 
