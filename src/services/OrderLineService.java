@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import models.OrderLine;
 import util.MyConnection;
-
+import models.Product ; 
 /**
  *
  * @author yacin
@@ -46,6 +46,9 @@ public class OrderLineService {
                 orderLine.setPrice(rs.getFloat("price"));
                 orderLine.setQuantity(rs.getInt("quantity"));
                 orderLine.setProduct_id(rs.getInt("product_id"));
+                ProductService productservice = new ProductService(); 
+                Product prd = productservice.productBYID(rs.getInt("product_id"));
+                orderLine.setProduct_name(prd.getName());
                 listeOrderLine.add(orderLine);
             }
         } catch (SQLException ex) {

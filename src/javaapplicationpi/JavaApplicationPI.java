@@ -30,11 +30,13 @@ public class JavaApplicationPI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-         Parent rootD= FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
-      //  Parent rootD = FXMLLoader.load(getClass().getResource("/view/Medecin/disponibilityListe.fxml"));
+      Parent rootD= FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
+       // Parent rootD = FXMLLoader.load(getClass().getResource("/view/Medecin/disponibilityListe.fxml"));
         //  Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
-       // Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/OrderListe.fxml"));
-        // Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/CreateOrder.fxml"));
+      //Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+        //Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/CreateOrder.fxml"));
+       // Parent rootD = FXMLLoader.load(getClass().getResource("/view/client/subscription/subscriptionhistory.fxml"));
+       //Parent rootD = FXMLLoader.load(getClass().getResource("/view/client/order/orderHistory.fxml"));
         Scene scene = new Scene(rootD);
 
         stage.setScene(scene);

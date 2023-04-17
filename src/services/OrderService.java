@@ -46,7 +46,7 @@ public class OrderService {
             String req = "INSERT INTO `order`(`client_id`, `reference`, `state`, `price`, `shippingadress`, `date_order`, `note`,"
                     + " `paiementmethod`, `invoiced`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
-            pst.setInt(1, 1);
+            pst.setInt(1, order.getOwner().getId());
             pst.setString(2, order.getReference());
             pst.setString(3, order.getState());
             pst.setInt(4, order.getPrice());
@@ -149,6 +149,38 @@ public class OrderService {
         System.out.println("Order : " + order);
         return order;
     }
+    
+       public ArrayList<Order> OrderByCLient(int id) {
+        OrderLineService orderlineservice = new OrderLineService();
+        
+        ArrayList<Order> orderliste = new ArrayList<>() ; 
+        UserService userservice = new UserService();
+        try {
+            String req = "SELECT * FROM `order` WHERE client_id = ? ORDER BY date_order DESC";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+               Order order = new Order();
+                order.setId(rs.getInt(1));
+                order.setDateOrder(rs.getDate("date_order"));
+                order.setNote(rs.getString("note"));
+                order.setPaiementmethod(rs.getString("paiementmethod"));
+                order.setPrice(rs.getInt("price"));
+                order.setReference(rs.getString("reference"));
+                order.setShippingadress(rs.getString("shippingadress"));
+                order.setState(rs.getString("state"));
+                User user = userservice.userById(Integer.parseInt(rs.getString("client_id")));
+                order.setOwner(user);
+                order.setOrderline(orderlineservice.orderlineListe(id));
+                orderliste.add(order);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return orderliste;
+    }
 
     public void updateStateOrder(int id, String state) {
 
@@ -163,27 +195,6 @@ public class OrderService {
             System.out.println(ex.getMessage());
         }
     }
-
-    /* public void printInvoice(Order order){
-        String sourceFile = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\JavaApplicationPI\\src\\report\\Invoice.jrxml";
-        try { 
-             
-            JasperReport jf = JasperCompileManager.compileReport(sourceFile);
-             System.out.println("ODNE");
-            HashMap<String,Object> para = new HashMap<>() ;
-            para.put("Owner","yessinehnee");
-            ArrayList<OrderLine> ordline = new ArrayList<>() ; 
-            for (OrderLine orderline : order.getOrderline()) {
-               ordline.add(new OrderLine(orderline.getId(), orderline.getQuantity(), orderline.getPrice(), 2));
-            }
-            //JRBeanCollectionDataSource jcs = new JRBeanCollectionDataSource(ordline);
-           // JasperPrint jp = JasperFillManager.fillReport(jf, para , jcs );
-            System.out.println("ODNE");
-            //JasperViewer.viewReport(jp);
-        } catch (JRException ex) {
-            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
     public void GenerateInvoice(Order order) {
 
         try {

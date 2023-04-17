@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.paint.Color;
 import models.Disponibility;
+import util.SessionManager;
 
 /**
  *
@@ -175,7 +176,15 @@ public class UserService {
                 
                        String Role = resultSet.getString("roles");
                        System.out.println("Role is "+Role);
-                 
+                       User user = new User() ; 
+                       user.setRoles(Role);
+                       user.setId(resultSet.getInt("id")); 
+                       user.setName(resultSet.getString("name"));
+                       user.setEmail(resultSet.getString("email"));
+                       user.setCIN(resultSet.getString("cin"));
+                       user.setAdresse(resultSet.getString("adresse"));
+                       SessionManager sm = SessionManager.getInstance() ;
+                       sm.setUser(user);
                     status = "success";
                 }
             } catch (SQLException ex) {

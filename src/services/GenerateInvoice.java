@@ -38,15 +38,15 @@ public class GenerateInvoice {
 
         try {
             String reference = "INV" + order.getId() + ".pdf";
-
-            String filePath = "D:\\yessine\\esprit\\3A47\\PI\\projetpi\\Invoices\\" + reference;
+            String home = System.getProperty("user.home");
+            String filePath = home+"\\Downloads\\" + reference;
             System.out.println("reference" + filePath);
             OutputStream file = new FileOutputStream(new File(filePath));
             Document document = new Document();
             PdfWriter.getInstance(document, file);
 
             //Inserting Image in PDF
-            Image image = Image.getInstance("D:\\telechargement\\pilogo.png");//Header Image
+            Image image = Image.getInstance("D:\\telechargement\\\\pilogo.png");//Header Image
             image.scaleAbsolute(100f, 100f);//image width,height 
 
             PdfPTable irdTable = new PdfPTable(2);
@@ -71,11 +71,11 @@ public class GenerateInvoice {
             Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 13, Font.BOLD);
             fs.addFont(font);
             Phrase bill = fs.process("Bill To"); // customer information
-            Paragraph name = new Paragraph("Order Owner :"+order.getOwner().getName());
+            Paragraph name = new Paragraph("Order Owner :" + order.getOwner().getName());
             name.setIndentationLeft(20);
-            Paragraph contact = new Paragraph("Order Phone :"+order.getOwner().getNumero());
+            Paragraph contact = new Paragraph("Order Phone :" + order.getOwner().getNumero());
             contact.setIndentationLeft(20);
-            Paragraph address = new Paragraph("Order Adress :"+order.getOwner().getAdresse());
+            Paragraph address = new Paragraph("Order Adress :" + order.getOwner().getAdresse());
             address.setIndentationLeft(20);
 
             PdfPTable billTable = new PdfPTable(6); //one page contains 15 records 
@@ -223,9 +223,9 @@ public class GenerateInvoice {
             file.close();
 
             System.out.println("Pdf created successfully..");
-           
+
             EmailManager em = new EmailManager();
-          //  em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
+            //  em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
         } catch (Exception e) {
             e.printStackTrace();
         }

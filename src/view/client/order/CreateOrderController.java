@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package view.client.order;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.TreeSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,14 +25,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.Disponibility;
-import services.UserService;
-import models.User;
-import services.ProductService;
-import models.Product;
-import models.OrderLine;
-import services.OrderService;
 import models.Order;
+import models.OrderLine;
+import models.Product;
+import models.User;
+import services.OrderService;
+import services.ProductService;
+import services.UserService;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -45,24 +41,18 @@ import models.Order;
  */
 public class CreateOrderController implements Initializable {
 
-    HashSet<OrderLine> TreeOrderLine = new HashSet<>();
-    private OrderLine orderline;
     @FXML
-    private TextField nameuserTxt;
+    private Button btnOrders;
     @FXML
-    private TextField phoneusertxt;
+    private Button btnSubscription;
     @FXML
-    private TextField adressUserTxt;
+    private Button btnProduct;
     @FXML
-    private TextField emailUserTxt;
-    private TableView<User> tableUser;
-    private TableColumn<User, String> colNameUser;
-    private TableColumn<User, String> ColEmailUser;
-    private TableColumn<User, String> ColPhoneUser;
-
-    ObservableList<User> UserList = FXCollections.observableArrayList();
-    ObservableList<Product> ProductList = FXCollections.observableArrayList();
-    ObservableList<OrderLine> OrderLineListe = FXCollections.observableArrayList();
+    private Button btnCategory;
+    @FXML
+    private Button btnTicket;
+    @FXML
+    private Button btnSignout;
     @FXML
     private TableView<Product> productTable;
     @FXML
@@ -97,24 +87,23 @@ public class CreateOrderController implements Initializable {
     private TableColumn<OrderLine, String> quantityorderCol;
     @FXML
     private TableColumn<OrderLine, String> priceColl;
+    @FXML
+    private TextField nameuserTxt;
+    @FXML
+    private TextField phoneusertxt;
+    @FXML
+    private TextField emailUserTxt;
+    @FXML
     private TextField shppingtxt;
+    @FXML
     private TextArea NoteTxt;
-
     private User ownerOrder;
+    @FXML
     private Button btnorderCreate;
     @FXML
-    private Button btnOrders;
-    @FXML
-    private Button btnSubscription;
-    @FXML
-    private Button btnProduct;
-    @FXML
-    private Button btnCategory;
-    @FXML
-    private Button btnTicket;
-    @FXML
-    private Button btnSignout;
     private Label lblerror;
+    @FXML
+    private Label Pricelbl;
 
     public User getOwnerOrder() {
         return ownerOrder;
@@ -124,13 +113,9 @@ public class CreateOrderController implements Initializable {
         this.ownerOrder = ownerOrder;
     }
 
-    public OrderLine getOrderline() {
-        return orderline;
-    }
-
-    public void setOrderline(OrderLine orderline) {
-        this.orderline = orderline;
-    }
+    HashSet<OrderLine> TreeOrderLine = new HashSet<>();
+    ObservableList<Product> ProductList = FXCollections.observableArrayList();
+    ObservableList<OrderLine> OrderLineListe = FXCollections.observableArrayList();
     private int IDPRODUCT;
 
     public int getIDPRODUCT() {
@@ -147,37 +132,8 @@ public class CreateOrderController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        lblerror.setVisible(false);
         loadTableUser();
         loadTableProduct();
-    }
-
-    public void loadTableUser() {
-        UserService userservice = new UserService();
-        UserList.clear();
-        UserList.addAll(userservice.userListe());
-        tableUser.setItems(UserList);
-        colNameUser.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        ColEmailUser.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        ColPhoneUser.setCellValueFactory(new PropertyValueFactory<>("Adresse"));
-        tableUser.setRowFactory(tv -> {
-            TableRow<User> myRow = new TableRow<>();
-            myRow.setOnMouseClicked(event
-                    -> {
-                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
-                    int myIndex = tableUser.getSelectionModel().getSelectedIndex();
-                    int id = Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getId()));
-
-                    nameuserTxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getName()));
-                    adressUserTxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getAdresse()));
-                    emailUserTxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getEmail()));
-                    phoneusertxt.setText(String.valueOf(tableUser.getItems().get(myIndex).getNumero()));
-                    User user = userservice.userById(id);
-                    this.setOwnerOrder(user);
-                }
-            });
-            return myRow;
-        });
     }
 
     public void loadTableProduct() {
@@ -219,6 +175,26 @@ public class CreateOrderController implements Initializable {
             return myRow;
         }
         );
+    }
+
+    public void CalculePriceOrder() {
+        float price = 0;
+        for (OrderLine orderline : TreeOrderLine) {
+            price = price + orderline.getPrice();
+        }
+        Pricelbl.setText(String.valueOf(price));
+    }
+
+    @FXML
+    private void GoToOrderListe(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToSubscriptionListe(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
     }
 
     @FXML
@@ -263,12 +239,12 @@ public class CreateOrderController implements Initializable {
             });
             return myRow2;
         });
+        CalculePriceOrder();
     }
 
     @FXML
     private void deleteOrderLine(ActionEvent event) {
         OrderLine orderline2 = new OrderLine();
-
         orderline2.setProduct_name(productNametxt.getText());
         orderline2.setProduct_price(Float.parseFloat(productSellPricetxt.getText()));
         orderline2.setQuantity(Integer.parseInt(qte.getText()));
@@ -281,10 +257,23 @@ public class CreateOrderController implements Initializable {
         LoadOrderLine();
     }
 
+    public void loadTableUser() {
+        UserService userservice = new UserService();
+        int id = SessionManager.getInstance().getUser().getId();
+        System.out.println("IDENT"+id);
+        User user = userservice.userById(id);
+        nameuserTxt.setText(user.getName());
+        emailUserTxt.setText(user.getEmail());
+        phoneusertxt.setText(user.getNumero());
+
+        this.setOwnerOrder(user);
+    }
+
+    @FXML
     private void createOrder(ActionEvent event) {
         int leng = TreeOrderLine.size();
-        int lengShipp = shppingtxt.getText().length(); 
-        if (leng != 0 && this.getOwnerOrder()!= null && lengShipp != 0) {
+        int lengShipp = shppingtxt.getText().length();
+        if (leng != 0 && this.getOwnerOrder() != null && lengShipp != 0) {
             OrderService orderservice = new OrderService();
             Order order = new Order();
             String reference = "#" + this.getOwnerOrder().getName().toUpperCase() + String.valueOf(new java.sql.Date(System.currentTimeMillis()));
@@ -303,36 +292,17 @@ public class CreateOrderController implements Initializable {
             orderservice.AddOrder(order, TreeOrderLine);
             System.out.println("SUIIII");
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/client/order/orderHistory.fxml"));
                 Parent root = loader.load();
                 btnorderCreate.getScene().setRoot(root);
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
-        }else{
+        } else {
             lblerror.setVisible(true);
             lblerror.setText("Please check your info before you create Order");
         }
-
-    }
-
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
-
-    @FXML
-    private void GoToSubscriptionListe(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
-            Parent root = loader.load();
-            btnSubscription.getScene().setRoot(root);
-        } catch (IOException ex) {
-            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void GoToOrderListe(ActionEvent event) {
+        
     }
 
 }

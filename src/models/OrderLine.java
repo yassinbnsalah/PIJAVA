@@ -20,7 +20,7 @@ public class OrderLine  {
     private int product_id;
     private String product_name ; 
     private float product_price ; 
-
+    
     public OrderLine() {
     }
 

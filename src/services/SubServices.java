@@ -41,20 +41,20 @@ public class SubServices {
                         new java.sql.Date(System.currentTimeMillis()).toLocalDate().plusDays(90)));
                 sub.setDateExpire(java.sql.Date.valueOf(
                         dateExpire.toLocalDate().plusDays(90)));
-                 sub.setAmount(180);
+                sub.setAmount(180);
             } else {
                 pst.setDate(3, java.sql.Date.valueOf(
                         new java.sql.Date(System.currentTimeMillis()).toLocalDate().plusDays(120)));
                 sub.setDateExpire(java.sql.Date.valueOf(
                         dateExpire.toLocalDate().plusDays(120)));
-                 sub.setAmount(360);
+                sub.setAmount(360);
             }
             // GENERATE REFERENCE 
-            
+
             UserService userService = new UserService();
             User user = userService.userById(sub.getId_user());
             sub.setState("Confirmed");
-            String reference = "SUB-"+user.getName().toUpperCase()+"-"+sub.getDatesub().toString() ; 
+            String reference = "SUB-" + user.getName().toUpperCase() + "-" + sub.getDatesub().toString();
             sub.setReference(reference);
             pst.setString(4, sub.getType());
             pst.setString(5, sub.getPaiementMethod());
@@ -62,7 +62,7 @@ public class SubServices {
             pst.setString(7, sub.getState());
             pst.setString(8, sub.getReference());
             pst.executeUpdate();
-            
+
             EmailManager em = new EmailManager();
             String message = "<h3> you received new sub with reference " + sub.getReference() + " and your "
                     + "sub will expire at " + sub.getDateExpire() + " thank you </h3>";
@@ -92,10 +92,43 @@ public class SubServices {
                 sub.setReference(rs.getString("reference"));
                 sub.setState(rs.getString("state"));
                 sub.setId_user(rs.getInt("user_id"));
-                UserService userservice = new UserService(); 
+                UserService userservice = new UserService();
                 User userOwner = userservice.userById(rs.getInt("user_id"));
                 sub.setUser(userOwner);
                 // add user by id here from FEDI 
+                subs.add(sub);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return subs;
+    }
+
+    public ArrayList<Subscription> subscriptionByUser(int id) {
+
+        ArrayList<Subscription> subs = new ArrayList<>();
+
+        try {
+            String req = "SELECT * FROM `subscription` where user_id = ? ORDER BY date_sub DESC";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Subscription sub = new Subscription();
+                sub.setId(rs.getInt(1));
+                sub.setDatesub(rs.getDate("date_sub"));
+                sub.setAmount(rs.getInt("amount"));
+                sub.setDateExpire(rs.getDate("date_expire"));
+                sub.setPaiementMethod(rs.getString("paiement_type"));
+                sub.setType(rs.getString("type"));
+                sub.setReference(rs.getString("reference"));
+                sub.setState(rs.getString("state"));
+                sub.setId_user(rs.getInt("user_id"));
+                UserService userservice = new UserService();
+                User userOwner = userservice.userById(rs.getInt("user_id"));
+                sub.setUser(userOwner);
+
                 subs.add(sub);
 
             }

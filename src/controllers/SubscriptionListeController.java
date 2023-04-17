@@ -32,6 +32,7 @@ import models.User;
 import models.Subscription;
 import services.SubServices;
 import services.UserService;
+import util.Routage;
 
 /**
  * FXML Controller class
@@ -60,13 +61,9 @@ public class SubscriptionListeController implements Initializable {
     private TableColumn<Subscription, String> Colamount;
     @FXML
     private TableColumn<Subscription, String> Colstate;
-    @FXML
     private ComboBox<String> CBClEmail;
-    @FXML
     private ComboBox<String> CBType;
-    @FXML
     private ComboBox<String> CBPaiType;
-    @FXML
     private DatePicker DatePick;
     @FXML
     private TextField emailFld;
@@ -94,6 +91,8 @@ public class SubscriptionListeController implements Initializable {
     private Button btnCategory;
     @FXML
     private Button btnTicket;
+    @FXML
+    private Button btnsubscription;
     
     public int getIDsubscriptionToUpdate() {
         return IDsubscriptionToUpdate;
@@ -113,8 +112,8 @@ public class SubscriptionListeController implements Initializable {
     }
     
     private void LoadDataForAddSubscription() {
-        UserService userservice = new UserService();
-        ArrayList<User> userListe = userservice.userListe();
+        /*UserService userservice = new UserService();
+        rrayList<User> userListe = userservice.userListe();
         for (User user : userListe) {
             CBClEmail.getItems().add(user.getEmail());
         }
@@ -123,7 +122,7 @@ public class SubscriptionListeController implements Initializable {
         CBType.getItems().add("6 Months");
         
         CBPaiType.getItems().add("Cash");
-        CBPaiType.getItems().add("Cheque");
+        CBPaiType.getItems().add("Cheque");*/
     }
     
     private void refreshTable() {
@@ -171,25 +170,8 @@ public class SubscriptionListeController implements Initializable {
     
     @FXML
     private void CreateSubscription(ActionEvent event) {
-        SubServices subservice = new SubServices();
-        UserService userservice = new UserService();
-        User user = userservice.userByEmail(CBClEmail.getValue());        
-        Subscription sub = new Subscription();        
-        sub.setId_user(user.getId());
-        sub.setDatesub(Date.valueOf(DatePick.valueProperty().getValue()));
-        String type = CBType.getValue();
-        if (type.equals("1 Month")) {
-            sub.setType("1");
-        } else if (type.equals("3 Months")) {
-            sub.setType("2");            
-        } else {
-            sub.setType("3");
-        }
-        sub.setPaiementMethod(CBPaiType.getValue());
-        subservice.AddSubscription(sub);
-        
-        clearForms();
-        refreshTable();
+        Routage.getInstance().GOTO(btnsubscription, "/view/admin/subscription/createSubscription.fxml");
+     
     }
     
     @FXML

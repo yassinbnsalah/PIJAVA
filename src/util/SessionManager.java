@@ -6,56 +6,30 @@
 package util;
 
 import java.util.prefs.Preferences;
+import models.User;
 
 /**
  *
  * @author yacin
  */
-public class SessionManager {
-    //public static Preferences pref;
-    private static int id;
-    private static String Name;
-    private static String email;
-    private static String passowrd;
-    private static String role;
+public final class SessionManager {
 
-    public static int getId() {
-        return SessionManager.id;
+    private User user;
+    private final static SessionManager INSTANCE = new SessionManager();
+
+    private SessionManager() {
     }
 
-    public static String getName() {
-        return SessionManager.Name;
+    public static SessionManager getInstance() {
+        return INSTANCE;
     }
 
-    public static String getEmail() {
-        return SessionManager.email;
+    public User getUser() {
+        return user;
     }
 
-   
-    public static String getRole() {
-        return SessionManager.role;
+    public void setUser(User user) {
+        this.user = user;
     }
-
-    public static void setId(int id) {
-        SessionManager.id = id;
-    }
-
-    public static void setName(String Name) {
-        SessionManager.Name = Name;
-    }
-
-    public static void setEmail(String email) {
-        SessionManager.email = email;
-    }
-
-    public static void setPassowrd(String passowrd) {
-        SessionManager.passowrd = passowrd;
-    }
-
-    public static void setRole(String role) {
-        SessionManager.role = role;
-    }
-    
-    
 
 }

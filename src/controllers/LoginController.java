@@ -23,6 +23,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import services.UserService;
+import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -57,15 +59,15 @@ public class LoginController implements Initializable {
         String state = usrservice.LoginUser(txtUsername.getText(), txtPassword.getText());
         System.out.println("state : " + state);
         if (state.equals("success")) {
-            try {
+          
                 //setLblError(Color.GREEN, "Login Successful..Redirecting..");
-                
-                  FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
-            Parent root = loader.load();
-            btnSignin1.getScene().setRoot(root);
-            } catch (IOException ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                SessionManager sm = SessionManager.getInstance() ; 
+                if(sm.getUser().getRoles().equals("[\"ROLE_CLIENT\"]")){
+                    Routage.getInstance().GOTO(btnSignin1, "/view/client/order/orderHistory.fxml");
+                }else if(sm.getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+                     Routage.getInstance().GOTO(btnSignin1, "/view/admin/subscription/subscriptionListe.fxml");
+                }
+                  
         } else if (state.equals("Empty Credits")) {
             setLblError(Color.TOMATO, "Empty credentials");
         } else {
