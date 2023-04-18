@@ -23,6 +23,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.Disponibility;
 import models.Ticket;
@@ -76,7 +78,7 @@ public class TicketListeController implements Initializable {
     @FXML
     private TableColumn<Ticket,String> ColState;
     @FXML
-    private TextArea SubjectTXT;
+    private TextField SubjectTXT;
 
     @FXML
     private TableView<Ticket> TableTicket;
@@ -166,6 +168,14 @@ public class TicketListeController implements Initializable {
 
     @FXML
     private void Ticket(ActionEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign1(MouseEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign1(KeyEvent event) {
     }
     
 }

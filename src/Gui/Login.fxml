@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -33,22 +34,41 @@
         </AnchorPane>
         <Pane layoutX="1284.0" layoutY="160.0" prefHeight="433.0" prefWidth="361.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="159.0" AnchorPane.topAnchor="160.0">
             <children>
-                <TextField fx:id="txtUsername" layoutX="43.0" layoutY="140.0" prefHeight="34.0" prefWidth="275.0" promptText="username or email" style="-fx-border-color: #e3dcff;" />
-                <PasswordField fx:id="txtPassword" layoutX="43.0" layoutY="217.0" prefHeight="34.0" prefWidth="275.0" promptText="password" style="-fx-border-color: #e3dcff;" />
                 <Label fx:id="lblErrors" alignment="CENTER" layoutX="43.0" layoutY="287.0" prefHeight="23.0" prefWidth="275.0" style="-fx-background-color: #fad9d8;" textFill="#79758f">
                     <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                     </font>
                 </Label>
-            <Button fx:id="btnSignin1" layoutX="181.0" layoutY="348.0" mnemonicParsing="false" onAction="#LoginBTN" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #754ffe;" text="Sign in" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font></Button>
             <Label layoutX="43.0" layoutY="45.0" text="SignIn" textFill="#79758f">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
+            <Button fx:id="login_btn" layoutX="219.0" layoutY="323.0" mnemonicParsing="false" onAction="#login" prefHeight="40.0" prefWidth="107.0" styleClass="button-design" stylesheets="@design.css" text="Login" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Hyperlink fx:id="mdp_oub" layoutX="29.0" layoutY="323.0" onAction="#sendPaswword_btn" styleClass="hypertext-design" stylesheets="@design.css" text="Mot de passe oublié ?">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="create_acc" layoutX="29.0" layoutY="351.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Create new account ?">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="15.0" />
+               </font>
+            </Hyperlink>
+            <TextField fx:id="txtUsername" layoutX="61.0" layoutY="144.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="txtPassword" layoutX="61.0" layoutY="200.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
             </children>
         </Pane>
       <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="1327.0" layoutY="-49.0" pickOnBounds="true" preserveRatio="true">

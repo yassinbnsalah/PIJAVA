@@ -17,9 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import services.UserService;
@@ -36,11 +38,14 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField txtPassword;
     @FXML
-    private Label btnForgot;
-    @FXML
     private Label lblErrors;
-    @FXML
     private Button btnSignin1;
+    @FXML
+    private Button login_btn;
+    @FXML
+    private Hyperlink mdp_oub;
+    @FXML
+    private Hyperlink create_acc;
 
     /**
      * Initializes the controller class.
@@ -51,14 +56,26 @@ public class LoginController implements Initializable {
         // TODO
     }
 
-    @FXML
     private void LoginBTN(ActionEvent event) {
+        
+  
+
+    }
+
+    private void setLblError(Color color, String text) {
+        lblErrors.setVisible(true);
+        lblErrors.setText(text);
+        System.out.println(text);
+    }
+
+    @FXML
+    private void login(ActionEvent event) {
         UserService usrservice = new UserService();
         String state = usrservice.LoginUser(txtUsername.getText(), txtPassword.getText());
         System.out.println("state : " + state);
         if (state.equals("success")) {
             try {
-                //setLblError(Color.GREEN, "Login Successful..Redirecting..");
+                setLblError(Color.GREEN, "Login Successful..Redirecting..");
                 
                   FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
             Parent root = loader.load();
@@ -71,13 +88,18 @@ public class LoginController implements Initializable {
         } else {
             setLblError(Color.TOMATO, "Enter Correct Email/Password");
         }
-
     }
 
-    private void setLblError(Color color, String text) {
-        lblErrors.setVisible(true);
-        lblErrors.setText(text);
-        System.out.println(text);
+    @FXML
+    private void sendPaswword_btn(ActionEvent event) {
+    }
+
+    @FXML
+    private void changeForm(ActionEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign(MouseEvent event) {
     }
 
 }

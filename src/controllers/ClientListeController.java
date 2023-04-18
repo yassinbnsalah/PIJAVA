@@ -31,6 +31,8 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.mail.MessagingException;
@@ -72,7 +74,7 @@ public class ClientListeController implements Initializable {
     @FXML
     private TextField txtName;
     @FXML
-    private PasswordField txtPassword;
+    private TextField txtPassword;
     @FXML
     private TextField cinFld;
     @FXML
@@ -303,6 +305,14 @@ System.out.println(IDClientToUpdate);
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign1(MouseEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign1(KeyEvent event) {
     }
     
 }

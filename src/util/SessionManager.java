@@ -21,7 +21,7 @@ public final class SessionManager {
  
      private static int id;
     private static int CIN;
-    private static String UserName;
+    private static String Name;
     private static int Numero;
     private static String Email;
     private static String Adresse;
@@ -30,10 +30,10 @@ public final class SessionManager {
 
    
   //SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("user_name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));
-    private SessionManager(int id , int cin , String user_name , int numero , String email ,String address,String role ) {
+    private SessionManager(int id , int cin , String name , int numero , String email ,String address,String role ) {
     SessionManager.id=id;
     SessionManager.CIN=cin;
-    SessionManager.UserName=user_name;
+    SessionManager.Name=name;
     SessionManager.Numero=numero;
     SessionManager.Email=email;
     SessionManager.Adresse=address;
@@ -47,9 +47,9 @@ public final class SessionManager {
     * @param privileges
     * @return
     */
-    public static SessionManager getInstace(int id , int cin , String user_name , int numero , String email ,String address,String role) {
+    public static SessionManager getInstace(int id , int cin , String name , int numero , String email ,String address,String role) {
         if(instance == null) {
-            instance = new SessionManager( id , cin ,  user_name ,  numero ,  email ,address, role);
+            instance = new SessionManager( id , cin ,  name ,  numero ,  email ,address, role);
         }
         return instance;
     }
@@ -78,12 +78,12 @@ public final class SessionManager {
         SessionManager.CIN = CIN;
     }
 
-    public static String getUserName() {
-        return UserName;
+    public static String getName() {
+        return Name;
     }
 
-    public static void setUserName(String UserName) {
-        SessionManager.UserName = UserName;
+    public static void setName(String Name) {
+        SessionManager.Name = Name;
     }
 
     public static int getNumero() {
@@ -123,7 +123,7 @@ public final class SessionManager {
     public static void cleanUserSession() {
     id=0;
     CIN=0;
-     UserName="";
+     Name="";
      Numero=0;
      Email="";
      Adresse="";
@@ -133,7 +133,7 @@ public final class SessionManager {
     @Override
     public String toString() {
         return "UserSession{" +
-                "userName='" + UserName + '\'' +
+                "userName='" + Name + '\'' +
                 "email='" + Email + '\'' +
                
                 "id = '" + id + '\'' +
@@ -149,7 +149,7 @@ public final class SessionManager {
         public cleanUserSession() {
           id=0;
          CIN=0;
-     UserName="";
+     Name="";
      Numero=0;
      Email="";
      Adresse="";

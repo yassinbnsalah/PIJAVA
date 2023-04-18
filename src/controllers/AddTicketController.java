@@ -20,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import models.Ticket;
 import services.TicketService;
 import util.SharedData;
@@ -34,7 +36,7 @@ public class AddTicketController implements Initializable {
     @FXML
     private TextField txtTitle;
     @FXML
-    private TextArea txtSubject;
+    private TextField txtSubject;
     @FXML
     private Button btnCreate;
 
@@ -67,6 +69,14 @@ public class AddTicketController implements Initializable {
             Parent root = loader.load();
             btnCreate.getScene().setRoot(root);
         }
+    }
+
+    @FXML
+    private void textfieldDesign1(MouseEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign1(KeyEvent event) {
     }
 
 
