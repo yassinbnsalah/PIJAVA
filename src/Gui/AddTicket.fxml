@@ -26,12 +26,12 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <TextField fx:id="txtSubject" alignment="TOP_LEFT" disable="true" layoutX="100.0" layoutY="174.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="106.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
+            <TextField fx:id="txtTitle" alignment="TOP_LEFT" layoutX="100.0" layoutY="174.0" prefHeight="106.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtTitle" disable="true" layoutX="100.0" layoutY="108.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
+            <TextField fx:id="txtSubject" layoutX="100.0" layoutY="108.0" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
                <font>
                   <Font size="15.0" />
                </font>

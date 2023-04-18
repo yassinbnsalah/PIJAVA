@@ -22,8 +22,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import models.Ticket;
 import services.TicketService;
+import util.SessionManager;
 import util.SharedData;
 
 /**
@@ -64,20 +66,15 @@ public class AddTicketController implements Initializable {
             Date d = new Date(System.currentTimeMillis());
             Ticket ticket = new Ticket(d,txtTitle.getText(), txtSubject.getText(),SharedData.currentUser);
             TicketService tk = new TicketService();
-            tk.ajouterTicket(ticket);
+            SessionManager session = SessionManager.getInstance();
+            int ownerId = session.getId();
+            tk.ajouterTicket(ownerId, ticket);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/TicketListe.fxml"));
             Parent root = loader.load();
             btnCreate.getScene().setRoot(root);
         }
     }
 
-    @FXML
-    private void textfieldDesign1(MouseEvent event) {
-    }
-
-    @FXML
-    private void textfieldDesign1(KeyEvent event) {
-    }
 
 
     

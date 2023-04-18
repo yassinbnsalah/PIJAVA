@@ -43,6 +43,7 @@ import services.UserService;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -97,9 +98,9 @@ public class ClientListeController implements Initializable {
     private Button btnCategory;
     @FXML
     private Button btnTicket;
-    @FXML
-    private Button btnSignout;
     private int IDClientToUpdate;
+    @FXML
+    private Button logoutButton;
     
     public int getIDClientToUpdate() {
         return IDClientToUpdate;
@@ -307,12 +308,20 @@ System.out.println(IDClientToUpdate);
     private void GoToSubscriptionListe(ActionEvent event) {
     }
 
-    @FXML
-    private void textfieldDesign1(MouseEvent event) {
+   @FXML
+    void handleLogout(ActionEvent event) throws IOException {
+        // clear user session data
+        SessionManager.cleanUserSession();
+        
+        // load the login FXML file
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
+        Parent root = loader.load();
+        
+        // get the stage and show the login scene
+        Stage stage = (Stage) logoutButton.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    @FXML
-    private void textfieldDesign1(KeyEvent event) {
-    }
     
 }

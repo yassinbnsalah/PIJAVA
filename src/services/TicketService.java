@@ -31,9 +31,9 @@ public class TicketService implements TicketInterface {
     }
 
 
-    public void ajouterTicket(Ticket t) {
+    public void ajouterTicket(int ownerId,Ticket t) {
         try {
-            String req = "insert into ticket(owner_id,message,titre,date_ticket,state) values( 1,' " + t.getMessage()+ "','" + t.getTitre()+ "','"
+            String req = "insert into ticket(owner_id,message,titre,date_ticket,state) values( " + ownerId + ",' " + t.getMessage()+ "','" + t.getTitre()+ "','"
                     + t.getDateticket()+"','on Pending');";
           
             Statement st = cnx.createStatement();
