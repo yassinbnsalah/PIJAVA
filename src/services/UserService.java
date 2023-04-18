@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import util.BCrypt;
 
 /**
  *
@@ -237,4 +238,21 @@ public class UserService implements UserInterface{
         }
         return default_return;
     }
+   public void modifier2(int id, User r) {
+        try {
+            String password = BCrypt.hashpw(r.getPassword(), BCrypt.gensalt());
+            String req = "UPDATE `user` SET email = '" + r.getEmail()
+                    + "', password = '" + password
+                    + "' WHERE id = " + id;
+            Statement st = cnx2.createStatement();
+            st.executeUpdate(req);
+
+            System.out.println("User Modifieé avec succées ");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+
 }

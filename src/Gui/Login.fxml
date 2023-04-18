@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="714.0" prefWidth="1528.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
         <AnchorPane prefHeight="752.0" prefWidth="914.0" style="-fx-background-color: #e3dcff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -32,7 +32,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="1284.0" layoutY="160.0" prefHeight="433.0" prefWidth="361.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="159.0" AnchorPane.topAnchor="160.0">
+        <Pane layoutX="1071.0" layoutY="152.0" prefHeight="433.0" prefWidth="361.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="167.0" AnchorPane.topAnchor="152.0">
             <children>
                 <Label fx:id="lblErrors" alignment="CENTER" layoutX="43.0" layoutY="287.0" prefHeight="23.0" prefWidth="275.0" style="-fx-background-color: #fad9d8;" textFill="#79758f">
                     <font>
@@ -49,7 +49,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Hyperlink fx:id="mdp_oub" layoutX="29.0" layoutY="323.0" onAction="#sendPaswword_btn" styleClass="hypertext-design" stylesheets="@design.css" text="Mot de passe oublié ?">
+            <Hyperlink layoutX="29.0" layoutY="323.0" onAction="#openForget" styleClass="hypertext-design" stylesheets="@design.css" text="Mot de passe oublié ?">
                <font>
                   <Font name="Microsoft Sans Serif" size="15.0" />
                </font>
@@ -71,7 +71,7 @@
             </PasswordField>
             </children>
         </Pane>
-      <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="1327.0" layoutY="-49.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="1100.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../util/Images/logoJavaFX.png" />
          </image>

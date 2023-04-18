@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -60,14 +61,10 @@ public class LoginController implements Initializable {
     private Button btnSignin1;
     @FXML
     private Button login_btn;
-    @FXML
     private Hyperlink login_acc;
-    @FXML
     private AnchorPane signup_form;
-    @FXML
     private AnchorPane login_form;
-    @FXML
-    private Hyperlink mdp_oub;
+
     @FXML
     private Hyperlink create_acc;
  private Connection cnx;
@@ -94,15 +91,15 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException{
-        if(txtUsername.getText().equals("Fedi@gmail.com") && txtPassword.getText().equals("Fedi123:") )
+        if(txtUsername.getText().equals("ADMIN@gmail.com") && txtPassword.getText().equals("ADMIN123:") )
         {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Travel Me :: Success Message");
+                     alert.setTitle("FITHAELTH CENTER :: Success Message");
                      alert.setHeaderText(null);
                      alert.setContentText("Bienvenu Admin");
                      alert.showAndWait();
                      
-                  Parent root = FXMLLoader.load(getClass().getResource("/Gui/ClientList.fxml"));
+                  Parent root = FXMLLoader.load(getClass().getResource("/Gui/Admin.fxml"));
                      Scene scene;
                      
                     scene = new Scene(root);
@@ -128,7 +125,7 @@ public class LoginController implements Initializable {
                      SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));
                      System.out.println(User.Current_User.getEmail());
                      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("Travel Me :: Success Message");
+                     alert.setTitle("FITHAELTH CENTER :: Success Message");
                      alert.setHeaderText(null);
                      alert.setContentText("Vous etes connecté");
                      alert.showAndWait();
@@ -145,7 +142,7 @@ public class LoginController implements Initializable {
                     
                 }else{
                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Travel Me :: Error Message");
+                alert.setTitle("FITHAELTH CENTER :: Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Wrong Email/Password !!");
                 alert.showAndWait();  
@@ -160,10 +157,7 @@ public class LoginController implements Initializable {
          
     }
 
-    @FXML
-    private void sendPaswword_btn(ActionEvent event) {
-         sendPassword();
-    }
+    
 
     @FXML
     private void changeForm(ActionEvent event) {
@@ -192,91 +186,14 @@ public class LoginController implements Initializable {
                     + "-fx-border-width:2px");
         } 
     }
-     void sendPassword(){
-        System.out.println("cxcccccccccccccccccc");
-                String query2="select * from user where email=? ";
-                String email1="empty";
-                 try {
-            PreparedStatement smt = cnx.prepareStatement(query2);
-            smt.setString(1, txtUsername.getText());
-             ResultSet rs= smt.executeQuery();
-                if(rs.next()){
-                   email1=rs.getString("email");
-                     System.out.println(email1);
-                }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-                 sendMail(email1);
-    }
-    public void sendMail(String recepient){
-        String host = "smtp.gmail.com";
-        System.out.println("Preparing to send email");
-           Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
-        properties.setProperty("mail.smtp.auth", "true");
-        properties.setProperty("mail.smtp.port", "465");
-        properties.setProperty("mail.smtp.socketFactory.port", "465");
-        properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        String myAccountEmail = "contact.fithealth23@gmail.com";
-        String passwordd = "qavkrnciihzjmtkp@";
-       
-        Session session = Session.getInstance(properties, new Authenticator(){
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication(){
-                return new PasswordAuthentication(myAccountEmail,passwordd);
-            }
-        });
-        Message message =preparedMessage(session,myAccountEmail,recepient);
-        try{
-            Transport.send(message);
-             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("TravelMe :: Boite Mail");
-                alert.setHeaderText(null);
-                alert.setContentText("consulter votre boite mail !!");
-                alert.showAndWait();  
-           
-        }catch(Exception ex){
-            ex.printStackTrace();
-           
-        }
-               
-    }
-     private Message preparedMessage(Session session, String myAccountEmail, String recepient){
-         String query2="select * from user where email=?";
-         String userEmail="null" ;
-         String pass="empty";
-        try {
-            PreparedStatement smt = cnx.prepareStatement(query2);
-            smt.setString(1, txtUsername.getText());
-             ResultSet rs= smt.executeQuery();
-             System.out.println(rs);
-                if(rs.next()){
-                   pass=rs.getString("password");
-                   userEmail=rs.getString("email");                }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        System.out.print("c est en cours");
-        String text="Votre mot de pass est :"+pass+"";
-        String object ="Recupération de mot de passe";
-        Message message = new MimeMessage(session);
-        try{
-        message.setFrom(new InternetAddress(myAccountEmail));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
-        message.setSubject(object);
-        String htmlcode ="<h1> "+text+" </h1> <h2> <b> </b2> </h2> ";
-        message.setContent(htmlcode, "text/html");
-         System.out.println("Message envoyeer");
-         
-           System.out.println(pass);
-           
-        return message;
-       
-        }catch(MessagingException ex){
-            ex.printStackTrace();
-        }
-    return null;
-    }
+    
 
+    @FXML
+    private void openForget(ActionEvent event) throws IOException {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ForgotPass.fxml"));
+            Parent root = loader.load();
+            login_btn.getScene().setRoot(root);
+
+    }
+ 
 }

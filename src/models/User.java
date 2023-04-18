@@ -20,7 +20,7 @@ public class User{
     private String Password;
     private String roles;
     public static User Current_User;
-    
+
 
     public User(){
     }
@@ -153,7 +153,16 @@ public class User{
     public String toString() {
         return "Users{" + "CIN=" + CIN + ", Name=" + Name + ", Numero=" + Numero + ", Email=" + Email + ", Adresse=" + Adresse + ", Password=" + Password + '}';
     }
+  
     
+
+  
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
     
 }
 
