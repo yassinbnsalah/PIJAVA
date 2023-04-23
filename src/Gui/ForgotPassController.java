@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -51,6 +52,8 @@ public class ForgotPassController implements Initializable {
     private Button sendmail;
     @FXML
     private TextField mailcode;
+    @FXML
+    private Button back;
 
     /**
      * Initializes the controller class.
@@ -65,9 +68,9 @@ public class ForgotPassController implements Initializable {
         SharedData da = new SharedData();
 
         int code = Integer.parseInt(mailcode.getText());
-        String mailin = mail.getText();
+        
         UserService us = new UserService();
-
+        String mailin = mail.getText();
         String pass = newpass.getText();
         if (newpass.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "les champs sont vides!", ButtonType.OK);
@@ -95,6 +98,9 @@ public class ForgotPassController implements Initializable {
             Optional<ButtonType> action = alert.showAndWait();
             System.out.println("User Updated");
             User U = new User();
+            String mailinE = mail.getText();
+            U = us.getByEmail(mailinE);
+            System.out.println(U);
             U.setPassword(pass);
             System.out.println(U.getId());
             System.out.println(U.getPassword());
@@ -118,7 +124,7 @@ public class ForgotPassController implements Initializable {
             m.sendEmail(U.getEmail(), finalcontant);
             Stage stage = new Stage();
             stage.setTitle("Login");
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("Login.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/Gui/Login.fxml"))));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.show();
@@ -149,6 +155,13 @@ public class ForgotPassController implements Initializable {
 
     @FXML
     private void textfieldDesign(MouseEvent event) {
+    }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
+            Parent root = loader.load();
+            back.getScene().setRoot(root);
     }
     
     

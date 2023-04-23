@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1265.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TicketListeController">
-    <children>
+   
         <TableView fx:id="TableTicket" layoutX="251.0" layoutY="142.0" prefHeight="483.0" prefWidth="675.0">
             <columns>
                 <TableColumn fx:id="colTitle" prefWidth="107.19998168945312" text="Title" />
@@ -264,5 +264,5 @@
             </RadialGradient>
          </textFill>
       </Button>
-    </children>
+   
 </AnchorPane>

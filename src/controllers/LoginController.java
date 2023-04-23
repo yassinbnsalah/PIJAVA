@@ -10,6 +10,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -42,6 +44,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import models.User;
 import services.UserService;
+import util.BCrypt;
 import util.MyConnection;
 import util.SessionManager;
 
@@ -91,6 +94,7 @@ public class LoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws IOException{
+        UserService us = new UserService();
         if(txtUsername.getText().equals("ADMIN@gmail.com") && txtPassword.getText().equals("ADMIN123:") )
         {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -112,14 +116,17 @@ public class LoginController implements Initializable {
             
             String query2="select * from user where email=?  and password=?";
             cnx = MyConnection.getInstance().getCnx();
+                String email = txtUsername.getText();
+                 String pass = txtPassword.getText();
            try{
               PreparedStatement smt = cnx.prepareStatement(query2);
        
                smt.setString(1,txtUsername.getText());
                smt.setString(2,txtPassword.getText());
+              
                ResultSet rs= smt.executeQuery();
                User p;
-                if(rs.next()){
+                if(rs.next() ){
                      p=new User(rs.getString("cin"),rs.getString("name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("password"));
                      User.setCurrent_User(p);
                      SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));
@@ -160,14 +167,10 @@ public class LoginController implements Initializable {
     
 
     @FXML
-    private void changeForm(ActionEvent event) {
-          if(event.getSource() == create_acc){
-            signup_form.setVisible(true);
-             login_form.setVisible(false);
-        }else if(event.getSource()==login_acc){
-            login_form.setVisible(true);
-            signup_form.setVisible(false);
-        }
+    private void changeForm(ActionEvent event) throws IOException {
+       FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/SignUp.fxml"));
+            Parent root = loader.load();
+            login_btn.getScene().setRoot(root);
     }
 
     @FXML
@@ -195,5 +198,5 @@ public class LoginController implements Initializable {
             login_btn.getScene().setRoot(root);
 
     }
- 
+     
 }

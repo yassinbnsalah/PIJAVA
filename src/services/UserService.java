@@ -137,23 +137,7 @@ public class UserService implements UserInterface{
                 System.out.println(ex.getMessage());
     }}
     
-    public boolean verifPassword(String nom, String password) {
-        try {
-            Statement ste = cnx2.createStatement();
-
-            ResultSet rs = ste.executeQuery("select e.* from user e where email='" + nom + "'");
-
-            while (rs.next()) {
-                String passBase = rs.getString("password");
-               
-
-            }
-
-        } catch (SQLException sq) {
-            return false;
-        }
-        return false;
-    }
+   
     public String LoginUser(String txtUsername , String txtPassword ) {
         String status = "";
         String email = txtUsername;
@@ -253,6 +237,46 @@ public class UserService implements UserInterface{
             System.err.println(ex.getMessage());
         }
     }
+   public User getByEmail(String email) {
+        User t = new User();
 
+        try {
+
+           String req = ("SELECT * FROM `user` WHERE email = '" + email + "'");
+            Statement st = cnx2.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            rs.next();
+            t.setId(rs.getInt("id"));
+            t.setName(rs.getString("name"));
+            t.setEmail(rs.getString("email"));
+            t.setPassword(rs.getString("password"));
+            t.setNumero(rs.getInt("numero"));
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return t;
+    }
+   public boolean verifPassword(String email, String password) {
+        try {
+            Statement ste = cnx2.createStatement();
+
+            ResultSet rs = ste.executeQuery("select e.* from user e where email='" + email + "'");
+
+            while (rs.next()) {
+                String passBase = rs.getString("password");
+                if (BCrypt.checkpw(password, passBase)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+
+        } catch (SQLException sq) {
+            return false;
+        }
+        return false;
+    }
 
 }
