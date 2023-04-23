@@ -122,11 +122,14 @@ public class LoginController implements Initializable {
               PreparedStatement smt = cnx.prepareStatement(query2);
        
                smt.setString(1,txtUsername.getText());
+              
+           
                smt.setString(2,txtPassword.getText());
               
                ResultSet rs= smt.executeQuery();
                User p;
-                if(rs.next() ){
+               
+                if(rs.next()){
                      p=new User(rs.getString("cin"),rs.getString("name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("password"));
                      User.setCurrent_User(p);
                      SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));

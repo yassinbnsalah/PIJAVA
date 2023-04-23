@@ -224,9 +224,9 @@ public class UserService implements UserInterface{
     }
    public void modifier2(int id, User r) {
         try {
-            String password = BCrypt.hashpw(r.getPassword(), BCrypt.gensalt());
+        
             String req = "UPDATE `user` SET email = '" + r.getEmail()
-                    + "', password = '" + password
+                    + "', password = '" + r.getPassword()
                     + "' WHERE id = " + id;
             Statement st = cnx2.createStatement();
             st.executeUpdate(req);
@@ -248,6 +248,7 @@ public class UserService implements UserInterface{
 
             rs.next();
             t.setId(rs.getInt("id"));
+            t.setCIN(rs.getString("cin"));
             t.setName(rs.getString("name"));
             t.setEmail(rs.getString("email"));
             t.setPassword(rs.getString("password"));

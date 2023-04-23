@@ -3,12 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/Gui/SignUp.fxml</file>
+            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/services/UserService.java</file>
             <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/Gui/ForgotPassController.java</file>
             <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/controllers/LoginController.java</file>
+            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/Gui/ClientListe.fxml</file>
+            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/models/User.java</file>
+            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/Gui/TicketListe.fxml</file>
             <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/controllers/ClientListeController.java</file>
-            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/controllers/SignUpController.java</file>
-            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/Gui/Login.fxml</file>
+            <file>file:/C:/Users/21693/Desktop/PI%20Java/PIJAVA/src/util/BCrypt.java</file>
         </group>
     </open-files>
 </project-private>
