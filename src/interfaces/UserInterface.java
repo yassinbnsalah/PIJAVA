@@ -15,7 +15,7 @@ import models.User;
 public interface UserInterface {
     public void AddUser(User user);
     public ArrayList<User> userListe();
-    public void supprimerUtilisateur(int id);
+    public void BannedUtilisateur(int id);
     public void modifierUtilisateur(int id,User user);
     public boolean verifPassword(String nom, String password);
 }

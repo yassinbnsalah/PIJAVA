@@ -86,7 +86,7 @@ public class UserService implements UserInterface{
     public ArrayList<User> userListe() {
         ArrayList<User> liste = new ArrayList<>();
         try {
-            String req = "SELECT * FROM `user` ";
+          String req = "SELECT * FROM `user` WHERE JSON_CONTAINS(roles, '[\"ROLE_CLIENT\"]')";
             PreparedStatement pst = cnx2.prepareStatement(req);
 
             ResultSet rs = pst.executeQuery();
@@ -108,13 +108,13 @@ public class UserService implements UserInterface{
 
         return liste;
     }
-   public void supprimerUtilisateur(int id) {
+   public void BannedUtilisateur(int id) {
            try {
-            String req = "DELETE FROM `user` WHERE id = ?";
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
-            pst.setInt(1, id);
-            pst.executeUpdate();
-            System.out.println(" user  Deleted !");
+         String reqUpdate = "UPDATE `user` SET  `roles` = null WHERE id = ?";
+           PreparedStatement pstUpdate = MyConnection.getInstance().getCnx().prepareStatement(reqUpdate);
+            pstUpdate.setInt(1, id);
+            pstUpdate.executeUpdate();
+            System.out.println(" user  Banned !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

@@ -231,7 +231,7 @@ public class ClientListeController implements Initializable {
     @FXML
     private void deleteClient(ActionEvent event) {
         UserService userserv = new UserService();
-        userserv.supprimerUtilisateur(IDClientToUpdate);
+        userserv.BannedUtilisateur(IDClientToUpdate);
         clearForms();
         refreshTable();
     }

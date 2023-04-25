@@ -58,7 +58,7 @@ public class JavaApplicationPI {
          */
 
         
-        userserv.supprimerUtilisateur(71); 
+        userserv.BannedUtilisateur(71); 
 
 
       
