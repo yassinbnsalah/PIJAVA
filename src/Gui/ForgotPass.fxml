@@ -41,7 +41,7 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button fx:id="save" layoutX="136.0" layoutY="275.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="107.0" styleClass="button-design" stylesheets="@design.css" text="Confirm" textFill="WHITE">
+            <Button fx:id="save" layoutX="135.0" layoutY="327.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="107.0" styleClass="button-design" stylesheets="@design.css" text="Confirm" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Text>
-            <Button fx:id="back" layoutX="316.0" layoutY="275.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="107.0" stylesheets="@design.css" text="Back" textFill="WHITE">
+            <Button fx:id="back" layoutX="315.0" layoutY="327.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="107.0" stylesheets="@design.css" text="Back" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -70,6 +70,12 @@
                   <String fx:value="button-design" />
                </styleClass>
             </Button>
+            <Text fill="#111111" layoutX="1.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="tfMdp2" layoutX="177.0" layoutY="249.0" minWidth="185.0" prefHeight="33.0" prefWidth="220.0" promptText="Confirm Password" styleClass="textfield-design" stylesheets="@design.css" />
          </children>
       </Pane>
       <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="206.0" layoutY="-88.0" pickOnBounds="true" preserveRatio="true">
