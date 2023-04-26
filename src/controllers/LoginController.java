@@ -134,11 +134,7 @@ public class LoginController implements Initializable {
                      User.setCurrent_User(p);
                      SessionManager.getInstace(rs.getInt("id"),rs.getInt("cin"),rs.getString("name"),rs.getInt("numero"),rs.getString("email"),rs.getString("adresse"),rs.getString("roles"));
                      System.out.println(User.Current_User.getEmail());
-                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                     alert.setTitle("FITHAELTH CENTER :: Success Message");
-                     alert.setHeaderText(null);
-                     alert.setContentText("Vous etes connecté");
-                     alert.showAndWait();
+                   
                     login_btn.getScene().getWindow().hide();
                     Parent root = FXMLLoader.load(getClass().getResource("/Gui/ClientListe.fxml"));
                      Scene scene;

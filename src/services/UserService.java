@@ -237,6 +237,31 @@ public class UserService implements UserInterface{
 
         return liste;
     }
+       public ArrayList<User> BanListe() {
+        ArrayList<User> liste = new ArrayList<>();
+        try {
+          String req = "SELECT * FROM `user` WHERE roles IS NULL";
+            PreparedStatement pst = cnx2.prepareStatement(req);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setCIN(rs.getString("CIN"));
+                user.setName(rs.getString("Name"));
+                user.setEmail(rs.getString("Email"));
+                user.setNumero(rs.getInt("Numero"));
+                user.setAdresse(rs.getString("Adresse"));
+                user.setPassword(rs.getString("Password"));
+                liste.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return liste;
+    }
    public void BannedUtilisateur(int id) {
            try {
          String reqUpdate = "UPDATE `user` SET  `roles` = null WHERE id = ?";
@@ -244,6 +269,54 @@ public class UserService implements UserInterface{
             pstUpdate.setInt(1, id);
             pstUpdate.executeUpdate();
             System.out.println(" user  Banned !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+      public void DebanClient(int id) {
+           try {
+         String reqUpdate = "UPDATE `user` SET `roles` = JSON_ARRAY('ROLE_CLIENT') WHERE id = ?";
+           PreparedStatement pstUpdate = MyConnection.getInstance().getCnx().prepareStatement(reqUpdate);
+            pstUpdate.setInt(1, id);
+            pstUpdate.executeUpdate();
+            System.out.println(" user  DeBan !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+       public void DebanCoach(int id) {
+           try {
+         String reqUpdate = "UPDATE `user` SET `roles` = JSON_ARRAY('ROLE_COACH') WHERE id = ?";
+           PreparedStatement pstUpdate = MyConnection.getInstance().getCnx().prepareStatement(reqUpdate);
+            pstUpdate.setInt(1, id);
+            pstUpdate.executeUpdate();
+            System.out.println(" user  DeBan !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+      public void DebanPharmacien(int id) {
+           try {
+         String reqUpdate = "UPDATE `user` SET `roles` = JSON_ARRAY('ROLE_PHARMACIEN') WHERE id = ?";
+           PreparedStatement pstUpdate = MyConnection.getInstance().getCnx().prepareStatement(reqUpdate);
+            pstUpdate.setInt(1, id);
+            pstUpdate.executeUpdate();
+            System.out.println(" user  DeBan !");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+       public void DebanMedcin(int id) {
+           try {
+         String reqUpdate = "UPDATE `user` SET `roles` = JSON_ARRAY('ROLE_MEDCIN') WHERE id = ?";
+           PreparedStatement pstUpdate = MyConnection.getInstance().getCnx().prepareStatement(reqUpdate);
+            pstUpdate.setInt(1, id);
+            pstUpdate.executeUpdate();
+            System.out.println(" user  DeBan !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

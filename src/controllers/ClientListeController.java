@@ -107,6 +107,8 @@ public class ClientListeController implements Initializable {
     private Button btnMedcin;
     @FXML
     private Button btnCoach;
+    @FXML
+    private Button btnBan;
     
     public int getIDClientToUpdate() {
         return IDClientToUpdate;
@@ -346,6 +348,13 @@ System.out.println(IDClientToUpdate);
     @FXML
     private void coach(ActionEvent event) throws IOException {
                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void ban(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
             Parent root = loader.load();
             btnTicket.getScene().setRoot(root);
     }
