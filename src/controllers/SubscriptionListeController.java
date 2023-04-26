@@ -9,9 +9,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,12 +30,15 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import models.Disponibility;
+import models.Order;
 import models.User;
 import models.Subscription;
 import services.SubServices;
 import services.UserService;
 import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -41,7 +47,7 @@ import util.Routage;
  */
 public class SubscriptionListeController implements Initializable {
     
-    ObservableList<Subscription> SubsList = FXCollections.observableArrayList();
+    ArrayList<Subscription> SubsList = new ArrayList();
     /* @FXML
     private TableColumn<Subscription, String> SubReference;*/
     // private TableColumn<Subscription, String> Datesubscription;
@@ -93,6 +99,10 @@ public class SubscriptionListeController implements Initializable {
     private Button btnTicket;
     @FXML
     private Button btnsubscription;
+    @FXML
+    private TextField searchTxt;
+    @FXML
+    private Button clDash;
     
     public int getIDsubscriptionToUpdate() {
         return IDsubscriptionToUpdate;
@@ -129,7 +139,7 @@ public class SubscriptionListeController implements Initializable {
         SubServices subservice = new SubServices();
         SubsList.clear();
         SubsList.addAll(subservice.subListe());
-        SubTable.setItems(SubsList);
+        SubTable.setItems(FXCollections.observableArrayList(SubsList));
         ColSubReference.setCellValueFactory(new PropertyValueFactory<>("reference"));
         ColDatesubscription.setCellValueFactory(new PropertyValueFactory<>("datesub"));
         Coldateexpiration.setCellValueFactory(new PropertyValueFactory<>("dateExpire"));
@@ -154,7 +164,7 @@ public class SubscriptionListeController implements Initializable {
                     DateExpirationfld.setText(String.valueOf(SubTable.getItems().get(myIndex).getDateExpire()));
                     
                     CBType1.getItems().add("Confirmed");
-                    if (String.valueOf(SubTable.getItems().get(myIndex).getState()).equals("Suspended")) {
+                    if (String.valueOf(SubTable.getItems().get(myIndex).getState()).equals("Suspend")) {
                         CBType1.getItems().add("Insuspend");
                     } else {
                         CBType1.getItems().add("Suspend");
@@ -188,7 +198,7 @@ public class SubscriptionListeController implements Initializable {
         DateSubsc.setText("");
         DateExpirationfld.setText("");
         CBType1.getItems().clear();
-        DatePick.setValue(null);
+        //zDatePick.setValue(null);
         this.setIDsubscriptionToUpdate(0);
     }
     
@@ -214,5 +224,35 @@ public class SubscriptionListeController implements Initializable {
     @FXML
     private void handleClicks(ActionEvent event) {
     }
-    
+      private List<Subscription> searchList(String searchWords, List<Subscription> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getPaiementMethod().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getDatesub().toString().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getDateExpire().toString().toLowerCase().contains(word.toLowerCase()))  ;
+        }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void InstantSet(KeyEvent event) {
+        System.out.println(searchTxt.getText());
+        searchList(searchTxt.getText() ,SubsList );
+         SubTable.setItems(FXCollections.observableArrayList(searchList(searchTxt.getText() ,SubsList )));
+    }
+
+    @FXML
+    private void signout(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void GoToClientDash(ActionEvent event) {
+         Routage.getInstance().GOTO(clDash, "/view/client/order/orderHistory.fxml");
+    }
 }

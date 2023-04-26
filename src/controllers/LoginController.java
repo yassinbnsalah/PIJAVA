@@ -66,6 +66,8 @@ public class LoginController implements Initializable {
                     Routage.getInstance().GOTO(btnSignin1, "/view/client/order/orderHistory.fxml");
                 }else if(sm.getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
                      Routage.getInstance().GOTO(btnSignin1, "/view/admin/subscription/subscriptionListe.fxml");
+                }else if(sm.getUser().getRoles().equals("[\"ROLE_MEDCIN\"]")){
+                     Routage.getInstance().GOTO(btnSignin1, "/view/Medecin/disponibilityListe.fxml");
                 }
                   
         } else if (state.equals("Empty Credits")) {

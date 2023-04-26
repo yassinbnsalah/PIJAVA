@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import models.Subscription; 
 import services.SubServices;
 import util.Routage;
+import util.SessionManager;
 /**
  * FXML Controller class
  *
@@ -55,6 +56,8 @@ public class SubscriptionhistoryController implements Initializable {
     private TableColumn<Subscription, String> amountType;
     @FXML
     private TableColumn<Subscription, String> stateCol;
+    @FXML
+    private Button adminDash;
 
     /**
      * Initializes the controller class.
@@ -62,6 +65,18 @@ public class SubscriptionhistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
+        if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_CLIENT\"]")){
+       
+            
+            adminDash.setVisible(false);
+        }else if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+            adminDash.setVisible(true);
+            adminDash.setText("Admin Dashboard");
+        }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_MEDCIN\"]")){
+             adminDash.setVisible(true);
+            adminDash.setText("Doctor Dashboard");
+        }
         refreshtable();
     }  
     
@@ -87,6 +102,16 @@ public class SubscriptionhistoryController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToadminDash(ActionEvent event) {
+        if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+                 Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
+        }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_MEDCIN\"]")){
+             Routage.getInstance().GOTO(adminDash, "/view/Medecin/disponibilityListe.fxml");
+        }
+    
     }
     
 }

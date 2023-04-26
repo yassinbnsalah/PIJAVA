@@ -22,6 +22,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+
+
 /**
  *
  * @author yacin
@@ -104,7 +106,10 @@ public class EmailManager {
             Multipart multipart = new MimeMultipart();
             BodyPart messageBodyPart = new MimeBodyPart();
             DataSource source = new FileDataSource(fileSource);//add file path
+            System.out.println(source.getName());
             messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(source.getName());
+           
             multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
            Transport.send(message);

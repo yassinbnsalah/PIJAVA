@@ -147,7 +147,7 @@
                   <TableColumn fx:id="categoryCol" prefWidth="149.60003662109375" text="Category" />
                </columns>
             </TableView>
-            <TextField layoutX="26.0" layoutY="65.0" prefHeight="26.0" prefWidth="746.0" />
+            <TextField fx:id="searchfld" layoutX="26.0" layoutY="65.0" onKeyTyped="#searchproduct" prefHeight="26.0" prefWidth="746.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="294.0" layoutY="539.0" prefHeight="211.0" prefWidth="818.0" style="-fx-background-color: #e4e3e9;">

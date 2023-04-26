@@ -7,6 +7,8 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +26,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import models.Order;
 import models.OrderHolder;
@@ -32,6 +37,8 @@ import services.OrderLineService;
 import services.OrderService;
 import util.Routage;
 import util.SessionManager;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * FXML Controller class
@@ -66,11 +73,17 @@ public class OrderHistoryController implements Initializable {
     private TableColumn<Order, String> priceCol;
     @FXML
     private TableColumn<Order, String> stateCOl;
-    ObservableList<Order> OrderList = FXCollections.observableArrayList();
+    List<Order> OrderList = new ArrayList<>();
     @FXML
     private Button createOrderbtn;
     @FXML
     private Label usernamelbl;
+    @FXML
+    private TextField searchtxt;
+    @FXML
+    private Button searchbtn;
+    @FXML
+    private Button adminDash;
 
     /**
      * Initializes the controller class.
@@ -78,6 +91,11 @@ public class OrderHistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+            adminDash.setVisible(true);
+        }else{
+            adminDash.setVisible(false);
+        }
         usernamelbl.setText(SessionManager.getInstance().getUser().getEmail());
         refereshTable();
     }
@@ -87,7 +105,7 @@ public class OrderHistoryController implements Initializable {
         OrderLineService orderlineService = new OrderLineService();
         OrderList.clear();
         OrderList.addAll(orderService.OrderByCLient(SessionManager.getInstance().getUser().getId()));
-        OrderTable.setItems(OrderList);
+        OrderTable.setItems(FXCollections.observableArrayList(OrderList));
         referenceCol.setCellValueFactory(new PropertyValueFactory<>("reference"));
 
         DateOrderCol.setCellValueFactory(new PropertyValueFactory<>("dateOrder"));
@@ -101,17 +119,18 @@ public class OrderHistoryController implements Initializable {
             myRow.setOnMouseClicked(event
                     -> {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
-                   
+                    System.out.println("create ORDER");
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     // stage.close();
                     try {
-                       
+
                         OrderHolder orderh = OrderHolder.getInstance();
                         int myIndex = OrderTable.getSelectionModel().getSelectedIndex();
-                     
+
                         orderh.setIdOrder(OrderTable.getItems().get(myIndex).getId());
-                         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/client/order/orderdetails.fxml"));
+                        System.out.println("ORder HOLDER"+OrderTable.getItems().get(myIndex).getId());
+                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/client/order/orderdetails.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         //stage.show();
@@ -136,15 +155,44 @@ public class OrderHistoryController implements Initializable {
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-           Routage rtg = Routage.getInstance(); 
+        Routage rtg = Routage.getInstance();
         rtg.GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
 
     }
 
     @FXML
     private void GoToCreateOrder(ActionEvent event) {
-           Routage rtg = Routage.getInstance(); 
+        Routage rtg = Routage.getInstance();
         rtg.GOTO(createOrderbtn, "/view/client/order/createOrder.fxml");
+    }
+
+    @FXML
+    private void KeyPressedData(KeyEvent event) {
+        //System.out.println(searchtxt.getText());
+        searchList(searchtxt.getText(), OrderList);
+      //  OrderTable.setItems(null);
+        OrderTable.setItems(FXCollections.observableArrayList(searchList(searchtxt.getText(), OrderList)));
+    }
+
+    @FXML
+    private void KeyPressedData2(InputMethodEvent event) {
+    }
+
+    private List<Order> searchList(String searchWords, List<Order> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
+                    -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase())) ;
+        }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void GoToadminDash(ActionEvent event) {
+        Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
     }
 
 }

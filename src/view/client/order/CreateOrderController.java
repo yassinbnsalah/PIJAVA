@@ -7,9 +7,13 @@ package view.client.order;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +29,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import models.Order;
 import models.OrderLine;
 import models.Product;
@@ -104,6 +109,8 @@ public class CreateOrderController implements Initializable {
     private Label lblerror;
     @FXML
     private Label Pricelbl;
+    @FXML
+    private TextField searchfld;
 
     public User getOwnerOrder() {
         return ownerOrder;
@@ -114,7 +121,7 @@ public class CreateOrderController implements Initializable {
     }
 
     HashSet<OrderLine> TreeOrderLine = new HashSet<>();
-    ObservableList<Product> ProductList = FXCollections.observableArrayList();
+    List<Product> ProductList = new ArrayList<>();
     ObservableList<OrderLine> OrderLineListe = FXCollections.observableArrayList();
     private int IDPRODUCT;
 
@@ -140,7 +147,7 @@ public class CreateOrderController implements Initializable {
         ProductService productService = new ProductService();
         ProductList.clear();
         ProductList.addAll(productService.listeProduct());
-        productTable.setItems(ProductList);
+        productTable.setItems(FXCollections.observableArrayList(ProductList));
         ProductNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         BuyPriceCol.setCellValueFactory(new PropertyValueFactory<>("buyprice"));
@@ -260,7 +267,7 @@ public class CreateOrderController implements Initializable {
     public void loadTableUser() {
         UserService userservice = new UserService();
         int id = SessionManager.getInstance().getUser().getId();
-        System.out.println("IDENT"+id);
+        System.out.println("IDENT" + id);
         User user = userservice.userById(id);
         nameuserTxt.setText(user.getName());
         emailUserTxt.setText(user.getEmail());
@@ -302,7 +309,23 @@ public class CreateOrderController implements Initializable {
             lblerror.setVisible(true);
             lblerror.setText("Please check your info before you create Order");
         }
-        
+
     }
 
+    @FXML
+    private void searchproduct(KeyEvent event) {
+
+        productTable.setItems(FXCollections.observableArrayList(searchList(searchfld.getText(), ProductList)));
+    }
+
+    private List<Product> searchList(String searchWords, List<Product> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getName().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getDescription().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
 }

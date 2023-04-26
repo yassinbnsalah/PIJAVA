@@ -31,5 +31,8 @@ public final class SessionManager {
     public void setUser(User user) {
         this.user = user;
     }
-
+    
+    public void Logout(){
+        setUser(null); 
+    }
 }

@@ -33,10 +33,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.time.ZoneId;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import javafx.animation.AnimationTimer;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import models.Disponibility;
 import services.DisponibilityService;
 import util.MyConnection;
+import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -45,8 +53,39 @@ import util.MyConnection;
  */
 public class DisponibilityListeController implements Initializable {
 
+    @FXML
+    private AnchorPane updateForm;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnOrders;
+    @FXML
+    private Button btnSubscription;
+    @FXML
+    private Button btnSignout;
+    @FXML
+    private Label userEmaillbl;
+    @FXML
+    private AnchorPane addDispoForm;
+    @FXML
+    private DatePicker DateDispo;
+    @FXML
+    private TextField txtHeureStart;
+    @FXML
+    private TextField txtHeureEnd;
+    @FXML
+    private TextArea txtNode;
+    @FXML
+    private Button btnCreate;
+    @FXML
+    private Label lblerrortxt;
+    @FXML
+    private Button btncancel;
+    @FXML
+    private Button ClientDashboard;
+
     public DisponibilityListeController() {
-      
+
     }
 
     private int IDToUpdate;
@@ -96,17 +135,23 @@ public class DisponibilityListeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        addDispoForm.setVisible(false);
         this.refreshTable();
+        lblerrortxt.setVisible(false);
+        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
+        updateForm.setVisible(false);
+
     }
 
-    @FXML
     private void GoToDisponnibility(ActionEvent event) {
         System.out.println("disponinbility Liste");
     }
 
     @FXML
     private void CreateNewDIsponnibility(ActionEvent event) {
-        try {
+        addDispoForm.setVisible(true);
+        updateForm.setVisible(false);
+        /*  try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/Medecin/AddDisponnibility.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage1 = new Stage();
@@ -115,10 +160,9 @@ public class DisponibilityListeController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
-  
     public void refreshTable() {
         DisponibilityService dispservice = new DisponibilityService();
         DispoList.clear();
@@ -135,6 +179,8 @@ public class DisponibilityListeController implements Initializable {
             myRow.setOnMouseClicked(event
                     -> {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    addDispoForm.setVisible(false);
+                    updateForm.setVisible(true);
                     int myIndex = TableDispo.getSelectionModel().getSelectedIndex();
                     int id = Integer.parseInt(String.valueOf(TableDispo.getItems().get(myIndex).getId()));
                     oldDateTxt.setText(TableDispo.getItems().get(myIndex).getDateDispo().toString());
@@ -172,6 +218,8 @@ public class DisponibilityListeController implements Initializable {
         heureStartTxt.setText("");
         heureEndTxt.setText("");
         NoteTXT.setText("");
+        addDispoForm.setVisible(false);
+        updateForm.setVisible(false);
         refreshTable();
     }
 
@@ -185,7 +233,10 @@ public class DisponibilityListeController implements Initializable {
         heureStartTxt.setText("");
         heureEndTxt.setText("");
         NoteTXT.setText("");
+        addDispoForm.setVisible(false);
+        updateForm.setVisible(false);
         refreshTable();
+        updateForm.setVisible(false);
     }
 
     @FXML
@@ -199,5 +250,101 @@ public class DisponibilityListeController implements Initializable {
         heureEndTxt.setText("");
         NoteTXT.setText("");
         refreshTable();
+        updateForm.setVisible(false);
+    }
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToSubscriptionListe(ActionEvent event) {
+    }
+
+    public boolean verifyHoure(String ch) {
+        int ind = ch.indexOf(":");
+        String heure = ch.substring(0, ind);
+        String minute = ch.substring(ind + 1, ch.length());
+        int heurestart;
+        int minuteStart;
+        try {
+            heurestart = Integer.parseInt(heure);
+            minuteStart = Integer.parseInt(minute);
+        } catch (Exception ex) {
+            return false;
+        }
+        if (heurestart > 23 || minuteStart > 60) {
+            return false;
+        }
+        return true;
+    }
+
+    @FXML
+    private void OnHandleClickCreate(ActionEvent event) {
+        verifyHoure(txtHeureStart.getText());
+        if (txtHeureStart.getText().length() != 0 && txtHeureEnd.getText().length() != 0 && txtNode.getText().length() != 0
+                && verifyHoure(txtHeureStart.getText()) && verifyHoure(txtHeureEnd.getText())) {
+
+            Disponibility dispo = new Disponibility(txtHeureStart.getText(), txtHeureEnd.getText(), txtNode.getText(), "Available", 1);
+            dispo.setDateDispo(Date.valueOf(DateDispo.valueProperty().getValue()));
+            DisponibilityService dispoService = new DisponibilityService();
+            dispoService.AddDisponibility(dispo);
+            // DisponibilityListeController adc = new DisponibilityListeController();
+            //adc.refreshTable();
+            System.out.println("Disponnibility created succeffuly");
+            lblerrortxt.setVisible(true);
+            refreshTable();
+            lblerrortxt.setText("Disponnibility created Succesfully");
+            setTimeout(() -> addDispoForm.setVisible(false), 1000);
+            // Stage stage = (Stage) btnCreate.getScene().getWindow();
+            // do what you have to do
+            //stage.close();
+        } else {
+            lblerrortxt.setVisible(true);
+            lblerrortxt.setText("No Data Founded");
+        }
+    }
+
+    public static void setTimeout(Runnable runnable, int delay) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(delay);
+                runnable.run();
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }).start();
+    }
+
+    @FXML
+    private void cancelAdd(ActionEvent event) {
+        /*  TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Checking local files...");
+                
+            }
+           
+        };
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(
+                task,
+                0,
+                1000L);*/
+
+        addDispoForm.setVisible(false);
+        updateForm.setVisible(false);
+    }
+
+    @FXML
+    private void GoToClientDashboard(ActionEvent event) {
+
+        Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 }

@@ -173,7 +173,6 @@ public class UserService {
                 if (!resultSet.next()) {
                     status = "email/password false";
                 } else {
-                
                        String Role = resultSet.getString("roles");
                        System.out.println("Role is "+Role);
                        User user = new User() ; 

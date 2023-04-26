@@ -75,6 +75,8 @@ public class CreateSubscriptionController implements Initializable {
     private User SubOwner ; 
     @FXML
     private Button btnsub;
+    @FXML
+    private Button clDash;
 
     public User getSubOwner() {
         return SubOwner;
@@ -150,7 +152,8 @@ public class CreateSubscriptionController implements Initializable {
     private void CreateSubscription(ActionEvent event) {
         SubServices subservice = new SubServices();
         UserService userservice = new UserService();
-        User user = userservice.userByEmail(CBClEmail.getValue());        
+        System.out.println("email"+clientEmaillbl.getText());
+        User user = userservice.userByEmail(clientEmaillbl.getText());        
         Subscription sub = new Subscription();        
         sub.setId_user(getSubOwner().getId());
         sub.setDatesub(Date.valueOf(DatePick.valueProperty().getValue()));
@@ -165,6 +168,11 @@ public class CreateSubscriptionController implements Initializable {
         sub.setPaiementMethod(CBPaiType.getValue());
         subservice.AddSubscription(sub);
         Routage.getInstance().GOTO(btnsub, "/view/admin/subscription/subscriptionListe.fxml");
+    }
+
+    @FXML
+    private void GoToClientDash(ActionEvent event) {
+         Routage.getInstance().GOTO(clDash, "/view/client/order/orderHistory.fxml");
     }
 
 }

@@ -122,6 +122,21 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
+            <Button fx:id="adminDash" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToadminDash" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Admin Dashboard" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <Label layoutX="285.0" layoutY="60.0" text="Order History">
@@ -129,7 +144,7 @@
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <TextField layoutX="285.0" layoutY="130.0" prefHeight="30.0" prefWidth="1514.0" />
+      <TextField fx:id="searchtxt" layoutX="285.0" layoutY="130.0" onInputMethodTextChanged="#KeyPressedData2" onKeyPressed="#KeyPressedData" prefHeight="30.0" prefWidth="1286.0" />
       <TableView fx:id="OrderTable" layoutX="285.0" layoutY="189.0" prefHeight="556.0" prefWidth="1522.0">
          <columns>
             <TableColumn fx:id="referenceCol" prefWidth="380.0" style="-fx-background-color: #eaecee;" text="Reference" />
@@ -140,7 +155,12 @@
             <TableColumn fx:id="stateCOl" prefWidth="226.4000244140625" style="-fx-background-color: #eaecee;" text="State" />
          </columns>
       </TableView>
-      <Button fx:id="createOrderbtn" layoutX="1514.0" layoutY="47.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
+      <Button fx:id="createOrderbtn" layoutX="1517.0" layoutY="58.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="searchbtn" layoutX="1602.0" layoutY="125.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="34.0" prefWidth="201.0" style="-fx-background-color: #ffaa46;" text="Search" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

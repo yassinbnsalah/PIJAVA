@@ -3,46 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package view.admin.order;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
-import services.OrderService;
-import models.Order;
 import models.OrderHolder;
-import services.OrderLineService;
 import models.OrderLine;
-import services.GenerateInvoice;
-import util.EmailManager;
-import util.Routage;
-import util.SessionManager;
-
+import services.OrderLineService;
+import services.OrderService;
+import models.Order ; 
 /**
  * FXML Controller class
  *
  * @author yacin
  */
-public class OrderdetailsController implements Initializable {
-
-    ObservableList<OrderLine> OrderLineList = FXCollections.observableArrayList();
+public class OrderDetailsController implements Initializable {
+ObservableList<OrderLine> OrderLineList = FXCollections.observableArrayList();
+    @FXML
+    private Button btnClient;
     @FXML
     private Button btnOrders;
     @FXML
@@ -68,56 +57,41 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private TableView<OrderLine> orderlineTable;
     @FXML
-    private TableColumn<OrderLine, String> productnameCol;
+    private TableColumn<?, ?> productnameCol;
     @FXML
-    private TableColumn<OrderLine, String> productPricecol;
+    private TableColumn<?, ?> productPricecol;
     @FXML
-    private TableColumn<OrderLine, String> quantitycol;
+    private TableColumn<?, ?> quantitycol;
     @FXML
-    private TableColumn<OrderLine, String> pricelinecol;
-
-    private int IDOrder;
-    @FXML
-    private Label reference;
+    private TableColumn<?, ?> pricelinecol;
     @FXML
     private Button createOrderbtn;
     @FXML
     private Button backtoOrderListe;
-    Order order;
     @FXML
-    private Label statelbl;
-    @FXML
-    private Button adminDash;
-    @FXML
-    private AnchorPane bx;
-
+    private Label reference;
+    private Order order  ;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        if (SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")) {
-            adminDash.setVisible(true);
-        } else {
-            adminDash.setVisible(false);
-        }
-        LoadData();
-    }
+        // TODO
+    }    
 
+    
     public void LoadData() {
         OrderHolder orderh = OrderHolder.getInstance();
 
         OrderService orderservice = new OrderService();
         System.out.println("ID ORDER : " + orderh.getIdOrder());
-        order = orderservice.orderByID(orderh.getIdOrder());
+         order = orderservice.orderByID(orderh.getIdOrder());
         reference.setText(order.getReference());
         emaillbl.setText(order.getOwner().getEmail());
         namelbl.setText(order.getOwner().getName());
         phonelbl.setText(order.getOwner().getNumero());
         amountlbl.setText(String.valueOf(order.getPrice()));
         paimentmethodlbl.setText(order.getPaiementmethod());
-        statelbl.setText(order.getState());
         OrderLineService orderlineservice = new OrderLineService();
         ArrayList<OrderLine> orderlineListe = orderlineservice.orderlineListe(orderh.getIdOrder());
         OrderLineList.addAll(orderlineListe);
@@ -126,45 +100,22 @@ public class OrderdetailsController implements Initializable {
         productPricecol.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantitycol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         pricelinecol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+        
     }
-
-    @FXML
-    private void GoToOrderListe(ActionEvent event) {
-        if (SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")) {
-            Routage rtg = Routage.getInstance();
-            rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
-        } else {
-            Routage rtg = Routage.getInstance();
-            rtg.GOTO(btnOrders, "/view/client/order/orderHistory.fxml");
-        }
-
-    }
-
     @FXML
     private void handleClicks(ActionEvent event) {
     }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-        Routage rtg = Routage.getInstance();
-        rtg.GOTO(btnOrders, "/view/client/subscription/subscriptionhis.fxml");
     }
 
     @FXML
     private void DownloadInvoice(ActionEvent event) {
-
-        GenerateInvoice gn = new GenerateInvoice();
-        gn.createPDF(order);
-
     }
 
     @FXML
-    private void GoToadminDash(ActionEvent event) {
-        if (SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")) {
-
-            Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
-        }
+    private void GoToOrderListe(ActionEvent event) {
     }
-
+    
 }
