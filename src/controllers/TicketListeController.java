@@ -58,6 +58,10 @@ public class TicketListeController implements Initializable {
     private Button btnSignout;
     @FXML
     private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
 
     public int getIDToUpdate() {
         return IDToUpdate;
@@ -183,6 +187,20 @@ public class TicketListeController implements Initializable {
      @FXML
     private void Pharmacien(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void coach(ActionEvent event) throws IOException {
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
             Parent root = loader.load();
             btnTicket.getScene().setRoot(root);
     }

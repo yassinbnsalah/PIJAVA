@@ -95,7 +95,25 @@ public class UserService implements UserInterface{
             pst.setString(6, user.getPassword());
             pst.setString(7, "[\"ROLE_PHARMACIEN\"]");
             pst.executeUpdate();
-            System.out.println("Client created");
+            System.out.println("PHARMACIEN created");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+          public void AddMedcin(User user) {
+        try {
+            String req = "INSERT INTO `user`(`cin`, `name`, `numero`, `email`, `adresse`, `password`,`roles`)"
+                    + " VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement pst = cnx2.prepareStatement(req);
+            pst.setString(1, user.getCIN());
+            pst.setString(2, user.getName());
+            pst.setInt(3, user.getNumero());
+            pst.setString(4, user.getEmail());
+            pst.setString(5, user.getAdresse());
+            pst.setString(6, user.getPassword());
+            pst.setString(7, "[\"ROLE_MEDCIN\"]");
+            pst.executeUpdate();
+            System.out.println("MEDCIN created");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -130,6 +148,31 @@ public class UserService implements UserInterface{
         ArrayList<User> liste = new ArrayList<>();
         try {
           String req = "SELECT * FROM `user` WHERE JSON_CONTAINS(roles, '[\"ROLE_PHARMACIEN\"]')";
+            PreparedStatement pst = cnx2.prepareStatement(req);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setCIN(rs.getString("CIN"));
+                user.setName(rs.getString("Name"));
+                user.setEmail(rs.getString("Email"));
+                user.setNumero(rs.getInt("Numero"));
+                user.setAdresse(rs.getString("Adresse"));
+                user.setPassword(rs.getString("Password"));
+                liste.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return liste;
+    }
+     public ArrayList<User> medcinListe() {
+        ArrayList<User> liste = new ArrayList<>();
+        try {
+          String req = "SELECT * FROM `user` WHERE JSON_CONTAINS(roles, '[\"ROLE_MEDCIN\"]')";
             PreparedStatement pst = cnx2.prepareStatement(req);
 
             ResultSet rs = pst.executeQuery();

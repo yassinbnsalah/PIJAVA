@@ -91,6 +91,10 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     private Button btnPharmacien;
     @FXML
     private Button btnClient;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
     public int getIDPharmacienToUpdate() {
         return IDPharmacienToUpdate;
     }
@@ -310,6 +314,20 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     @FXML
     private void Client(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) throws IOException {
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
+
+    @FXML
+    private void coach(ActionEvent event) throws IOException {
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
             Parent root = loader.load();
             btnTicket.getScene().setRoot(root);
     }
