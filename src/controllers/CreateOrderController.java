@@ -289,8 +289,9 @@ public class CreateOrderController implements Initializable {
                     -> {
                 if (event2.getClickCount() == 1 && (!myRow2.isEmpty())) {
                     int myIndex = orderlinetable.getSelectionModel().getSelectedIndex();
-                    int id = Integer.parseInt(String.valueOf(orderlinetable.getItems().get(myIndex).getId()));
+                    int id = Integer.parseInt(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_id()));
                     setIDPRODUCT(id);
+                   
                     productNametxt.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_name()));
                     productSellPricetxt.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_price()));
                     productBuyPricetxt.setText(String.valueOf(orderlinetable.getItems().get(myIndex).getProduct_price()));
@@ -348,13 +349,9 @@ public class CreateOrderController implements Initializable {
             order.setPrice(price);
             orderservice.AddOrder(order, TreeOrderLine);
             System.out.println("SUIIII");
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
-                Parent root = loader.load();
-                btnorderCreate.getScene().setRoot(root);
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
+            System.out.println("TreeOrder"+TreeOrderLine);
+            Routage.getInstance().GOTO(btnorderCreate, "/view/admin/order/OrderListe.fxml");
+       
         } else {
             lblerror.setVisible(true);
             lblerror.setText("Please check your info before you create Order");

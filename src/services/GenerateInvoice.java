@@ -39,7 +39,7 @@ public class GenerateInvoice {
         try {
             String reference = "INV" + order.getId() + ".pdf";
             String home = System.getProperty("user.home");
-            String filePath = home+"\\Downloads\\" + reference;
+            String filePath = home + "\\Downloads\\" + reference;
             System.out.println("reference" + filePath);
             OutputStream file = new FileOutputStream(new File(filePath));
             Document document = new Document();
@@ -50,6 +50,8 @@ public class GenerateInvoice {
             image.scaleAbsolute(100f, 100f);//image width,height 
 
             PdfPTable irdTable = new PdfPTable(2);
+            irdTable.setWidthPercentage(100);
+            irdTable.setWidths(new float[]{5, 4});
             irdTable.addCell(getIRDCell("Invoice No"));
             irdTable.addCell(getIRDCell("Invoice Date"));
             irdTable.addCell(getIRDCell(order.getReference())); // pass invoice number
@@ -60,12 +62,14 @@ public class GenerateInvoice {
 
             irhTable.addCell(getIRHCell("", PdfPCell.ALIGN_RIGHT));
             irhTable.addCell(getIRHCell("", PdfPCell.ALIGN_RIGHT));
-            irhTable.addCell(getIRHCell("Invoice", PdfPCell.ALIGN_RIGHT));
+            irhTable.addCell(getIRHCell("INVOICE /", PdfPCell.ALIGN_RIGHT));
             irhTable.addCell(getIRHCell("", PdfPCell.ALIGN_RIGHT));
             irhTable.addCell(getIRHCell("", PdfPCell.ALIGN_RIGHT));
             PdfPCell invoiceTable = new PdfPCell(irdTable);
             invoiceTable.setBorder(0);
             irhTable.addCell(invoiceTable);
+            PdfPTable irhTable2 = new PdfPTable(3);
+            irhTable.setWidthPercentage(100);
 
             FontSelector fs = new FontSelector();
             Font font = FontFactory.getFont(FontFactory.TIMES_ROMAN, 13, Font.BOLD);
@@ -75,6 +79,8 @@ public class GenerateInvoice {
             name.setIndentationLeft(20);
             Paragraph contact = new Paragraph("Order Phone :" + order.getOwner().getNumero());
             contact.setIndentationLeft(20);
+            Paragraph AdressMail = new Paragraph("Order AdressMail :" + order.getOwner().getEmail());
+            AdressMail.setIndentationLeft(20);
             Paragraph address = new Paragraph("Order Adress :" + order.getOwner().getAdresse());
             address.setIndentationLeft(20);
 
@@ -83,18 +89,18 @@ public class GenerateInvoice {
             billTable.setWidths(new float[]{1, 2, 5, 2, 1, 2});
             billTable.setSpacingBefore(30.0f);
             billTable.addCell(getBillHeaderCell("Index"));
-            billTable.addCell(getBillHeaderCell("Item"));
-            billTable.addCell(getBillHeaderCell("Description"));
+            billTable.addCell(getBillHeaderCell("ITEM REF"));
+            billTable.addCell(getBillHeaderCell("ITEM NAME"));
             billTable.addCell(getBillHeaderCell("Unit Price"));
             billTable.addCell(getBillHeaderCell("Qty"));
             billTable.addCell(getBillHeaderCell("Amount"));
             for (OrderLine orderline : order.getOrderline()) {
-                billTable.addCell(getBillRowCell(Integer.toString(orderline.getId())));
-                billTable.addCell(getBillRowCell(Integer.toString(orderline.getProduct_id())));
-                billTable.addCell(getBillRowCell("description here "));
-                billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice()) + "DT"));
+                billTable.addCell(getBillRowCell("O" + Integer.toString(orderline.getId())));
+                billTable.addCell(getBillRowCell("#PR" + Integer.toString(orderline.getProduct_id())));
+                billTable.addCell(getBillRowCell(orderline.getProduct_name()));
+                billTable.addCell(getBillRowCell(Float.toString(orderline.getProduct_price()) + "DT"));
                 billTable.addCell(getBillRowCell(Integer.toString(orderline.getQuantity())));
-                billTable.addCell(getBillRowCell(Float.toString(orderline.getPrice() * orderline.getQuantity()) + "DT"));
+                billTable.addCell(getBillRowCell(Float.toString(orderline.getProduct_price() * orderline.getQuantity()) + "DT"));
             }
 
             billTable.addCell(getBillRowCell(" "));
@@ -194,9 +200,17 @@ public class GenerateInvoice {
 
             PdfPTable accounts = new PdfPTable(2);
             accounts.setWidthPercentage(100);
+            accounts.addCell(getAccountsCell("Total without fees"));
+            accounts.addCell(getAccountsCellR(Integer.toString(order.getPrice()) + "DT"));
+            accounts.addCell(getAccountsCell("Shipping"));
+            accounts.addCell(getAccountsCellR("7DT"));
+            accounts.addCell(getAccountsCell("Fiscale Timber"));
+            accounts.addCell(getAccountsCellR("0.6dt"));
 
             accounts.addCell(getAccountsCell("Total"));
-            accounts.addCell(getAccountsCellR(Integer.toString(order.getPrice()) + "DT"));
+            float total = (float) order.getPrice() + 7;
+            total = total + 0.6f;
+            accounts.addCell(getAccountsCellR(Float.toString(total) + "DT"));
             PdfPCell summaryR = new PdfPCell(accounts);
             summaryR.setColspan(3);
             billTable.addCell(summaryR);
@@ -213,6 +227,7 @@ public class GenerateInvoice {
             document.add(irhTable);
             document.add(bill);
             document.add(name);
+            document.add(AdressMail);
             document.add(contact);
             document.add(address);
             document.add(billTable);
@@ -225,7 +240,7 @@ public class GenerateInvoice {
             System.out.println("Pdf created successfully..");
 
             EmailManager em = new EmailManager();
-           em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
+            // em.SendMailWithFile(order.getOwner().getEmail(), "Invoice", filePath);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -55,12 +55,13 @@ public class OrderService {
             pst.setString(7, order.getNote());
             pst.setString(8, order.getPaiementmethod());
             pst.setBoolean(9, true);
-            pst.executeUpdate();
+         pst.executeUpdate();
             int idOrder = this.OrderIDByReference(order.getReference());
             order.setId(idOrder);
             for (OrderLine orderline : orderlines) {
+                System.out.println("orderLine TO ADD IT "+ orderline);
                 orderline.setRelatedOrder(order);
-                orderlineService.addOrderline(orderline);
+             orderlineService.addOrderline(orderline);
             }
             System.out.println(" Order ajouté !");
            

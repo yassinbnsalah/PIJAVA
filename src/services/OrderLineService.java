@@ -27,7 +27,7 @@ public class OrderLineService {
             pst.setInt(3, orderline.getQuantity());
             pst.setFloat(4, orderline.getPrice());
             pst.executeUpdate();
-            System.out.println("orderline created successfully !");
+            System.out.println("orderline created successfully !"+orderline);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -49,6 +49,8 @@ public class OrderLineService {
                 ProductService productservice = new ProductService(); 
                 Product prd = productservice.productBYID(rs.getInt("product_id"));
                 orderLine.setProduct_name(prd.getName());
+                orderLine.setProduct_price(prd.getSellprice());
+                
                 listeOrderLine.add(orderLine);
             }
         } catch (SQLException ex) {
