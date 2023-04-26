@@ -15,8 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="controllers.PharmacienListController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PharmacienListController">
    <children>
       <AnchorPane layoutX="234.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -25,7 +24,7 @@
                   <Font name="Arial Bold Italic" size="38.0" />
                </font>
             </Label>
-            <TableView fx:id="ClientTable" layoutX="24.0" layoutY="96.0" prefHeight="516.0" prefWidth="737.0">
+            <TableView fx:id="PharmacienTable" layoutX="24.0" layoutY="96.0" prefHeight="516.0" prefWidth="737.0">
                <columns>
                   <TableColumn fx:id="ColCin" prefWidth="146.0" text="Cin" />
                   <TableColumn fx:id="ColName" minWidth="0.800018310546875" prefWidth="118.0" text="Name" />
@@ -212,7 +211,7 @@
                         </RadialGradient>
                      </textFill>
                   </Button>
-                  <Button layoutX="56.0" layoutY="300.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="31.0" prefWidth="158.0" styleClass="button-design1" stylesheets="@design.css" text="Delete">
+                  <Button layoutX="56.0" layoutY="300.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="31.0" prefWidth="158.0" styleClass="button-design1" stylesheets="@design.css" text="Ban">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -257,7 +256,25 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Pharmacien" textFill="#000000">
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Client" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPharmacien" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Pharmacien" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -101,6 +101,8 @@ public class ClientListeController implements Initializable {
     private int IDClientToUpdate;
     @FXML
     private Button logoutButton;
+    @FXML
+    private Button btnPharmacien;
     
     public int getIDClientToUpdate() {
         return IDClientToUpdate;
@@ -321,6 +323,13 @@ System.out.println(IDClientToUpdate);
         Stage stage = (Stage) logoutButton.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
     }
 
     

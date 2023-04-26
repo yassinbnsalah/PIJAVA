@@ -56,6 +56,8 @@ public class TicketListeController implements Initializable {
     private Button btnTicket;
     @FXML
     private Button btnSignout;
+    @FXML
+    private Button btnPharmacien;
 
     public int getIDToUpdate() {
         return IDToUpdate;
@@ -176,6 +178,13 @@ public class TicketListeController implements Initializable {
 
     @FXML
     private void textfieldDesign1(KeyEvent event) {
+    }
+
+     @FXML
+    private void Pharmacien(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
     }
     
 }

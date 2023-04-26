@@ -82,11 +82,54 @@ public class UserService implements UserInterface{
             System.out.println(ex.getMessage());
         }
     }
+       public void AddPharmacien(User user) {
+        try {
+            String req = "INSERT INTO `user`(`cin`, `name`, `numero`, `email`, `adresse`, `password`,`roles`)"
+                    + " VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement pst = cnx2.prepareStatement(req);
+            pst.setString(1, user.getCIN());
+            pst.setString(2, user.getName());
+            pst.setInt(3, user.getNumero());
+            pst.setString(4, user.getEmail());
+            pst.setString(5, user.getAdresse());
+            pst.setString(6, user.getPassword());
+            pst.setString(7, "[\"ROLE_PHARMACIEN\"]");
+            pst.executeUpdate();
+            System.out.println("Client created");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     public ArrayList<User> userListe() {
         ArrayList<User> liste = new ArrayList<>();
         try {
           String req = "SELECT * FROM `user` WHERE JSON_CONTAINS(roles, '[\"ROLE_CLIENT\"]')";
+            PreparedStatement pst = cnx2.prepareStatement(req);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt(1));
+                user.setCIN(rs.getString("CIN"));
+                user.setName(rs.getString("Name"));
+                user.setEmail(rs.getString("Email"));
+                user.setNumero(rs.getInt("Numero"));
+                user.setAdresse(rs.getString("Adresse"));
+                user.setPassword(rs.getString("Password"));
+                liste.add(user);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return liste;
+    }
+    public ArrayList<User> pharmacienListe() {
+        ArrayList<User> liste = new ArrayList<>();
+        try {
+          String req = "SELECT * FROM `user` WHERE JSON_CONTAINS(roles, '[\"ROLE_PHARMACIEN\"]')";
             PreparedStatement pst = cnx2.prepareStatement(req);
 
             ResultSet rs = pst.executeQuery();
