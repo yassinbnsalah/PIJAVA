@@ -49,7 +49,7 @@ public class OrderService {
             pst.setInt(1, order.getOwner().getId());
             pst.setString(2, order.getReference());
             pst.setString(3, order.getState());
-            pst.setInt(4, order.getPrice());
+            pst.setFloat(4, order.getPrice()+7+0.6f);
             pst.setString(5, order.getShippingadress());
             pst.setDate(6, order.getDateOrder());
             pst.setString(7, order.getNote());

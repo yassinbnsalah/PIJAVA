@@ -17,13 +17,13 @@ import javafx.collections.ObservableList;
 import models.Ticket;
 import util.MyConnection;
 
+
 /**
  *
  * @author Fedi
  */
 public class TicketService  {
-    
-   Connection cnx;
+  Connection cnx;
 
     public TicketService() {
         cnx = MyConnection.getInstance().getCnx();

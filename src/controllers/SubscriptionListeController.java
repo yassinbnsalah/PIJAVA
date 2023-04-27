@@ -12,6 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -31,8 +39,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import models.Disponibility;
-import models.Order;
+import javafx.scene.layout.AnchorPane;
 import models.User;
 import models.Subscription;
 import services.SubServices;
@@ -46,7 +53,7 @@ import util.SessionManager;
  * @author yacin
  */
 public class SubscriptionListeController implements Initializable {
-    
+
     ArrayList<Subscription> SubsList = new ArrayList();
     /* @FXML
     private TableColumn<Subscription, String> SubReference;*/
@@ -68,8 +75,11 @@ public class SubscriptionListeController implements Initializable {
     @FXML
     private TableColumn<Subscription, String> Colstate;
     private ComboBox<String> CBClEmail;
+    @FXML
     private ComboBox<String> CBType;
+    @FXML
     private ComboBox<String> CBPaiType;
+    @FXML
     private DatePicker DatePick;
     @FXML
     private TextField emailFld;
@@ -81,7 +91,7 @@ public class SubscriptionListeController implements Initializable {
     private TextField DateExpirationfld;
     @FXML
     private ComboBox<String> CBType1;
-    
+
     private int IDsubscriptionToUpdate;
     @FXML
     private Button btnOrders;
@@ -103,11 +113,36 @@ public class SubscriptionListeController implements Initializable {
     private TextField searchTxt;
     @FXML
     private Button clDash;
-    
+    @FXML
+    private AnchorPane subscriptionDetailslbl;
+    @FXML
+    private AnchorPane createSubLabel;
+    @FXML
+    private TableView<User> userTable;
+    @FXML
+    private TableColumn<User, String> clientNameCol1;
+    @FXML
+    private TableColumn<User, String> clientEmailCol1;
+    @FXML
+    private TextField clientNamelbl;
+    @FXML
+    private TextField clientEmaillbl;
+    @FXML
+    private TextField clientphonelbl;
+    @FXML
+    private Button btnsub;
+    ObservableList<User> UserList = FXCollections.observableArrayList();
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
+
     public int getIDsubscriptionToUpdate() {
         return IDsubscriptionToUpdate;
     }
-    
+
     public void setIDsubscriptionToUpdate(int IDsubscriptionToUpdate) {
         this.IDsubscriptionToUpdate = IDsubscriptionToUpdate;
     }
@@ -117,24 +152,65 @@ public class SubscriptionListeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        subscriptionDetailslbl.setVisible(false);
+        createSubLabel.setVisible(false);
         this.LoadDataForAddSubscription();
         this.refreshTable();
+        loadTableUser();
     }
-    
+
     private void LoadDataForAddSubscription() {
-        /*UserService userservice = new UserService();
-        rrayList<User> userListe = userservice.userListe();
+        UserService userservice = new UserService();
+        /*ArrayList<User> userListe = userservice.userListe();
         for (User user : userListe) {
             CBClEmail.getItems().add(user.getEmail());
-        }
+        }*/
         CBType.getItems().add("1 Month");
         CBType.getItems().add("3 Months");
         CBType.getItems().add("6 Months");
-        
+
         CBPaiType.getItems().add("Cash");
-        CBPaiType.getItems().add("Cheque");*/
+        CBPaiType.getItems().add("Cheque");
     }
-    
+    private User SubOwner;
+
+    public User getSubOwner() {
+        return SubOwner;
+    }
+
+    public void setSubOwner(User SubOwner) {
+        this.SubOwner = SubOwner;
+    }
+
+    public void loadTableUser() {
+        UserService userservice = new UserService();
+        UserList.clear();
+        UserList.addAll(userservice.userListe());
+        userTable.setItems(UserList);
+        clientNameCol1.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        clientEmailCol1.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        //ClientPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Numero"));
+        userTable.setRowFactory(tv -> {
+            TableRow<User> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event
+                    -> {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    int myIndex = userTable.getSelectionModel().getSelectedIndex();
+                    int id = Integer.parseInt(String.valueOf(userTable.getItems().get(myIndex).getId()));
+
+                    clientNamelbl.setText(String.valueOf(userTable.getItems().get(myIndex).getName()));
+
+                    clientEmaillbl.setText(String.valueOf(userTable.getItems().get(myIndex).getEmail()));
+                    clientphonelbl.setText(String.valueOf(userTable.getItems().get(myIndex).getNumero()));
+                    User user = userservice.userById(id);
+                    //this.setOwnerOrder(user);
+                    setSubOwner(user);
+                }
+            });
+            return myRow;
+        });
+    }
+
     private void refreshTable() {
         SubServices subservice = new SubServices();
         SubsList.clear();
@@ -147,12 +223,14 @@ public class SubscriptionListeController implements Initializable {
         ColpaiementType.setCellValueFactory(new PropertyValueFactory<>("paiementMethod"));
         Colamount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         Colstate.setCellValueFactory(new PropertyValueFactory<>("state"));
-        
+
         SubTable.setRowFactory(tv -> {
             TableRow<Subscription> myRow = new TableRow<>();
             myRow.setOnMouseClicked(event
                     -> {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    subscriptionDetailslbl.setVisible(true);
+                    createSubLabel.setVisible(false);
                     CBType1.getItems().clear();
                     int myIndex = SubTable.getSelectionModel().getSelectedIndex();
                     int id = Integer.parseInt(String.valueOf(SubTable.getItems().get(myIndex).getId()));
@@ -162,7 +240,7 @@ public class SubscriptionListeController implements Initializable {
                     paiementTypeFld.setText(String.valueOf(SubTable.getItems().get(myIndex).getPaiementMethod()));
                     DateSubsc.setText(String.valueOf(SubTable.getItems().get(myIndex).getDatesub()));
                     DateExpirationfld.setText(String.valueOf(SubTable.getItems().get(myIndex).getDateExpire()));
-                    
+
                     CBType1.getItems().add("Confirmed");
                     if (String.valueOf(SubTable.getItems().get(myIndex).getState()).equals("Suspend")) {
                         CBType1.getItems().add("Insuspend");
@@ -170,28 +248,34 @@ public class SubscriptionListeController implements Initializable {
                         CBType1.getItems().add("Suspend");
                     }
                     CBType1.getItems().add("Cancel");
-                    
+
                 }
             });
             return myRow;
         });
-        
+
     }
-    
+
     @FXML
     private void CreateSubscription(ActionEvent event) {
-        Routage.getInstance().GOTO(btnsubscription, "/view/admin/subscription/createSubscription.fxml");
-     
+        //  Routage.getInstance().GOTO(btnsubscription, "/view/admin/subscription/createSubscription.fxml");
+        subscriptionDetailslbl.setVisible(false);
+        createSubLabel.setVisible(true);
     }
-    
+
+
+
     @FXML
     private void updateSubscription(ActionEvent event) {
         SubServices subservice = new SubServices();
         subservice.UpdateStateSub(CBType1.getValue(), this.getIDsubscriptionToUpdate());
         clearForms();
         refreshTable();
+          subscriptionDetailslbl.setVisible(false) ;
+      
+       
     }
-    
+
     private void clearForms() {
         emailFld.setText("");
         paiementTypeFld.setText("");
@@ -201,48 +285,53 @@ public class SubscriptionListeController implements Initializable {
         //zDatePick.setValue(null);
         this.setIDsubscriptionToUpdate(0);
     }
-    
+
     @FXML
     private void deleteSubscription(ActionEvent event) {
         SubServices subservice = new SubServices();
         subservice.DeleteSub(IDsubscriptionToUpdate);
         clearForms();
         refreshTable();
+        subscriptionDetailslbl.setVisible(false);
+        createSubLabel.setVisible(false);
     }
 
     @FXML
     private void GoToOrderListe(ActionEvent event) {
-          try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/order/OrderListe.fxml"));
             Parent root = loader.load();
-            btnSubscription.getScene().setRoot(root);  
+            btnSubscription.getScene().setRoot(root);
+
         } catch (IOException ex) {
-            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrderListeController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @FXML
     private void handleClicks(ActionEvent event) {
     }
-      private List<Subscription> searchList(String searchWords, List<Subscription> listOfStrings) {
+
+    private List<Subscription> searchList(String searchWords, List<Subscription> listOfStrings) {
 
         List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
 
         return listOfStrings.stream().filter(input -> {
             return searchWordsArray.stream().allMatch(word
-                    -> input.getReference().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
-                    -> input.getPaiementMethod().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
-                    -> input.getState().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
-                    -> input.getDatesub().toString().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
-                    -> input.getDateExpire().toString().toLowerCase().contains(word.toLowerCase()))  ;
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getPaiementMethod().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getDatesub().toString().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getDateExpire().toString().toLowerCase().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
     }
 
     @FXML
     private void InstantSet(KeyEvent event) {
         System.out.println(searchTxt.getText());
-        searchList(searchTxt.getText() ,SubsList );
-         SubTable.setItems(FXCollections.observableArrayList(searchList(searchTxt.getText() ,SubsList )));
+        searchList(searchTxt.getText(), SubsList);
+        SubTable.setItems(FXCollections.observableArrayList(searchList(searchTxt.getText(), SubsList)));
     }
 
     @FXML
@@ -253,6 +342,43 @@ public class SubscriptionListeController implements Initializable {
 
     @FXML
     private void GoToClientDash(ActionEvent event) {
-         Routage.getInstance().GOTO(clDash, "/view/client/order/orderHistory.fxml");
+        Routage.getInstance().GOTO(clDash, "/view/client/order/orderHistory.fxml");
+    }
+
+    @FXML
+    private void addSubscriptio(ActionEvent event) {
+        SubServices subservice = new SubServices();
+        UserService userservice = new UserService();
+        System.out.println("email" + clientEmaillbl.getText());
+        User user = userservice.userByEmail(clientEmaillbl.getText());
+        Subscription sub = new Subscription();
+        sub.setId_user(getSubOwner().getId());
+        sub.setDatesub(Date.valueOf(DatePick.valueProperty().getValue()));
+        String type = CBType.getValue();
+        if (type.equals("1 Month")) {
+            sub.setType("1");
+        } else if (type.equals("3 Months")) {
+            sub.setType("2");
+        } else {
+            sub.setType("3");
+        }
+        sub.setPaiementMethod(CBPaiType.getValue());
+        subservice.AddSubscription(sub);
+        clearForms();
+        refreshTable();
+        subscriptionDetailslbl.setVisible(false);
+        createSubLabel.setVisible(false);
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
     }
 }

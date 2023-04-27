@@ -72,12 +72,12 @@ public class CreateSubscriptionController implements Initializable {
     @FXML
     private TextField clientphonelbl;
     ObservableList<User> UserList = FXCollections.observableArrayList();
-    private User SubOwner ; 
+   
     @FXML
     private Button btnsub;
     @FXML
     private Button clDash;
-
+ private User SubOwner ; 
     public User getSubOwner() {
         return SubOwner;
     }

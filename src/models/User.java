@@ -24,7 +24,15 @@ public class User{
 
     public User(){
     }
-    
+        public User(String CIN, String Name, String Adresse, String Password, String Email, String Numero) {
+       this.CIN = CIN;
+        this.Name = Name;
+        this.Numero = Numero;
+        this.Email = Email;
+        this.Adresse = Adresse;
+        this.Password = Password;
+    }
+
     public User(int id, String CIN, String Name, String Numero, String Email, String Adresse, String Password, String roles) {
         this.id = id;
         this.CIN = CIN;
@@ -36,14 +44,7 @@ public class User{
         this.roles= roles;
     }
 
-    public User(String CIN, String Name, String Numero, String Email, String Adresse, String Password) {
-        this.CIN = CIN;
-        this.Name = Name;
-        this.Numero = Numero;
-        this.Email = Email;
-        this.Adresse = Adresse;
-        this.Password = Password;
-    }
+  
      public User(String CIN, String Name, String Numero, String Email, String Adresse) {
         this.CIN = CIN;
         this.Name = Name;
@@ -68,6 +69,8 @@ public class User{
     public static void setCurrent_User(User Current_User) {
         User.Current_User = Current_User;
     }
+
+   
     public int getId() {
         return id;
     }

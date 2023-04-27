@@ -20,7 +20,15 @@ public class Ticket {
     private String titre ; 
     private Date dateticket; 
     private String state ; 
+    
   public Ticket() {
+    }
+   public Ticket(Date dateticket, String message, String titre, User user) {
+        this.dateticket = dateticket;
+        this.titre = titre;
+        this.message = message;
+     
+        this.user = user;
     }
 
     public Ticket(int id, Date dateticket, String message, String titre,  String state, User user) {
@@ -32,14 +40,9 @@ public class Ticket {
         this.user = user;
     }
 
-    public Ticket(Date dateticket, String message, String titre,  String state, User user) {
-        this.dateticket = dateticket;
-        this.message = message;
-        this.titre = titre;
-        this.state = state;
-        this.user = user;
-    }
 
+
+ 
     public int getId() {
         return id;
     }

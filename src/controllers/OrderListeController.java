@@ -72,6 +72,12 @@ public class OrderListeController implements Initializable {
     private Button clientDash;
     @FXML
     private TextField searhOrderfld;
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
 
     public int getIDOrderToUpdate() {
         return IDOrderToUpdate;
@@ -228,7 +234,9 @@ public class OrderListeController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
+         Routage.getInstance().GOTO(clientDash, "/view/users/client/ClientListe.fxml");
     }
+    
 
     @FXML
     private void GoToclientDash(ActionEvent event) {
@@ -251,5 +259,25 @@ public class OrderListeController implements Initializable {
                     -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
                     -> input.getOwnerEmail().toLowerCase().contains(word.toLowerCase())) ;
         }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void GOTOTICKET(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(clientDash, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(clientDash, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
+         Routage.getInstance().GOTO(clientDash, "/view/users/medecin/MedcinList.fxml");
     }
 }

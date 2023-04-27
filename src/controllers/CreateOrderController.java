@@ -142,6 +142,12 @@ public class CreateOrderController implements Initializable {
     private Button adminDash;
     @FXML
     private TextField searchfld;
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
 
     public User getOwnerOrder() {
         return ownerOrder;
@@ -411,5 +417,17 @@ public class CreateOrderController implements Initializable {
                     -> input.getEmail().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
                     -> input.getNumero().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
     }
 }

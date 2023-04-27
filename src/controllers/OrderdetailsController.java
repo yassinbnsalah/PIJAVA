@@ -97,7 +97,15 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private Label informationlbl;
     @FXML
-    private AnchorPane bx;
+    private AnchorPane interfaceDet;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
 
     /**
      * Initializes the controller class.
@@ -169,10 +177,10 @@ public class OrderdetailsController implements Initializable {
 
     @FXML
     private void DownloadInvoice(ActionEvent event) {
-
-        informationlbl.setVisible(true);
+        System.out.println("GGG");
+       // informationlbl.setVisible(true);
         GenerateInvoice gn = new GenerateInvoice();
-        gn.createPDF(order);
+       gn.createPDF(order);
 
     }
 
@@ -189,14 +197,27 @@ public class OrderdetailsController implements Initializable {
         System.out.println("update State here ");
         OrderService orderService = new OrderService();
         orderService.updateStateOrder(order.getId(), orderStateCB.getValue());
-        statelbl.setText(orderStateCB.getValue());
+       // statelbl.setText(orderStateCB.getValue());
+       OrderLineList.clear();
+       LoadData() ; 
     }
 
-    @FXML
     private void logout(ActionEvent event) {
 
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
     }
 
 }
