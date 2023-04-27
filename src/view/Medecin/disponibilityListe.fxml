@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisponibilityListeController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisponibilityListeController">
     <children>
         <AnchorPane layoutX="198.0" prefHeight="179.0" prefWidth="1656.0" style="-fx-background-color: #e3dcff;" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -39,7 +39,7 @@
                 <TableColumn fx:id="ColState" prefWidth="199.1998291015625" text="State" />
             </columns>
         </TableView>
-      <AnchorPane fx:id="updateForm" layoutX="1452.0" layoutY="242.0" prefHeight="470.0" prefWidth="374.0" style="-fx-background-color: #e4e3e9;" visible="false" AnchorPane.rightAnchor="27.399999999999977">
+      <AnchorPane fx:id="updateForm" layoutX="1452.0" layoutY="242.0" prefHeight="470.0" prefWidth="374.0" style="-fx-background-color: #e4e3e9;" stylesheets="@design.css" AnchorPane.rightAnchor="27.399999999999977">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="255.0" text="Update Disponibility">
                <font>
@@ -63,9 +63,9 @@
                   <Font name="System Bold" size="12.0" />
                </font></Label>
             <DatePicker fx:id="DatePickfld" layoutX="144.0" layoutY="106.0" prefHeight="26.0" prefWidth="174.0" />
-            <TextField fx:id="heureStartTxt" layoutX="144.0" layoutY="150.0" prefHeight="25.0" prefWidth="174.0" />
-            <TextField fx:id="heureEndTxt" layoutX="145.0" layoutY="189.0" prefHeight="25.0" prefWidth="174.0" />
-            <TextArea fx:id="NoteTXT" layoutX="144.0" layoutY="231.0" prefHeight="62.0" prefWidth="174.0" />
+            <TextField fx:id="heureStartTxt" layoutX="144.0" layoutY="150.0" prefHeight="25.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
+            <TextField fx:id="heureEndTxt" layoutX="145.0" layoutY="189.0" prefHeight="25.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
+            <TextArea fx:id="NoteTXT" layoutX="144.0" layoutY="231.0" prefHeight="62.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
             <Button fx:id="updatebtn" layoutX="37.0" layoutY="313.0" mnemonicParsing="false" onAction="#UpdateDispo" prefHeight="26.0" prefWidth="303.0" style="-fx-background-color: #754ffe;" text="Update" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -74,7 +74,7 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <TextField fx:id="oldDateTxt" layoutX="144.0" layoutY="66.0" prefHeight="25.0" prefWidth="174.0" />
+            <TextField fx:id="oldDateTxt" layoutX="144.0" layoutY="66.0" prefHeight="25.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
             <Label layoutX="33.0" layoutY="70.0" prefHeight="17.0" prefWidth="93.0" text="Old Date shift">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -198,13 +198,13 @@
                   <Font name="Arial Bold" size="12.0" />
                </font></Label>
             <DatePicker fx:id="DateDispo" layoutX="160.0" layoutY="104.0" />
-            <TextField fx:id="txtHeureStart" layoutX="160.0" layoutY="147.0" prefHeight="26.0" prefWidth="63.0" />
-            <TextField fx:id="txtHeureEnd" layoutX="160.0" layoutY="190.0" prefHeight="26.0" prefWidth="63.0" />
-            <Label layoutX="24.0" layoutY="238.0" prefHeight="18.0" prefWidth="154.0" text="Note" textFill="#18113c">
+            <TextField fx:id="txtHeureStart" layoutX="160.0" layoutY="147.0" prefHeight="26.0" prefWidth="63.0" styleClass="textfield-design" />
+            <TextField fx:id="txtHeureEnd" layoutX="160.0" layoutY="190.0" prefHeight="26.0" prefWidth="63.0" styleClass="textfield-design" />
+            <Label layoutX="24.0" layoutY="237.0" prefHeight="18.0" prefWidth="154.0" text="Note" textFill="#18113c">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <TextArea fx:id="txtNode" layoutX="160.0" layoutY="230.0" prefHeight="99.0" prefWidth="175.0" />
+            <TextArea fx:id="txtNode" layoutX="160.0" layoutY="230.0" prefHeight="99.0" prefWidth="175.0" styleClass="textfield-design" />
             <Button fx:id="btnCreate" layoutX="214.0" layoutY="356.0" mnemonicParsing="false" onAction="#OnHandleClickCreate" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #754ffe;" text="Create" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -215,22 +215,27 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="btncancel" layoutX="71.0" layoutY="356.0" mnemonicParsing="false" onAction="#cancelAdd" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #754ffe;" text="Cancel" textFill="WHITE">
+            <Button fx:id="btncancel" layoutX="71.0" layoutY="356.0" mnemonicParsing="false" onAction="#cancelAdd" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #e53f3c;" text="Cancel" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Label layoutX="14.0" layoutY="151.0" prefHeight="18.0" prefWidth="154.0" text="Heure Start Shift" textFill="#18113c">
+            <Label layoutX="24.0" layoutY="151.0" prefHeight="18.0" prefWidth="154.0" text="Heure Start Shift" textFill="#18113c">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="20.0" layoutY="195.0" prefHeight="18.0" prefWidth="154.0" text="Heure End Shift" textFill="#18113c">
+            <Label layoutX="24.0" layoutY="194.0" prefHeight="18.0" prefWidth="154.0" text="Heure End Shift" textFill="#18113c">
                <font>
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
+      <TextField fx:id="SearchDispo" layoutX="290.0" layoutY="205.0" onKeyTyped="#searching" prefHeight="26.0" prefWidth="838.0" promptText="SearchDispo" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="205.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>

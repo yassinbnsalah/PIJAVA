@@ -65,7 +65,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="cinFld" layoutX="157.0" layoutY="73.0" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
+                        <TextField fx:id="cinFld" layoutX="157.0" layoutY="73.0" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@../../../Gui/design.css">
                             <font>
                                 <Font size="15.0" />
                             </font>

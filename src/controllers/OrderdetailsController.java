@@ -97,15 +97,7 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private Label informationlbl;
     @FXML
-    private AnchorPane interfaceDet;
-    @FXML
-    private Button btnClient;
-    @FXML
-    private Button btnPharmacien;
-    @FXML
-    private Button btnMedcin;
-    @FXML
-    private Button btnCoach;
+    private AnchorPane bx;
 
     /**
      * Initializes the controller class.
@@ -202,22 +194,12 @@ public class OrderdetailsController implements Initializable {
        LoadData() ; 
     }
 
+    @FXML
     private void logout(ActionEvent event) {
 
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
     }
 
-    @FXML
-    private void Pharmacien(ActionEvent event) {
-    }
-
-    @FXML
-    private void medcin(ActionEvent event) {
-    }
-
-    @FXML
-    private void coach(ActionEvent event) {
-    }
 
 }

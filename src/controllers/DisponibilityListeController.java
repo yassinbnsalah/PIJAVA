@@ -33,14 +33,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
+import java.util.stream.Collectors;
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 import models.Disponibility;
+import models.Subscription;
 import services.DisponibilityService;
 import util.MyConnection;
 import util.Routage;
@@ -83,6 +88,8 @@ public class DisponibilityListeController implements Initializable {
     private Button btncancel;
     @FXML
     private Button ClientDashboard;
+    @FXML
+    private TextField SearchDispo;
 
     public DisponibilityListeController() {
 
@@ -346,5 +353,23 @@ public class DisponibilityListeController implements Initializable {
     private void logout(ActionEvent event) {
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
+    }
+
+    
+     private List<Disponibility> searchList(String searchWords, List<Disponibility> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getHeureEnd().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getHeureStart().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getDateDispo().toString().toLowerCase().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void searching(KeyEvent event) {
+         TableDispo.setItems(FXCollections.observableArrayList(searchList(SearchDispo.getText(), DispoList)));
     }
 }

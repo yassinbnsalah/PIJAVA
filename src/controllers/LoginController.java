@@ -17,9 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import services.UserService;
@@ -38,11 +40,11 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField txtPassword;
     @FXML
-    private Label btnForgot;
-    @FXML
     private Label lblErrors;
     @FXML
     private Button btnSignin1;
+    @FXML
+    private Hyperlink create_acc;
 
     /**
      * Initializes the controller class.
@@ -83,5 +85,17 @@ public class LoginController implements Initializable {
         lblErrors.setText(text);
         System.out.println(text);
     }
+
+    @FXML
+    private void openForget(ActionEvent event) {
+        Routage.getInstance().GOTO(btnSignin1, "/view/ForgotPass.fxml");
+          
+    }
+
+    @FXML
+    private void changeForm(ActionEvent event) {
+         Routage.getInstance().GOTO(btnSignin1, "/view/Signup.fxml");
+    }
+
 
 }

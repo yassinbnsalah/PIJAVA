@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gui.ForgotPassController">
+   <children>
+      <Pane layoutX="634.0" layoutY="289.0" prefHeight="434.0" prefWidth="587.0" style="-fx-background-color: #e4e3e9;">
+         <children>
+            <Label layoutX="19.0" layoutY="36.0" text="Reset Password" textFill="#79758f">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="sendmail" layoutX="446.0" layoutY="109.0" mnemonicParsing="false" onAction="#sendmail" prefHeight="22.0" prefWidth="107.0" style="-fx-background-color: #ae302e;" text="Send-Mail" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="mail" layoutX="202.0" layoutY="107.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Email ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="newpass" layoutX="202.0" layoutY="200.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+            <TextField fx:id="mailcode" layoutX="202.0" layoutY="154.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Code" styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Button fx:id="save" layoutX="135.0" layoutY="327.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #754ffe;" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text fill="#18113c" layoutX="21.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Password">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#18113c" layoutX="21.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Code">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#18113c" layoutX="19.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Text>
+            <Button fx:id="back" layoutX="315.0" layoutY="327.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #e53f3c;" text="Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Text fill="#18113c" layoutX="21.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password">
+               <font>
+                  <Font name="Arial Bold" size="17.0" />
+               </font>
+            </Text>
+            <PasswordField fx:id="tfMdp2" layoutX="202.0" layoutY="248.0" minWidth="185.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="33.0" prefWidth="220.0" promptText="Confirm Password" styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font></PasswordField>
+         </children>
+      </Pane>
+      <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="761.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../util/Images/logoJavaFX.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
