@@ -78,6 +78,8 @@ public class OrderListeController implements Initializable {
     private Button btnMedcin;
     @FXML
     private Button btnCoach;
+    @FXML
+    private Button btnBan;
 
     public int getIDOrderToUpdate() {
         return IDOrderToUpdate;
@@ -279,5 +281,10 @@ public class OrderListeController implements Initializable {
     @FXML
     private void coach(ActionEvent event) {
          Routage.getInstance().GOTO(clientDash, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void ban(ActionEvent event) {
+    Routage.getInstance().GOTO(clientDash, "/view/banliste/BanList.fxml");
     }
 }
