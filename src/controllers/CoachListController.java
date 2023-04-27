@@ -94,6 +94,8 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
     @FXML
     private Button logoutButton;
     private int IDCoachToUpdate;
+    @FXML
+    private Button btnBan;
  
     public int getIDCoachToUpdate() {
         return IDCoachToUpdate;
@@ -333,5 +335,11 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
             btnTicket.getScene().setRoot(root);
     }
 
+     @FXML
+    private void ban(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
     
 }

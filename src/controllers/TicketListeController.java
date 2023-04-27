@@ -68,6 +68,8 @@ public class TicketListeController implements Initializable {
     private Button btnCoach;
      public static final String ACCOUNT_SID = "AC861f71d7aac3551d77d339a99370346e";
      public static final String AUTH_TOKEN = "9977080a69c468ee2434850e50eb58c5";
+    @FXML
+    private Button btnBan;
     public int getIDToUpdate() {
         return IDToUpdate;
     }
@@ -243,6 +245,13 @@ public class TicketListeController implements Initializable {
         Stage stage = (Stage) btnSignout.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    private void ban(ActionEvent event) throws IOException {
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
     }
     
 }
