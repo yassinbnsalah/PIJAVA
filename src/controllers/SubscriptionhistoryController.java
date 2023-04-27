@@ -6,7 +6,10 @@
 package controllers;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +18,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import models.Subscription; 
 import services.SubServices;
 import util.Routage;
@@ -58,6 +63,8 @@ public class SubscriptionhistoryController implements Initializable {
     private TableColumn<Subscription, String> stateCol;
     @FXML
     private Button adminDash;
+    @FXML
+    private TextField searchsubfld;
 
     /**
      * Initializes the controller class.
@@ -83,7 +90,7 @@ public class SubscriptionhistoryController implements Initializable {
     public void refreshtable(){
          SubServices subservice = new SubServices();
         SubsList.clear();
-        SubsList.addAll(subservice.subscriptionByUser(1));
+        SubsList.addAll(subservice.subscriptionByUser(SessionManager.getInstance().getUser().getId()));
         subscriptionTable.setItems(SubsList);
         referenceCol.setCellValueFactory(new PropertyValueFactory<>("reference"));
         dateSubscriptionCol.setCellValueFactory(new PropertyValueFactory<>("datesub"));
@@ -113,5 +120,30 @@ public class SubscriptionhistoryController implements Initializable {
         }
     
     }
-    
+
+    @FXML
+    private void logout(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void searchSub(KeyEvent event) {
+           System.out.println(searchsubfld.getText());
+        searchList(searchsubfld.getText() ,SubsList );
+         subscriptionTable.setItems(FXCollections.observableArrayList(searchList(searchsubfld.getText() ,SubsList )));
+    }
+          private List<Subscription> searchList(String searchWords, List<Subscription> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getPaiementMethod().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getDatesub().toString().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getDateExpire().toString().toLowerCase().contains(word.toLowerCase()))  ;
+        }).collect(Collectors.toList());
+    }
 }

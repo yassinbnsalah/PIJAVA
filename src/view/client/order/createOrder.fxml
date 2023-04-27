@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.client.order.CreateOrderController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;">
+      <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -108,7 +108,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Sign Out" textFill="WHITE">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Logout" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Sign Out" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -125,19 +125,19 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="295.0" layoutY="70.0" text="Create Order">
+      <Label layoutX="295.0" layoutY="70.0" text="Create Order" AnchorPane.leftAnchor="295.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="295.0" layoutY="124.0" prefHeight="402.0" prefWidth="818.0" style="-fx-background-color: #e4e3e9;">
+      <AnchorPane layoutX="295.0" layoutY="124.0" prefHeight="402.0" prefWidth="863.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="226.0" AnchorPane.topAnchor="124.0">
          <children>
             <Label layoutX="24.0" layoutY="14.0" prefHeight="30.0" prefWidth="170.0" text="Product Liste">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TableView fx:id="productTable" layoutX="24.0" layoutY="106.0" prefHeight="275.0" prefWidth="746.0">
+            <TableView fx:id="productTable" layoutX="24.0" layoutY="106.0" prefHeight="275.0" prefWidth="746.0" AnchorPane.bottomAnchor="21.19999999999999" AnchorPane.topAnchor="106.0">
                <columns>
                   <TableColumn fx:id="ProductNameCol" prefWidth="158.39999389648438" text="Product Name" />
                   <TableColumn fx:id="descriptionCol" prefWidth="157.5999755859375" text="Description" />
@@ -150,7 +150,7 @@
             <TextField fx:id="searchfld" layoutX="26.0" layoutY="65.0" onKeyTyped="#searchproduct" prefHeight="26.0" prefWidth="746.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="294.0" layoutY="539.0" prefHeight="211.0" prefWidth="818.0" style="-fx-background-color: #e4e3e9;">
+      <AnchorPane layoutX="294.0" layoutY="539.0" prefHeight="211.0" prefWidth="873.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="294.0">
          <children>
             <Label layoutX="51.0" layoutY="29.0" prefHeight="30.0" prefWidth="210.0" text="Update OrderLine">
                <font>
@@ -177,14 +177,14 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1143.0" layoutY="124.0" prefHeight="402.0" prefWidth="688.0" style="-fx-background-color: #e4e3e9;">
+      <AnchorPane layoutX="1143.0" layoutY="124.0" prefHeight="402.0" prefWidth="688.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="225.60000000000002" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="124.0">
          <children>
             <Label layoutX="44.0" layoutY="14.0" text="OrderLine : ">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TableView fx:id="orderlinetable" layoutX="29.0" layoutY="65.0" prefHeight="282.0" prefWidth="631.0">
+            <TableView fx:id="orderlinetable" layoutX="29.0" layoutY="65.0" prefHeight="282.0" prefWidth="631.0" AnchorPane.bottomAnchor="55.0" AnchorPane.topAnchor="65.0">
                <columns>
                   <TableColumn fx:id="productnamecol" prefWidth="274.4000244140625" text="Product name" />
                   <TableColumn fx:id="sellpriceordercol" minWidth="0.0" prefWidth="96.800048828125" text="SellPrice" />
@@ -192,11 +192,11 @@
                   <TableColumn fx:id="priceColl" prefWidth="155.2000732421875" text="Price Slote" />
                </columns>
             </TableView>
-            <Label layoutX="392.0" layoutY="359.0" prefHeight="18.0" prefWidth="102.0" text="Total Price : ">
+            <Label layoutX="392.0" layoutY="359.0" prefHeight="18.0" prefWidth="102.0" text="Total Price : " AnchorPane.bottomAnchor="24.199999999999978">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Label fx:id="Pricelbl" layoutX="524.0" layoutY="359.0" prefHeight="19.0" prefWidth="44.0" style="-fx-background-color: #e1f6ff;" text="0" textFill="#18113c">
+            <Label fx:id="Pricelbl" layoutX="524.0" layoutY="359.0" prefHeight="19.0" prefWidth="44.0" style="-fx-background-color: #e1f6ff;" text="0" textFill="#18113c" AnchorPane.bottomAnchor="24.199999999999978">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
@@ -207,7 +207,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1143.0" layoutY="539.0" prefHeight="211.0" prefWidth="688.0" style="-fx-background-color: #e4e3e9;">
+      <AnchorPane layoutX="1143.0" layoutY="539.0" prefHeight="211.0" prefWidth="688.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="1.8000000000000114" AnchorPane.rightAnchor="23.0">
          <children>
             <Label layoutX="23.0" layoutY="30.0" prefHeight="18.0" prefWidth="121.0" text="User Info">
                <font>
@@ -226,12 +226,12 @@
             <Label layoutX="385.0" layoutY="129.0" prefHeight="18.0" prefWidth="122.0" text="Note : " />
          </children>
       </AnchorPane>
-      <Button fx:id="btnorderCreate" layoutX="1555.0" layoutY="47.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="35.0" prefWidth="274.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
+      <Button fx:id="btnorderCreate" layoutX="1532.0" layoutY="47.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="38.0" prefWidth="297.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
       </Button>
-      <Label fx:id="lblerror" layoutX="891.0" layoutY="57.0" prefHeight="38.0" prefWidth="418.0" style="-fx-background-color: #fad9d8;" textFill="#5c596d">
+      <Label fx:id="lblerror" layoutX="891.0" layoutY="57.0" prefHeight="38.0" prefWidth="418.0" style="-fx-background-color: #fad9d8;" textFill="#5c596d" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -62,6 +62,7 @@ public class SubServices {
             HtmlMessages ht = new HtmlMessages();
             System.out.println("LOAD TEMPLATE");
             ht.setMessage(sub, user);
+            ht.setMessage2(user , sub);
             String subject = "Subscription Information";
             System.out.println("sending mail .... ");
             em.SendMail(user.getEmail(), ht.getMessage(), subject);

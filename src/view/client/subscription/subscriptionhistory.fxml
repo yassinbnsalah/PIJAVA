@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SubscriptionhistoryController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;">
+      <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -107,7 +107,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Sign Out" textFill="WHITE">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Sign Out" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -139,13 +139,13 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="275.0" layoutY="50.0" text="Subscription History">
+      <Label layoutX="275.0" layoutY="50.0" text="Subscription History" AnchorPane.leftAnchor="275.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <TextField layoutX="275.0" layoutY="120.0" prefHeight="30.0" prefWidth="1514.0" />
-      <TableView fx:id="subscriptionTable" layoutX="275.0" layoutY="179.0" prefHeight="556.0" prefWidth="1522.0">
+      <TextField fx:id="searchsubfld" layoutX="275.0" layoutY="120.0" onKeyTyped="#searchSub" prefHeight="30.0" prefWidth="1514.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="64.59999999999991" />
+      <TableView fx:id="subscriptionTable" layoutX="275.0" layoutY="179.0" prefHeight="556.0" prefWidth="1514.0" AnchorPane.bottomAnchor="17.0" AnchorPane.topAnchor="179.0">
         <columns>
           <TableColumn fx:id="referenceCol" prefWidth="322.40008544921875" style="-fx-background-color: #eaecee;" text="Reference" />
           <TableColumn fx:id="dateSubscriptionCol" prefWidth="251.199951171875" style="-fx-background-color: #eaecee;" text="Date Subscription" />

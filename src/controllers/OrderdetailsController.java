@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
@@ -88,6 +89,13 @@ public class OrderdetailsController implements Initializable {
     private Label statelbl;
     @FXML
     private Button adminDash;
+
+    @FXML
+    private Button updateState;
+    @FXML
+    private ComboBox<String> orderStateCB;
+    @FXML
+    private Label informationlbl;
     @FXML
     private AnchorPane bx;
 
@@ -96,11 +104,19 @@ public class OrderdetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        System.out.println("hello");
+        orderStateCB.getItems().add("Cancel");
+        orderStateCB.getItems().add("Confirmed");
+        orderStateCB.getItems().add("Shipped");
+        orderStateCB.getItems().add("ready To Shipp");
+        informationlbl.setVisible(false);
         if (SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")) {
             adminDash.setVisible(true);
+
         } else {
             adminDash.setVisible(false);
+            orderStateCB.setVisible(false);
+            updateState.setVisible(false);
         }
         LoadData();
     }
@@ -148,12 +164,13 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
         Routage rtg = Routage.getInstance();
-        rtg.GOTO(btnOrders, "/view/client/subscription/subscriptionhis.fxml");
+        rtg.GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
     @FXML
     private void DownloadInvoice(ActionEvent event) {
 
+        informationlbl.setVisible(true);
         GenerateInvoice gn = new GenerateInvoice();
         gn.createPDF(order);
 
@@ -165,6 +182,21 @@ public class OrderdetailsController implements Initializable {
 
             Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
         }
+    }
+
+    @FXML
+    private void updateStateOrder(ActionEvent event) {
+        System.out.println("update State here ");
+        OrderService orderService = new OrderService();
+        orderService.updateStateOrder(order.getId(), orderStateCB.getValue());
+        statelbl.setText(orderStateCB.getValue());
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
     }
 
 }

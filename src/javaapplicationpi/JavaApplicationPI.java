@@ -38,7 +38,7 @@ public class JavaApplicationPI extends Application {
        // Parent rootD = FXMLLoader.load(getClass().getResource("/view/client/subscription/subscriptionhistory.fxml"));
        //Parent rootD = FXMLLoader.load(getClass().getResource("/view/client/order/orderHistory.fxml"));
         Scene scene = new Scene(rootD);
-
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
     }

@@ -21,7 +21,7 @@ import util.MyConnection;
  *
  * @author Fedi
  */
-public class TicketService {
+public class TicketService  {
     
    Connection cnx;
 
@@ -30,9 +30,9 @@ public class TicketService {
     }
 
 
-    public void ajouterTicket(Ticket t) {
+    public void ajouterTicket(int ownerId,Ticket t) {
         try {
-            String req = "insert into ticket(owner_id,message,titre,date_ticket,state) values( " +t.getId_user()+",' " + t.getMessage()+ "','" + t.getTitre()+ "','"
+            String req = "insert into ticket(owner_id,message,titre,date_ticket,state) values( " + ownerId + ",' " + t.getMessage()+ "','" + t.getTitre()+ "','"
                     + t.getDateticket()+"','on Pending');";
           
             Statement st = cnx.createStatement();
@@ -43,15 +43,27 @@ public class TicketService {
         }
     }
     
-      public void UpdateStateTicket(String State, int id) {
-        try {
-            String req = "UPDATE `ticket` SET `state`= ? WHERE id = ?";
-            PreparedStatement pst = cnx.prepareStatement(req);
-            pst.setInt(2, id);
-            
-            pst.setString(1, State);
-            pst.executeUpdate();
-            System.out.println(" Ticket State updated !");
+      public void UpdateStateTicket(int id) {
+            try {
+            String req = "SELECT * FROM `ticket` WHERE id = ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                String state = "clear";
+                if (rs.getString("state").equals("Confirmed")) {
+                    state = "on Pending";
+                } else {
+                    state = "Confirmed";
+                }
+                String reqUpdate = "UPDATE `ticket` SET"
+                        + "`state` = ? WHERE id = ?";
+                PreparedStatement pstUpdate = MyConnection.getInstance().getCnx().prepareStatement(reqUpdate);
+                pstUpdate.setInt(2, id);
+                pstUpdate.setString(1, state);
+                pstUpdate.executeUpdate();
+                System.out.println("ticket updated successfully bros ");
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -84,6 +96,7 @@ public class TicketService {
                 t.setId(rs.getInt(1));
                 t.setMessage(rs.getString("message"));
                 t.setTitre(rs.getString("titre"));
+                t.setId_user(rs.getInt("owner_id"));
                 t.setDateticket(rs.getDate("date_ticket"));
                 t.setState(rs.getString("state"));
                tickets.add(t);
@@ -108,6 +121,7 @@ public class TicketService {
                 t.setMessage(rs.getString("message"));
                 t.setTitre(rs.getString("titre"));
                 t.setDateticket(rs.getDate("date_ticket"));
+                t.setId_user(rs.getInt("owner_id"));
                 t.setState(rs.getString("state"));
                tickets.add(t);
             }

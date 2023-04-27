@@ -7,9 +7,12 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +30,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import models.Disponibility;
 import models.Order;
@@ -66,6 +70,8 @@ public class OrderListeController implements Initializable {
     private Label errorlbl;
     @FXML
     private Button clientDash;
+    @FXML
+    private TextField searhOrderfld;
 
     public int getIDOrderToUpdate() {
         return IDOrderToUpdate;
@@ -137,20 +143,21 @@ public class OrderListeController implements Initializable {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     // stage.close();
-                    try {
+                    //try {
 
                         OrderHolder orderh = OrderHolder.getInstance();
                         int myIndex = OrderTable.getSelectionModel().getSelectedIndex();
 
                         orderh.setIdOrder(OrderTable.getItems().get(myIndex).getId());
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/admin/order/OrderDetails.fxml"));
+                        Routage.getInstance().GOTO(btnOrders, "/view/admin/order/OrderDetails.fxml");
+                       /* Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/admin/order/OrderDetails.fxml"));
                         Scene scene = new Scene(root);
-                        stage.setScene(scene);
+                        stage.setScene(scene);*/
                         //stage.show();
 
-                    } catch (IOException ex) {
-                        Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                 //   } catch (IOException ex) {
+                   //     Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+                   // }
 
                 }
             });
@@ -229,4 +236,20 @@ public class OrderListeController implements Initializable {
         Routage.getInstance().GOTO(clientDash, "/view/client/order/orderHistory.fxml");
     }
 
+    @FXML
+    private void searchOrder(KeyEvent event) {
+         OrderTable.setItems(FXCollections.observableArrayList(searchList(searhOrderfld.getText(), OrderList)));
+    }
+   private List<Order> searchList(String searchWords, List<Order> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
+                    -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
+                    -> input.getOwnerEmail().toLowerCase().contains(word.toLowerCase())) ;
+        }).collect(Collectors.toList());
+    }
 }

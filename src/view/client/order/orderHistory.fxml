@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderHistoryController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="-6.0" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;">
+      <VBox alignment="TOP_CENTER" layoutY="-6.0" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -107,7 +107,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Sign Out" textFill="WHITE">
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113c;" text="Sign Out" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -139,13 +139,13 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="285.0" layoutY="60.0" text="Order History">
+      <Label layoutX="285.0" layoutY="60.0" text="Order History" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="60.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="searchtxt" layoutX="285.0" layoutY="130.0" onInputMethodTextChanged="#KeyPressedData2" onKeyPressed="#KeyPressedData" prefHeight="30.0" prefWidth="1286.0" />
-      <TableView fx:id="OrderTable" layoutX="285.0" layoutY="189.0" prefHeight="556.0" prefWidth="1522.0">
+      <TextField fx:id="searchtxt" layoutX="285.0" layoutY="130.0" onInputMethodTextChanged="#KeyPressedData2" onKeyTyped="#KeyPressedData" prefHeight="30.0" prefWidth="1522.0" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="130.0" />
+      <TableView fx:id="OrderTable" layoutX="285.0" layoutY="189.0" prefHeight="556.0" prefWidth="1522.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="189.0">
          <columns>
             <TableColumn fx:id="referenceCol" prefWidth="380.0" style="-fx-background-color: #eaecee;" text="Reference" />
             <TableColumn fx:id="DateOrderCol" prefWidth="283.20001220703125" style="-fx-background-color: #eaecee;" text="Date Order" />
@@ -155,12 +155,7 @@
             <TableColumn fx:id="stateCOl" prefWidth="226.4000244140625" style="-fx-background-color: #eaecee;" text="State" />
          </columns>
       </TableView>
-      <Button fx:id="createOrderbtn" layoutX="1517.0" layoutY="58.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="18.0" />
-         </font>
-      </Button>
-      <Button fx:id="searchbtn" layoutX="1602.0" layoutY="125.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="34.0" prefWidth="201.0" style="-fx-background-color: #ffaa46;" text="Search" textFill="WHITE">
+      <Button fx:id="createOrderbtn" layoutX="1517.0" layoutY="58.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE" AnchorPane.rightAnchor="50.60000000000002" AnchorPane.topAnchor="58.0">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

@@ -37,6 +37,7 @@ import models.User;
 import services.OrderService;
 import services.ProductService;
 import services.UserService;
+import util.Routage;
 import util.SessionManager;
 
 /**
@@ -194,10 +195,12 @@ public class CreateOrderController implements Initializable {
 
     @FXML
     private void GoToOrderListe(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/client/order/orderHistory.fxml");
     }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
+         Routage.getInstance().GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
     @FXML
@@ -327,5 +330,11 @@ public class CreateOrderController implements Initializable {
                     -> input.getName().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
                     -> input.getDescription().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void Logout(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+         Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
     }
 }

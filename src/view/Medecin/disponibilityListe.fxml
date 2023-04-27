@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DisponibilityListeController">
     <children>
-        <AnchorPane layoutX="198.0" prefHeight="179.0" prefWidth="1656.0" style="-fx-background-color: #e3dcff;">
+        <AnchorPane layoutX="198.0" prefHeight="179.0" prefWidth="1656.0" style="-fx-background-color: #e3dcff;" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label layoutX="79.0" layoutY="67.0" prefHeight="62.0" prefWidth="354.0" text="Disponnibility Liste" textFill="#18113c">
                     <font>
@@ -30,7 +30,7 @@
                 </Button>
             </children>
         </AnchorPane>
-        <TableView fx:id="TableDispo" layoutX="290.0" layoutY="252.0" prefHeight="470.0" prefWidth="838.0">
+        <TableView fx:id="TableDispo" layoutX="290.0" layoutY="252.0" prefHeight="470.0" prefWidth="838.0" AnchorPane.bottomAnchor="29.600000000000023" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="252.0">
             <columns>
                 <TableColumn fx:id="colReference" prefWidth="151.99996948242188" text="Reference" />
                 <TableColumn fx:id="colDateDispo" prefWidth="217.60003662109375" text="Date Disponibility" />
@@ -39,7 +39,7 @@
                 <TableColumn fx:id="ColState" prefWidth="199.1998291015625" text="State" />
             </columns>
         </TableView>
-      <AnchorPane fx:id="updateForm" layoutX="1452.0" layoutY="242.0" prefHeight="470.0" prefWidth="374.0" style="-fx-background-color: #e4e3e9;" visible="false">
+      <AnchorPane fx:id="updateForm" layoutX="1452.0" layoutY="242.0" prefHeight="470.0" prefWidth="374.0" style="-fx-background-color: #e4e3e9;" visible="false" AnchorPane.rightAnchor="27.399999999999977">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="255.0" text="Update Disponibility">
                <font>
@@ -85,7 +85,7 @@
                </font></Button>
          </children>
       </AnchorPane>
-      <VBox alignment="TOP_CENTER" layoutY="-6.0" prefHeight="759.0" prefWidth="238.0" style="-fx-background-color: #18113C;">
+      <VBox alignment="TOP_CENTER" layoutY="-6.0" prefHeight="759.0" prefWidth="238.0" style="-fx-background-color: #18113C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-6.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -186,7 +186,7 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane fx:id="addDispoForm" layoutX="1461.0" layoutY="242.0" prefHeight="407.0" prefWidth="365.0" style="-fx-background-color: #e4e3e9;">
+      <AnchorPane fx:id="addDispoForm" layoutX="1461.0" layoutY="242.0" prefHeight="407.0" prefWidth="365.0" style="-fx-background-color: #e4e3e9;" visible="false" AnchorPane.rightAnchor="27.399999999999977" AnchorPane.topAnchor="242.0">
          <children>
             <Label layoutX="14.0" prefHeight="34.0" prefWidth="234.0" text="Create New Disponnibility" textFill="#18113c">
                <font>

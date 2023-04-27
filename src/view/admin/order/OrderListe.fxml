@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderListeController">
     <children>
         
-          <AnchorPane layoutX="238.0" layoutY="3.0" prefHeight="752.0" prefWidth="1634.0" style="-fx-background-color: #ffffff;">
+          <AnchorPane layoutX="238.0" layoutY="3.0" prefHeight="752.0" prefWidth="1634.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Order Liste">
                <font>
@@ -25,7 +26,7 @@
                   <Font name="System Bold" size="19.0" />
                </font>
             </Button>
-            <TableView fx:id="OrderTable" layoutX="24.0" layoutY="101.0" prefHeight="622.0" prefWidth="1554.0" style="-fx-background-color: #f5f4f8;">
+            <TableView fx:id="OrderTable" layoutX="24.0" layoutY="142.0" prefHeight="581.0" prefWidth="1554.0" style="-fx-background-color: #f5f4f8;" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="142.0">
               <columns>
                 <TableColumn fx:id="ColOrderReference" prefWidth="300.800048828125" style="-fx-background-color: #f5f4f8;" text="Order Reference" />
                 <TableColumn fx:id="ColOrderOwner" minWidth="0.800018310546875" prefWidth="211.99993896484375" style="-fx-background-color: #f5f4f8;" text="Order Owner" />
@@ -33,18 +34,19 @@
                   <TableColumn fx:id="ColShippingAdress" prefWidth="292.00006103515625" style="-fx-background-color: #f5f4f8;" text="Shipping Adresse" />
                   <TableColumn fx:id="ColPaiementMethod" prefWidth="184.79998779296875" style="-fx-background-color: #f5f4f8;" text="Paiement Method" />
                   <TableColumn fx:id="ColPrice" prefWidth="170.4000244140625" style="-fx-background-color: #f5f4f8;" text="Price" />
-                  <TableColumn fx:id="ColState" prefWidth="132.800048828125" style="-fx-background-color: #f5f4f8;" text="State" />
+                  <TableColumn fx:id="ColState" prefWidth="129.5999511718751" style="-fx-background-color: #f5f4f8;" text="State" />
               </columns>
             </TableView>
             <Label fx:id="errorlbl" layoutX="440.0" layoutY="45.0" prefHeight="18.0" prefWidth="122.0" textFill="RED">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
+            <TextField fx:id="searhOrderfld" layoutX="24.0" layoutY="93.0" onKeyTyped="#searchOrder" prefHeight="26.0" prefWidth="1554.0" promptText="SearchOrder" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.59999999999991" AnchorPane.topAnchor="93.0" />
           
            
             </children>
         </AnchorPane>
-      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
+      <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -81,8 +81,6 @@ public class OrderHistoryController implements Initializable {
     @FXML
     private TextField searchtxt;
     @FXML
-    private Button searchbtn;
-    @FXML
     private Button adminDash;
 
     /**
@@ -91,9 +89,9 @@ public class OrderHistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+        if (SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")) {
             adminDash.setVisible(true);
-        }else{
+        } else {
             adminDash.setVisible(false);
         }
         usernamelbl.setText(SessionManager.getInstance().getUser().getEmail());
@@ -123,21 +121,15 @@ public class OrderHistoryController implements Initializable {
                     Node node = (Node) event.getSource();
                     Stage stage = (Stage) node.getScene().getWindow();
                     // stage.close();
-                    try {
 
-                        OrderHolder orderh = OrderHolder.getInstance();
-                        int myIndex = OrderTable.getSelectionModel().getSelectedIndex();
+                    OrderHolder orderh = OrderHolder.getInstance();
+                    int myIndex = OrderTable.getSelectionModel().getSelectedIndex();
 
-                        orderh.setIdOrder(OrderTable.getItems().get(myIndex).getId());
-                        System.out.println("ORder HOLDER"+OrderTable.getItems().get(myIndex).getId());
-                        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/client/order/orderdetails.fxml"));
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        //stage.show();
+                    orderh.setIdOrder(OrderTable.getItems().get(myIndex).getId());
+                    System.out.println("ORder HOLDER" + OrderTable.getItems().get(myIndex).getId());
 
-                    } catch (IOException ex) {
-                        Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    Routage.getInstance().GOTO(btnOrders, "/view/client/order/orderdetails.fxml");
+                    //stage.show();
 
                 }
             });
@@ -168,9 +160,9 @@ public class OrderHistoryController implements Initializable {
 
     @FXML
     private void KeyPressedData(KeyEvent event) {
-        //System.out.println(searchtxt.getText());
+       System.out.println(searchtxt.getText());
         searchList(searchtxt.getText(), OrderList);
-      //  OrderTable.setItems(null);
+        //  OrderTable.setItems(null);
         OrderTable.setItems(FXCollections.observableArrayList(searchList(searchtxt.getText(), OrderList)));
     }
 
@@ -184,15 +176,21 @@ public class OrderHistoryController implements Initializable {
 
         return listOfStrings.stream().filter(input -> {
             return searchWordsArray.stream().allMatch(word
-                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
-                    -> input.getState().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
-                    -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase())) ;
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
     }
 
     @FXML
     private void GoToadminDash(ActionEvent event) {
         Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
+    }
+
+    @FXML
+    private void logout(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
     }
 
 }
