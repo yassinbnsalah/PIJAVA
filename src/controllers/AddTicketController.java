@@ -60,12 +60,12 @@ public class AddTicketController implements Initializable {
     @FXML
     private void OnHandleClickCreate(ActionEvent event) throws IOException {
         if (txtTitle.getText().length() <= 5) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Le Titre doit contenir au moins 10 caractéres!", ButtonType.APPLY.OK);
+            Alert a = new Alert(Alert.AlertType.ERROR, "Le Titre doit contenir au moins 5 caractéres!", ButtonType.APPLY.OK);
             a.setHeaderText("Sujet Invalide");
             a.setTitle("Error");
             a.showAndWait();
         } else if (txtSubject.getText().length() <= 10) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Le contenu doit contenir au moins 20 caractéres!", ButtonType.APPLY.OK);
+            Alert a = new Alert(Alert.AlertType.ERROR, "Le contenu doit contenir au moins 10 caractéres!", ButtonType.APPLY.OK);
             a.setHeaderText("Contenu Invalide");
             a.setTitle("Error");
             a.showAndWait();

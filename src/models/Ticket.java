@@ -25,8 +25,9 @@ public class Ticket {
     }
    public Ticket(Date dateticket, String message, String titre, User user) {
         this.dateticket = dateticket;
-        this.message = message;
         this.titre = titre;
+        this.message = message;
+     
         this.user = user;
     }
 

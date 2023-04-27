@@ -9,10 +9,13 @@ import Api.GmailMailer;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,18 +67,12 @@ public class ClientListeController implements Initializable {
     private TableColumn<User,String> ColEmail;
     @FXML
     private TableColumn<User,String> ColAdresse;
-    @FXML
     private TextField txtCin;
-    @FXML
     private TextField txtEmail;
-    @FXML
     private TextField txtAdresse;
-    @FXML
     private TextField txtNumero;
-    @FXML
     private TextField txtName;
-    @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
     @FXML
     private TextField cinFld;
     @FXML
@@ -109,6 +106,8 @@ public class ClientListeController implements Initializable {
     private Button btnCoach;
     @FXML
     private Button btnBan;
+    @FXML
+    private TextField searchfld;
     
     public int getIDClientToUpdate() {
         return IDClientToUpdate;
@@ -175,67 +174,7 @@ public class ClientListeController implements Initializable {
             return false;
         }
     }
-    @FXML
-    private void CreateClient(ActionEvent event) {UserService rs = new UserService();
-        String CIN = txtCin.getText();
-        String Email = txtEmail.getText();
-        String Adresse = txtAdresse.getText();
-
-         String Numberr = txtNumero.getText();
-        int Numero = Integer.parseInt(txtNumero.getText());
-        String Name = txtName.getText();
-        String Password = txtPassword.getText();
-      
-        int h = rs.existeMail2(Email);
-        if (txtCin.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty()|| txtNumero.getText().isEmpty() || txtName.getText().isEmpty()) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "les champs sont vides!", ButtonType.OK);
-            a.showAndWait();
-        } else if (rs.existeNumm(Numero) != 0) {
-            Alert a = new Alert(Alert.AlertType.ERROR, " Le Numero deja exist", ButtonType.OK);
-            a.showAndWait();
-            txtNumero.setText("");
-
-            txtNumero.requestFocus();
-        } else if (rs.isNumeric(Numberr) == false) {
-            Alert a = new Alert(Alert.AlertType.ERROR, " Verifyer Numero deja exist", ButtonType.OK);
-            a.showAndWait();
-            txtNumero.setText("");
-
-            txtNumero.requestFocus();
-        } else if (rs.isValidPhoneNumber(Numberr) != true) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Verifyer Votre Numero", ButtonType.OK);
-            a.showAndWait();
-            txtNumero.setText("");
-
-            txtNumero.requestFocus();
-        } else if (rs.isValidString(Name) == false) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Verifyer Votre nom", ButtonType.OK);
-            a.showAndWait();
-            txtName.setText("");
-
-            txtName.requestFocus();
-        } else if (rs.isValidString(Adresse) == false) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Verifyer Votre Prenom", ButtonType.OK);
-            a.showAndWait();
-            txtAdresse.setText("");
-
-            txtAdresse.requestFocus();
-        } else if (h != 0) {
-            Alert a = new Alert(Alert.AlertType.ERROR, "Le Email est deja utuliser", ButtonType.OK);
-            a.showAndWait();
-            txtEmail.setText("");
-
-            txtEmail.requestFocus();
-
-        }  else {
-
-            User u = new User(CIN ,Name, Adresse, Password, Email, Numero);
-            System.out.println(u);
-            rs.AddUser(u);
-            clearForms2();
-            refreshTable();
-        }
-    }
+   
     @FXML
     private void deleteClient(ActionEvent event) {
         UserService userserv = new UserService();
@@ -358,6 +297,23 @@ System.out.println(IDClientToUpdate);
             Parent root = loader.load();
             btnTicket.getScene().setRoot(root);
     }
+
+    @FXML
+    private void search(KeyEvent event) {
+        ClientTable.setItems(FXCollections.observableArrayList(searchList(searchfld.getText(), ClientList)));
+    }
+
+    private List<User> searchList(String searchWords, List<User> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getName().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getEmail().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
+
 
     
 }

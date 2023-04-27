@@ -75,7 +75,10 @@
                   <Font name="Arial Bold" size="20.0" />
                </font>
             </Text>
-            <PasswordField fx:id="tfMdp2" layoutX="177.0" layoutY="249.0" minWidth="185.0" prefHeight="33.0" prefWidth="220.0" promptText="Confirm Password" styleClass="textfield-design" stylesheets="@design.css" />
+            <PasswordField fx:id="tfMdp2" layoutX="177.0" layoutY="249.0" minWidth="185.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="33.0" prefWidth="220.0" promptText="Confirm Password" styleClass="textfield-design" stylesheets="@design.css">
+               <font>
+                  <Font size="15.0" />
+               </font></PasswordField>
          </children>
       </Pane>
       <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="206.0" layoutY="-88.0" pickOnBounds="true" preserveRatio="true">

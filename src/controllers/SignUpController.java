@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import models.User;
@@ -49,7 +50,7 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField txtEmail;
     @FXML
-    private TextField txtPassword;
+    private PasswordField txtPassword;
     @FXML
     private PasswordField tfMdp2;
     @FXML
@@ -188,5 +189,9 @@ public class SignUpController implements Initializable {
         } catch (IOException ex) {
 
         }
+    }
+
+    @FXML
+    private void textfieldDesign(MouseEvent event) {
     }
 }

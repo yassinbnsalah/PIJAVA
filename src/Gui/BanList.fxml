@@ -24,7 +24,7 @@
                   <Font name="Arial Bold Italic" size="38.0" />
                </font>
             </Label>
-            <TableView fx:id="BanTable" layoutX="24.0" layoutY="96.0" prefHeight="516.0" prefWidth="737.0">
+            <TableView fx:id="BanTable" layoutX="24.0" layoutY="131.0" prefHeight="516.0" prefWidth="737.0">
                <columns>
                   <TableColumn fx:id="ColCin" prefWidth="146.0" text="Cin" />
                   <TableColumn fx:id="ColName" minWidth="0.800018310546875" prefWidth="118.0" text="Name" />
@@ -196,6 +196,11 @@
                   </Button>
                </children>
             </AnchorPane>
+            <TextField fx:id="searchfld" layoutX="20.0" layoutY="85.0" onKeyTyped="#search" prefHeight="26.0" prefWidth="642.0" promptText="search banned user">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <VBox alignment="TOP_CENTER" layoutY="-11.0" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
@@ -213,7 +218,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#client" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

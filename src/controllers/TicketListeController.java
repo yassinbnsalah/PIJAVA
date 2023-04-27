@@ -10,7 +10,10 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,6 +34,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.Disponibility;
 import models.Ticket;
+import models.User;
 import services.DisponibilityService;
 import services.TicketService;
 import util.SessionManager;
@@ -70,6 +74,8 @@ public class TicketListeController implements Initializable {
      public static final String AUTH_TOKEN = "9977080a69c468ee2434850e50eb58c5";
     @FXML
     private Button btnBan;
+    @FXML
+    private TextField searchfld;
     public int getIDToUpdate() {
         return IDToUpdate;
     }
@@ -252,6 +258,22 @@ public class TicketListeController implements Initializable {
            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
             Parent root = loader.load();
             btnTicket.getScene().setRoot(root);
+    }
+
+      @FXML
+    private void search(KeyEvent event) {
+        TableTicket.setItems(FXCollections.observableArrayList(searchList(searchfld.getText(), TicketList)));
+    }
+
+    private List<Ticket> searchList(String searchWords, List<Ticket> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getTitre().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getTitre().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
     }
     
 }

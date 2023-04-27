@@ -7,7 +7,10 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +25,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import models.User;
 import services.TicketService;
@@ -80,6 +84,8 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
     @FXML
     private Button logoutButton;
      private int IDBanToUpdate;
+    @FXML
+    private TextField searchfld;
  
     public int getIDBanToUpdate() {
         return IDBanToUpdate;
@@ -240,5 +246,32 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
         this.setIDBanToUpdate(0);
         refreshTable();
     }
+
+    @FXML
+    private void search(KeyEvent event) {
+        
+        BanTable.setItems(FXCollections.observableArrayList(searchList(searchfld.getText(), BanList)));
+    }
+
+    private List<User> searchList(String searchWords, List<User> listOfStrings) {
+
+        List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
+
+        return listOfStrings.stream().filter(input -> {
+            return searchWordsArray.stream().allMatch(word
+                    -> input.getName().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getEmail().contains(word.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void client(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
+            Parent root = loader.load();
+            btnTicket.getScene().setRoot(root);
+    }
+    
+
+ 
     
 }

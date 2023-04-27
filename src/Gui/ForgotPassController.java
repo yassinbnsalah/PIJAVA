@@ -284,9 +284,7 @@ public class ForgotPassController implements Initializable {
 "<td class=\"column column-1\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;\" width=\"100%\">\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"image_block block-1\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
-"<td class=\"pad\" style=\"padding-bottom:25px;padding-top:22px;width:50%;padding-right:0px;padding-left:0px;\">\n" +
-"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img alt=\"I'm an image\" src=\"https://scontent.ftun4-2.fna.fbcdn.net/v/t1.15752-9/343272649_619573193065074_408331902171910202_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_ohc=kjBrVotbhiQAX9zz8lZ&_nc_ht=scontent.ftun4-2.fna&oh=03_AdQJ-J3nh33dEc7XR4wdLjlRwax5-_67j68qJBfE8S41Qw&oe=646FAF6E\" style=\" width: auto;height: 150px;padding-top: 10px;padding-bottom: 10px;margin-top: -60px;margin-bottom: -60px;\" title=\"I'm an image\" /></div>\n" +
-"</td>\n" +
+
 "</tr>\n" +
 "</table>\n" +
 "</td>\n" +
@@ -571,9 +569,7 @@ public class ForgotPassController implements Initializable {
 "</table>\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"image_block block-3\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +
 "<tr>\n" +
-"<td class=\"pad\" style=\"padding-top:40px;width:100%;padding-right:0px;padding-left:0px;\">\n" +
-"<div align=\"center\" class=\"alignment\" style=\"line-height:10px\"><img alt=\"Alternate text\" src=\"https://scontent.ftun4-2.fna.fbcdn.net/v/t1.15752-9/343272649_619573193065074_408331902171910202_n.png?_nc_cat=103&ccb=1-7&_nc_sid=ae9488&_nc_ohc=kjBrVotbhiQAX9zz8lZ&_nc_ht=scontent.ftun4-2.fna&oh=03_AdQJ-J3nh33dEc7XR4wdLjlRwax5-_67j68qJBfE8S41Qw&oe=646FAF6E\" style=\"display: block; height: auto; border: 0; width: 149px; max-width: 100%;\" title=\"Alternate text\" width=\"149\"/></div>\n" +
-"</td>\n" +
+
 "</tr>\n" +
 "</table>\n" +
 "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"social_block block-4\" role=\"presentation\" style=\"mso-table-lspace: 0pt; mso-table-rspace: 0pt;\" width=\"100%\">\n" +

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -24,7 +25,7 @@
                   <Font name="Arial Bold Italic" size="38.0" />
                </font>
             </Label>
-            <TableView fx:id="PharmacienTable" layoutX="24.0" layoutY="96.0" prefHeight="516.0" prefWidth="737.0">
+            <TableView fx:id="PharmacienTable" layoutX="24.0" layoutY="141.0" prefHeight="516.0" prefWidth="737.0">
                <columns>
                   <TableColumn fx:id="ColCin" prefWidth="146.0" text="Cin" />
                   <TableColumn fx:id="ColName" minWidth="0.800018310546875" prefWidth="118.0" text="Name" />
@@ -121,11 +122,11 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtPassword" layoutX="146.0" layoutY="284.0" prefHeight="28.0" prefWidth="220.0" promptText="Password ******" styleClass="textfield-design" stylesheets="@design.css">
+                  <PasswordField fx:id="txtPassword" layoutX="146.0" layoutY="284.0" onMouseClicked="#textfieldDesign" onMouseDragged="#textfieldDesign" prefHeight="28.0" prefWidth="220.0" promptText="Password ..." styleClass="textfield-design" stylesheets="@design.css">
                      <font>
                         <Font size="15.0" />
                      </font>
-                  </TextField>
+                  </PasswordField>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="767.0" layoutY="399.0" prefHeight="341.0" prefWidth="414.0" style="-fx-background-color: #f7f7f7;">
@@ -239,6 +240,11 @@
                   </Button>
                </children>
             </AnchorPane>
+            <TextField fx:id="searchfld" layoutX="24.0" layoutY="97.0" onKeyTyped="#search" prefHeight="26.0" prefWidth="642.0" promptText="search">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <VBox alignment="TOP_CENTER" layoutX="-4.0" layoutY="-13.0" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
