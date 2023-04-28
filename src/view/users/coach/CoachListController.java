@@ -5,12 +5,15 @@
  */
 package view.users.coach;
 
+import controllers.OrderListeController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -25,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -36,6 +40,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.User;
 import services.UserService;
+import util.Routage;
 import util.SessionManager;
 
 /**
@@ -44,19 +49,20 @@ import util.SessionManager;
  * @author 21693
  */
 public class CoachListController implements Initializable {
-ObservableList<User> CoachList = FXCollections.observableArrayList();
+
+    ObservableList<User> CoachList = FXCollections.observableArrayList();
     @FXML
     private TableView<User> CoachTable;
     @FXML
-    private TableColumn<User,String> ColCin;
+    private TableColumn<User, String> ColCin;
     @FXML
-    private TableColumn<User,String> ColName;
+    private TableColumn<User, String> ColName;
     @FXML
-    private TableColumn<User,String> ColNumero;
+    private TableColumn<User, String> ColNumero;
     @FXML
-    private TableColumn<User,String> ColEmail;
+    private TableColumn<User, String> ColEmail;
     @FXML
-    private TableColumn<User,String> ColAdresse;
+    private TableColumn<User, String> ColAdresse;
     @FXML
     private TextField txtCin;
     @FXML
@@ -104,11 +110,13 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
     private Button btnBan;
     @FXML
     private TextField searchfld;
- 
+    @FXML
+    private Label userName;
+
     public int getIDCoachToUpdate() {
         return IDCoachToUpdate;
     }
-    
+
     public void setIDCoachToUpdate(int IDCoachToUpdate) {
         this.IDCoachToUpdate = IDCoachToUpdate;
     }
@@ -119,9 +127,11 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-         this.refreshTable();
-    }    
-  private void refreshTable() {
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
+        this.refreshTable();
+    }
+
+    private void refreshTable() {
         UserService coachserv = new UserService();
         CoachList.clear();
         CoachList.addAll(coachserv.coachListe());
@@ -131,8 +141,7 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
         ColNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
         ColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         ColAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-  
-        
+
         CoachTable.setRowFactory(tv -> {
             TableRow<User> myRow = new TableRow<>();
             myRow.setOnMouseClicked(event
@@ -142,19 +151,19 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
                     int id = Integer.parseInt(String.valueOf(CoachTable.getItems().get(myIndex).getId()));
                     setIDCoachToUpdate(id);
                     cinFld.setText(CoachTable.getItems().get(myIndex).getCIN().toString());
-                     NameFld.setText(CoachTable.getItems().get(myIndex).getName().toString());
-                      NumeroTelFld.setText(CoachTable.getItems().get(myIndex).getNumero());
-                       AdresseFld.setText(CoachTable.getItems().get(myIndex).getAdresse().toString());
-                        EmailFld.setText(CoachTable.getItems().get(myIndex).getEmail().toString());
-                        
-                   
+                    NameFld.setText(CoachTable.getItems().get(myIndex).getName().toString());
+                    NumeroTelFld.setText(CoachTable.getItems().get(myIndex).getNumero());
+                    AdresseFld.setText(CoachTable.getItems().get(myIndex).getAdresse().toString());
+                    EmailFld.setText(CoachTable.getItems().get(myIndex).getEmail().toString());
+
                 }
             });
             return myRow;
         });
-        
+
     }
-     private boolean validateEmaill() {
+
+    private boolean validateEmaill() {
         Pattern p = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+");
         Matcher m = p.matcher(txtEmail.getText());
         if (m.find() && m.group().equals(txtEmail.getText())) {
@@ -169,30 +178,30 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
             return false;
         }
     }
+
     @FXML
     private void CreateCoach(ActionEvent event) {
-    UserService rs = new UserService();
+        UserService rs = new UserService();
         String CIN = txtCin.getText();
         String Email = txtEmail.getText();
         String Adresse = txtAdresse.getText();
 
-         String Numberr = txtNumero.getText();
+        String Numberr = txtNumero.getText();
         String Numero = txtNumero.getText();
         String Name = txtName.getText();
         String Password = txtPassword.getText();
-      
+
         int h = rs.existeMail2(Email);
-        if (txtCin.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty()|| txtNumero.getText().isEmpty() || txtName.getText().isEmpty()) {
+        if (txtCin.getText().isEmpty() || txtEmail.getText().isEmpty() || txtPassword.getText().isEmpty() || txtNumero.getText().isEmpty() || txtName.getText().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.ERROR, "les champs sont vides!", ButtonType.OK);
             a.showAndWait();
-        }
-        /*else if (rs.existeNumm(Numero) != 0) {
+        } /*else if (rs.existeNumm(Numero) != 0) {
             Alert a = new Alert(Alert.AlertType.ERROR, " Le Numero deja exist", ButtonType.OK);
             a.showAndWait();
             txtNumero.setText("");
 
             txtNumero.requestFocus();
-        } */else if (rs.isNumeric(Numberr) == false) {
+        } */ else if (rs.isNumeric(Numberr) == false) {
             Alert a = new Alert(Alert.AlertType.ERROR, " Verifyer Numero deja exist", ButtonType.OK);
             a.showAndWait();
             txtNumero.setText("");
@@ -223,16 +232,17 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
 
             txtEmail.requestFocus();
 
-        }  else {
+        } else {
 
-            User u = new User(CIN ,Name, Adresse, Password, Email, Numero);
+            User u = new User(CIN, Name, Adresse, Password, Email, Numero);
             System.out.println(u);
             rs.AddCoach(u);
             clearForms2();
             refreshTable();
         }
-     }
-     private void clearForms2() {
+    }
+
+    private void clearForms2() {
         txtCin.setText("");
         txtNumero.setText("");
         txtName.setText("");
@@ -244,12 +254,12 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
 
     @FXML
     private void updateCoach(ActionEvent event) {
-    int numero = Integer.parseInt(NumeroTelFld.getText()) ;
-        String cin=cinFld.getText();
-        String name =NameFld.getText();
-        String adresse =AdresseFld.getText();
-        String email=EmailFld.getText();
-           
+        int numero = Integer.parseInt(NumeroTelFld.getText());
+        String cin = cinFld.getText();
+        String name = NameFld.getText();
+        String adresse = AdresseFld.getText();
+        String email = EmailFld.getText();
+
         User u = new User();
         u.setNumero(NumeroTelFld.getText());
         u.setCIN(cinFld.getText());
@@ -257,7 +267,6 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
         u.setEmail(EmailFld.getText());
         u.setAdresse(AdresseFld.getText());
         u.setId(IDCoachToUpdate);
-        
 
         User user = CoachTable.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -266,14 +275,13 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
         alert.setContentText("Êtes-vous sûr de modifier ?");
         Optional<ButtonType> action = alert.showAndWait();
 
-           UserService sc=new UserService();
-          sc.modifierUtilisateur(u);
-  
-            refreshTable();
+        UserService sc = new UserService();
+        sc.modifierUtilisateur(u);
+
+        refreshTable();
         System.out.println(u);
         System.out.println(IDCoachToUpdate);
     }
-
 
     @FXML
     private void deleteClient(ActionEvent event) {
@@ -282,6 +290,7 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
         clearForms();
         refreshTable();
     }
+
     private void clearForms() {
         cinFld.setText("");
         NameFld.setText("");
@@ -290,65 +299,60 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
         EmailFld.setText("");
 
     }
-     @FXML
-    void handleLogout(ActionEvent event) throws IOException {
+
+    @FXML
+    private void Ticket(ActionEvent event) throws IOException {
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+    }
+
+    @FXML
+    void handleLogout(ActionEvent event)  {
         // clear user session data
         SessionManager.getInstance().Logout();
-        
-        // load the login FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
-        Parent root = loader.load();
-        
-        // get the stage and show the login scene
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+
     }
 
     @FXML
-    private void Client(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void Client(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
     }
 
     @FXML
-    private void pharmacien(ActionEvent event) throws IOException {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
     }
+
     @FXML
-    private void medcin(ActionEvent event) throws IOException {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
     }
 
     @FXML
     private void handleClicks(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-    }
-
-        @FXML
-    private void Ticket(ActionEvent event) throws IOException {
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/TicketListe.fxml"));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
             Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
-    }
-
-     @FXML
-    private void ban(ActionEvent event) throws IOException {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -370,5 +374,9 @@ ObservableList<User> CoachList = FXCollections.observableArrayList();
                     -> input.getEmail().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
     }
-    
+
+    @FXML
+    private void pharmacien(ActionEvent event) {
+    }
+
 }

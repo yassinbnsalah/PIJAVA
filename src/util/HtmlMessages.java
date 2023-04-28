@@ -201,7 +201,7 @@ public class HtmlMessages {
 "                        <tbody>\n" +
 "                          <tr>\n" +
 "                            <td style='width:150px;'>\n" +
-"                              <img src='https://codedmails.com/images/logo.png' style='border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;' width='150' height='auto' />\n" +
+"                              <img src='https://scontent.xx.fbcdn.net/v/t1.15752-9/340278295_1184649325515866_7032086806016403799_n.png?stp=dst-png_p206x206&_nc_cat=108&ccb=1-7&_nc_sid=aee45a&_nc_ohc=Yqm9-4VSfd8AX-Fw3Fe&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdStEEqfVQpgqFkw4VG-fS3sygB-WkVX-b54ukciT2QPWw&oe=6472C8B1' style='border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;' width='150' height='auto' />\n" +
 "                            </td>\n" +
 "                          </tr>\n" +
 "                        </tbody>\n" +

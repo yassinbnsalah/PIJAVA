@@ -43,6 +43,7 @@ import models.OrderLine;
 import services.OrderService;
 import models.Order;
 import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -148,6 +149,10 @@ public class CreateOrderController implements Initializable {
     private Button btnMedcin;
     @FXML
     private Button btnCoach;
+    @FXML
+    private Button btnBan;
+    @FXML
+    private Label userName;
 
     public User getOwnerOrder() {
         return ownerOrder;
@@ -180,6 +185,7 @@ public class CreateOrderController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         lblerror.setVisible(false);
         ClientErrorlbl.setVisible(false);
         ProductOrderError.setVisible(false);
@@ -420,14 +426,40 @@ public class CreateOrderController implements Initializable {
     }
 
     @FXML
-    private void Pharmacien(ActionEvent event) {
+    private void Pharmacien(ActionEvent event) throws IOException {
+     
+                  Routage.getInstance().GOTO(btnTicket,"/view/users/pharmacien/PharmacienList.fxml");
     }
 
     @FXML
-    private void medcin(ActionEvent event) {
+    private void medcin(ActionEvent event) throws IOException {
+          
+                  Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
-    private void coach(ActionEvent event) {
+    private void coach(ActionEvent event) throws IOException {
+             
+               Routage.getInstance().GOTO(btnTicket, "/view/users/coach/CoachList.fxml");
+    }
+
+    @FXML
+    private void ban(ActionEvent event) throws IOException {
+         
+            
+             Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+    }
+
+   
+
+    @FXML
+    private void Ticket(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
+    }
+
+    @FXML
+    private void logoutIng(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+         Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
     }
 }

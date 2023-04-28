@@ -97,6 +97,8 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private Label informationlbl;
     @FXML
+    private Label userName;
+    @FXML
     private AnchorPane bx;
 
     /**
@@ -104,6 +106,7 @@ public class OrderdetailsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         System.out.println("hello");
         orderStateCB.getItems().add("Cancel");
         orderStateCB.getItems().add("Confirmed");
@@ -159,6 +162,7 @@ public class OrderdetailsController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
+         Routage.getInstance().GOTO(btnOrders, "/view/users/client/ClientListe.fxml");
     }
 
     @FXML
@@ -170,9 +174,9 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private void DownloadInvoice(ActionEvent event) {
         System.out.println("GGG");
-       // informationlbl.setVisible(true);
+        informationlbl.setVisible(true);
         GenerateInvoice gn = new GenerateInvoice();
-       gn.createPDF(order);
+        gn.createPDF(order);
 
     }
 
@@ -189,16 +193,42 @@ public class OrderdetailsController implements Initializable {
         System.out.println("update State here ");
         OrderService orderService = new OrderService();
         orderService.updateStateOrder(order.getId(), orderStateCB.getValue());
-       // statelbl.setText(orderStateCB.getValue());
-       OrderLineList.clear();
-       LoadData() ; 
+        // statelbl.setText(orderStateCB.getValue());
+        OrderLineList.clear();
+        LoadData();
     }
 
-    @FXML
-    private void logout(ActionEvent event) {
+    /*   private void logout(ActionEvent event) {
 
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
+    }*/
+    private void Ticket(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+    }
+
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/users/coach/CoachList.fxml");
+    }
+
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/banliste/BanList.fxml");
+    }
+
+    private void PharmacienListe(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    
+
+    @FXML
+    private void logoutIng(ActionEvent event) {
+         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
     }
 
 

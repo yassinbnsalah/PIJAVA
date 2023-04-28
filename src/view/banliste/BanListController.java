@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -30,6 +31,7 @@ import javafx.stage.Stage;
 import models.User;
 import services.TicketService;
 import services.UserService;
+import util.Routage;
 import util.SessionManager;
 
 /**
@@ -38,19 +40,20 @@ import util.SessionManager;
  * @author 21693
  */
 public class BanListController implements Initializable {
-ObservableList<User> BanList = FXCollections.observableArrayList();
+
+    ObservableList<User> BanList = FXCollections.observableArrayList();
     @FXML
     private TableView<User> BanTable;
     @FXML
-    private TableColumn<User,String> ColCin;
+    private TableColumn<User, String> ColCin;
     @FXML
-    private TableColumn<User,String> ColName;
+    private TableColumn<User, String> ColName;
     @FXML
-    private TableColumn<User,String> ColNumero;
+    private TableColumn<User, String> ColNumero;
     @FXML
-    private TableColumn<User,String> ColEmail;
+    private TableColumn<User, String> ColEmail;
     @FXML
-    private TableColumn<User,String> ColAdresse;
+    private TableColumn<User, String> ColAdresse;
     @FXML
     private TextField cinFld;
     @FXML
@@ -83,14 +86,16 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
     private Button btnBan;
     @FXML
     private Button logoutButton;
-     private int IDBanToUpdate;
+    private int IDBanToUpdate;
     @FXML
     private TextField searchfld;
- 
+    @FXML
+    private Label userName;
+
     public int getIDBanToUpdate() {
         return IDBanToUpdate;
     }
-    
+
     public void setIDBanToUpdate(int IDBanToUpdate) {
         this.IDBanToUpdate = IDBanToUpdate;
     }
@@ -101,9 +106,11 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-          this.refreshTable();
-    }    
- private void refreshTable() {
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
+        this.refreshTable();
+    }
+
+    private void refreshTable() {
         UserService coachserv = new UserService();
         BanList.clear();
         BanList.addAll(coachserv.BanListe());
@@ -113,8 +120,7 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
         ColNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
         ColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         ColAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-  
-        
+
         BanTable.setRowFactory(tv -> {
             TableRow<User> myRow = new TableRow<>();
             myRow.setOnMouseClicked(event
@@ -124,76 +130,29 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
                     int id = Integer.parseInt(String.valueOf(BanTable.getItems().get(myIndex).getId()));
                     setIDBanToUpdate(id);
                     cinFld.setText(BanTable.getItems().get(myIndex).getCIN().toString());
-                     NameFld.setText(BanTable.getItems().get(myIndex).getName().toString());
-                      NumeroTelFld.setText(BanTable.getItems().get(myIndex).getNumero());
-                       AdresseFld.setText(BanTable.getItems().get(myIndex).getAdresse().toString());
-                        EmailFld.setText(BanTable.getItems().get(myIndex).getEmail().toString());
-                        
-                   
+                    NameFld.setText(BanTable.getItems().get(myIndex).getName().toString());
+                    NumeroTelFld.setText(BanTable.getItems().get(myIndex).getNumero());
+                    AdresseFld.setText(BanTable.getItems().get(myIndex).getAdresse().toString());
+                    EmailFld.setText(BanTable.getItems().get(myIndex).getEmail().toString());
+
                 }
             });
             return myRow;
         });
-        
+
     }
 
     @FXML
     private void handleClicks(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
-
-  @FXML
-    void handleLogout(ActionEvent event) throws IOException {
-        // clear user session data
-        SessionManager.getInstance().Logout();
-        
-        // load the login FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
-        Parent root = loader.load();
-        
-        // get the stage and show the login scene
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    private void Pharmacien(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
-    }
-
-    @FXML
-    private void medcin(ActionEvent event) throws IOException {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
-    }
-
-    @FXML
-    private void coach(ActionEvent event) throws IOException {
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
-    }
-
-
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/subscription/subscriptionListe.fxml");
     }
-
-    @FXML
-    private void Ticket(ActionEvent event) throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/TicketListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
-    }
-
-    @FXML
-    private void ban(ActionEvent event) {
-    }
-
 
     @FXML
     private void roleMedcin(ActionEvent event) {
@@ -236,7 +195,7 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
 
     @FXML
     private void rolePharmacien(ActionEvent event) {
-         UserService userserv = new UserService();
+        UserService userserv = new UserService();
         userserv.DebanPharmacien(IDBanToUpdate);
         cinFld.setText("");
         NameFld.setText("");
@@ -249,7 +208,7 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
 
     @FXML
     private void search(KeyEvent event) {
-        
+
         BanTable.setItems(FXCollections.observableArrayList(searchList(searchfld.getText(), BanList)));
     }
 
@@ -265,13 +224,43 @@ ObservableList<User> BanList = FXCollections.observableArrayList();
     }
 
     @FXML
-    private void client(ActionEvent event) throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void Ticket(ActionEvent event) throws IOException {
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
     }
-    
 
- 
-    
+    @FXML
+    void handleLogout(ActionEvent event) {
+        // clear user session data
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+
+    }
+
+   
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+    }
+
+    @FXML
+    private void client(ActionEvent event) {
+          Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
+    }
+
 }

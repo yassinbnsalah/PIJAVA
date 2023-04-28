@@ -5,12 +5,15 @@
  */
 package view.users.pharmacien;
 
+import controllers.OrderListeController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -25,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -36,6 +40,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.User;
 import services.UserService;
+import util.Routage;
 import util.SessionManager;
 
 /**
@@ -105,6 +110,8 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     private Button btnBan;
     @FXML
     private TextField searchfld;
+    @FXML
+    private Label userName;
     public int getIDPharmacienToUpdate() {
         return IDPharmacienToUpdate;
     }
@@ -118,6 +125,7 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         this.refreshTable();
     }    
     private void refreshTable() {
@@ -288,10 +296,19 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     }
     @FXML
     private void handleClicks(ActionEvent event) {
+           Routage rtg = Routage.getInstance();
+            rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private void clearForms() {
         cinFld.setText("");
@@ -303,52 +320,39 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     }
     @FXML
     private void Ticket(ActionEvent event) throws IOException {
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/TicketListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+               Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
     }
 
     @FXML
     void handleLogout(ActionEvent event) throws IOException {
         // clear user session data
         SessionManager.getInstance().Logout();
-        
-        // load the login FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
-        Parent root = loader.load();
-        
-        // get the stage and show the login scene
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+           Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+      
     }
 
     @FXML
     private void Client(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+         Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
+    }
+
+    private void Pharmacien(ActionEvent event) {
+           Routage.getInstance().GOTO(btnOrders, "/view/users/coach/CoachList.fxml");
     }
 
     @FXML
-    private void medcin(ActionEvent event) throws IOException {
-             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
-    private void coach(ActionEvent event) throws IOException {
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/users/coach/CoachList.fxml");
     }
 
     @FXML
-    private void ban(ActionEvent event) throws IOException {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
     }
 
     @FXML

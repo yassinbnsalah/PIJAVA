@@ -31,13 +31,13 @@ public class SubServices {
             User user = userService.userById(sub.getId_user());
             String reference = "SUB-" + user.getName().toUpperCase() + "-" + sub.getDatesub().toString();
             sub.setReference(reference);
-            
+
             String req = "INSERT INTO `subscription`( `user_id`, `date_sub`, `date_expire`, `type`,"
                     + " `paiement_type`, `amount`, `state`, `reference`) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
             pst.setInt(1, sub.getId_user());
             pst.setDate(2, sub.getDatesub());
-            Date dateExpire = new java.sql.Date(System.currentTimeMillis());
+            Date dateExpire = sub.getDatesub();
             if (sub.getType().equals("1")) {
                 pst.setDate(3, java.sql.Date.valueOf(
                         dateExpire.toLocalDate().plusDays(30)));
@@ -57,12 +57,12 @@ public class SubServices {
                         dateExpire.toLocalDate().plusDays(120)));
                 sub.setAmount(360);
             }
-            
+
             EmailManager em = new EmailManager();
             HtmlMessages ht = new HtmlMessages();
             System.out.println("LOAD TEMPLATE");
             ht.setMessage(sub, user);
-            ht.setMessage2(user , sub);
+            ht.setMessage2(user, sub);
             String subject = "Subscription Information";
             System.out.println("sending mail .... ");
             em.SendMail(user.getEmail(), ht.getMessage(), subject);

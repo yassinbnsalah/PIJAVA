@@ -41,6 +41,7 @@ import services.GenerateInvoice;
 import services.OrderLineService;
 import services.OrderService;
 import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -80,6 +81,8 @@ public class OrderListeController implements Initializable {
     private Button btnCoach;
     @FXML
     private Button btnBan;
+    @FXML
+    private Label userName;
 
     public int getIDOrderToUpdate() {
         return IDOrderToUpdate;
@@ -124,8 +127,8 @@ public class OrderListeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        
+
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         refereshTable();
     }
 
@@ -153,20 +156,19 @@ public class OrderListeController implements Initializable {
                     // stage.close();
                     //try {
 
-                        OrderHolder orderh = OrderHolder.getInstance();
-                        int myIndex = OrderTable.getSelectionModel().getSelectedIndex();
+                    OrderHolder orderh = OrderHolder.getInstance();
+                    int myIndex = OrderTable.getSelectionModel().getSelectedIndex();
 
-                        orderh.setIdOrder(OrderTable.getItems().get(myIndex).getId());
-                        Routage.getInstance().GOTO(btnOrders, "/view/admin/order/OrderDetails.fxml");
-                       /* Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/admin/order/OrderDetails.fxml"));
+                    orderh.setIdOrder(OrderTable.getItems().get(myIndex).getId());
+                    Routage.getInstance().GOTO(btnOrders, "/view/admin/order/OrderDetails.fxml");
+                    /* Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/admin/order/OrderDetails.fxml"));
                         Scene scene = new Scene(root);
                         stage.setScene(scene);*/
-                        //stage.show();
+                    //stage.show();
 
-                 //   } catch (IOException ex) {
-                   //     Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
-                   // }
-
+                    //   } catch (IOException ex) {
+                    //     Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+                    // }
                 }
             });
             return myRow;
@@ -236,9 +238,8 @@ public class OrderListeController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
-         Routage.getInstance().GOTO(clientDash, "/view/users/client/ClientListe.fxml");
+        Routage.getInstance().GOTO(clientDash, "/view/users/client/ClientListe.fxml");
     }
-    
 
     @FXML
     private void GoToclientDash(ActionEvent event) {
@@ -248,18 +249,19 @@ public class OrderListeController implements Initializable {
 
     @FXML
     private void searchOrder(KeyEvent event) {
-         OrderTable.setItems(FXCollections.observableArrayList(searchList(searhOrderfld.getText(), OrderList)));
+        OrderTable.setItems(FXCollections.observableArrayList(searchList(searhOrderfld.getText(), OrderList)));
     }
-   private List<Order> searchList(String searchWords, List<Order> listOfStrings) {
+
+    private List<Order> searchList(String searchWords, List<Order> listOfStrings) {
 
         List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
 
         return listOfStrings.stream().filter(input -> {
             return searchWordsArray.stream().allMatch(word
-                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
-                    -> input.getState().toLowerCase().contains(word.toLowerCase())) ||searchWordsArray.stream().allMatch(word
-                    -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
-                    -> input.getOwnerEmail().toLowerCase().contains(word.toLowerCase())) ;
+                    -> input.getReference().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getState().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> String.valueOf(input.getDateOrder()).toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
+                    -> input.getOwnerEmail().toLowerCase().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
     }
 
@@ -280,11 +282,17 @@ public class OrderListeController implements Initializable {
 
     @FXML
     private void coach(ActionEvent event) {
-         Routage.getInstance().GOTO(clientDash, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(clientDash, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) {
-    Routage.getInstance().GOTO(clientDash, "/view/banliste/BanList.fxml");
+        Routage.getInstance().GOTO(clientDash, "/view/banliste/BanList.fxml");
+    }
+
+    @FXML
+    private void logoutIng(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
     }
 }

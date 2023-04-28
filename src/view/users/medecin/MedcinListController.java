@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -36,6 +37,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.User;
 import services.UserService;
+import util.Routage;
 import util.SessionManager;
 
 /**
@@ -104,7 +106,10 @@ ObservableList<User> MedcinList = FXCollections.observableArrayList();
     private Button btnBan;
     @FXML
     private TextField searchfld;
+    @FXML
+    private Label userName;
     public int getIDMedcinToUpdate() {
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         return IDMedcinToUpdate;
     }
     
@@ -292,39 +297,35 @@ ObservableList<User> MedcinList = FXCollections.observableArrayList();
         SessionManager.getInstance().Logout();
         
         // load the login FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
-        Parent root = loader.load();
-        
-        // get the stage and show the login scene
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
     }
 
     @FXML
     private void Client(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+         Routage.getInstance().GOTO(btnOrders, "/view/users/client/ClientListe.fxml");
     }
 
-    @FXML
-    private void pharmacien(ActionEvent event) throws IOException {
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+      @FXML
+    private void PharmacienListe(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/users/pharmacien/PharmacienList.fxml");
     }
 
-    @FXML
+
+   @FXML
     private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void handleClicks(ActionEvent event) {
+         Routage.getInstance().GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
+          Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
     @FXML

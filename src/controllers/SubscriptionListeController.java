@@ -33,6 +33,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -138,6 +139,10 @@ public class SubscriptionListeController implements Initializable {
     private Button btnMedcin;
     @FXML
     private Button btnCoach;
+    @FXML
+    private Label userName;
+    @FXML
+    private Button btnBan;
 
     public int getIDsubscriptionToUpdate() {
         return IDsubscriptionToUpdate;
@@ -152,6 +157,7 @@ public class SubscriptionListeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         subscriptionDetailslbl.setVisible(false);
         createSubLabel.setVisible(false);
         this.LoadDataForAddSubscription();
@@ -263,17 +269,14 @@ public class SubscriptionListeController implements Initializable {
         createSubLabel.setVisible(true);
     }
 
-
-
     @FXML
     private void updateSubscription(ActionEvent event) {
         SubServices subservice = new SubServices();
         subservice.UpdateStateSub(CBType1.getValue(), this.getIDsubscriptionToUpdate());
         clearForms();
         refreshTable();
-          subscriptionDetailslbl.setVisible(false) ;
-      
-       
+        subscriptionDetailslbl.setVisible(false);
+
     }
 
     private void clearForms() {
@@ -371,14 +374,28 @@ public class SubscriptionListeController implements Initializable {
     }
 
     @FXML
+    private void Ticket(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+    }
+
+    @FXML
     private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
     }
 
     @FXML
     private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
+
+    @FXML
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+    }
+
 }

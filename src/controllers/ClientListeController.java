@@ -12,6 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -27,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -45,6 +48,7 @@ import services.UserService;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
+import util.Routage;
 import util.SessionManager;
 
 /**
@@ -108,11 +112,13 @@ public class ClientListeController implements Initializable {
     private Button btnBan;
     @FXML
     private TextField searchfld;
-    
+    @FXML
+    private Label userName;
+
     public int getIDClientToUpdate() {
         return IDClientToUpdate;
     }
-    
+
     public void setIDClientToUpdate(int IDClientToUpdate) {
         this.IDClientToUpdate = IDClientToUpdate;
     }
@@ -123,10 +129,10 @@ public class ClientListeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         this.refreshTable();
-    }    
-    
+    }
+
     private void refreshTable() {
         UserService clientserv = new UserService();
         ClientList.clear();
@@ -137,7 +143,7 @@ public class ClientListeController implements Initializable {
         ColNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
         ColEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         ColAdresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        
+
         ClientTable.setRowFactory(tv -> {
             TableRow<User> myRow = new TableRow<>();
             myRow.setOnMouseClicked(event
@@ -151,12 +157,12 @@ public class ClientListeController implements Initializable {
                     NumeroTelFld.setText(ClientTable.getItems().get(myIndex).getNumero());
                     AdresseFld.setText(ClientTable.getItems().get(myIndex).getAdresse().toString());
                     EmailFld.setText(ClientTable.getItems().get(myIndex).getEmail().toString());
-                    
+
                 }
             });
             return myRow;
         });
-        
+
     }
 
     private boolean validateEmaill() {
@@ -170,11 +176,11 @@ public class ClientListeController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Please Enter Valid Email");
             alert.showAndWait();
-            
+
             return false;
         }
     }
-    
+
     @FXML
     private void deleteClient(ActionEvent event) {
         UserService userserv = new UserService();
@@ -190,9 +196,9 @@ public class ClientListeController implements Initializable {
         txtAdresse.setText("");
         txtEmail.setText("");
         txtPassword.setText("");
-        
+
     }
-    
+
     @FXML
     private void updateClient(ActionEvent event) {
         int numero = Integer.parseInt(NumeroTelFld.getText());
@@ -200,7 +206,7 @@ public class ClientListeController implements Initializable {
         String name = NameFld.getText();
         String adresse = AdresseFld.getText();
         String email = EmailFld.getText();
-        
+
         User u = new User();
         u.setNumero(NumeroTelFld.getText());
         u.setCIN(cinFld.getText());
@@ -208,104 +214,97 @@ public class ClientListeController implements Initializable {
         u.setEmail(EmailFld.getText());
         u.setAdresse(AdresseFld.getText());
         u.setId(IDClientToUpdate);
-        
+
         User user = ClientTable.getSelectionModel().getSelectedItem();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Comfirmation");
         alert.setHeaderText(null);
         alert.setContentText("Êtes-vous sûr de modifier ?");
         Optional<ButtonType> action = alert.showAndWait();
-        
+
         UserService sc = new UserService();
         sc.modifierUtilisateur(u);
-        
+
         refreshTable();
         System.out.println(u);
         System.out.println(IDClientToUpdate);
-        
+
     }
-    
+
     private void clearForms() {
         cinFld.setText("");
         NameFld.setText("");
         NumeroTelFld.setText("");
         AdresseFld.setText("");
         EmailFld.setText("");
-        
+
     }
-    
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
-    
+
     @FXML
     private void Ticket(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/TicketListe.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
     }
-    
-    @FXML
-    private void GoToSubscriptionListe(ActionEvent event) {
-    }
-    
+
     @FXML
     void handleLogout(ActionEvent event) throws IOException {
         // clear user session data
         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
 
-        // load the login FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
-        Parent root = loader.load();
+    }
 
-        // get the stage and show the login scene
-        Stage stage = (Stage) logoutButton.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-    
+   
     @FXML
-    private void Pharmacien(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
+    private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
     }
-    
+
     @FXML
-    private void medcin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
-    
+
     @FXML
-    private void coach(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
+    private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
-    
+
     @FXML
-    private void ban(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
     }
-    
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
+    }
+
+    @FXML
+    private void GoToSubscriptionListe(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @FXML
     private void search(KeyEvent event) {
         ClientTable.setItems(FXCollections.observableArrayList(searchList(searchfld.getText(), ClientList)));
     }
-    
+
     private List<User> searchList(String searchWords, List<User> listOfStrings) {
-        
+
         List<String> searchWordsArray = Arrays.asList(searchWords.trim().split(" "));
-        
+
         return listOfStrings.stream().filter(input -> {
             return searchWordsArray.stream().allMatch(word
                     -> input.getName().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
                     -> input.getEmail().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
     }
-    
+
 }

@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="view.users.pharmacien.PharmacienListController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.users.pharmacien.PharmacienListController">
     <children>
         <AnchorPane layoutX="234.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -257,7 +257,7 @@
                         <Insets bottom="10.0" top="50.0" />
                     </VBox.margin>
                 </ImageView>
-                <Label text="Jimmy Fallon" textFill="#3b3b3b">
+                <Label fx:id="userName" text="Jimmy Fallon" textFill="#3b3b3b">
                     <VBox.margin>
                         <Insets bottom="20.0" />
                     </VBox.margin>

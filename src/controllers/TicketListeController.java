@@ -14,6 +14,8 @@ import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +43,7 @@ import models.Ticket;
 import models.User;
 import services.DisponibilityService;
 import services.TicketService;
+import util.Routage;
 import util.SessionManager;
 import util.SharedData;
 
@@ -218,71 +221,7 @@ public class TicketListeController implements Initializable {
 
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/ClientListe.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
-    }
 
-    @FXML
-    private void GoToSubscriptionListe(ActionEvent event) {
-    }
-
-    @FXML
-    private void Ticket(ActionEvent event) {
-    }
-
-    @FXML
-    private void textfieldDesign1(MouseEvent event) {
-    }
-
-    @FXML
-    private void textfieldDesign1(KeyEvent event) {
-    }
-
-    @FXML
-    private void Pharmacien(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/PharmacienList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
-    }
-
-    @FXML
-    private void medcin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/MedcinList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
-    }
-
-    @FXML
-    private void coach(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
-    }
-
-    @FXML
-    void handleLogout(ActionEvent event) throws IOException {
-        // clear user session data
-        SessionManager.getInstance().Logout();
-
-        // load the login FXML file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/Login.fxml"));
-        Parent root = loader.load();
-
-        // get the stage and show the login scene
-        Stage stage = (Stage) btnSignout.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    private void ban(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
-        Parent root = loader.load();
-        btnTicket.getScene().setRoot(root);
-    }
 
     @FXML
     private void search(KeyEvent event) {
@@ -343,5 +282,68 @@ public class TicketListeController implements Initializable {
             createTicketlbl.setVisible(false);
         }
     }
+
+    @FXML
+    private void Ticket(ActionEvent event) throws IOException {
+        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+    }
+
+    @FXML
+    void handleLogout(ActionEvent event)  {
+        // clear user session data
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+
+    }
+
+    private void Client(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+    }
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
+    }
+
+    @FXML
+    private void GoToSubscriptionListe(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void textfieldDesign1(MouseEvent event) {
+    }
+
+    @FXML
+    private void textfieldDesign1(KeyEvent event) {
+    }
+    
 
 }

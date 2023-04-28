@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -65,6 +66,8 @@ public class SubscriptionhistoryController implements Initializable {
     private Button adminDash;
     @FXML
     private TextField searchsubfld;
+    @FXML
+    private Label userName;
 
     /**
      * Initializes the controller class.
@@ -72,7 +75,7 @@ public class SubscriptionhistoryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_CLIENT\"]")){
        
             
