@@ -270,10 +270,7 @@ public class OrderListeController implements Initializable {
         Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
     }
 
-    @FXML
-    private void Pharmacien(ActionEvent event) {
-        Routage.getInstance().GOTO(clientDash, "/view/users/pharmacien/PharmacienList.fxml");
-    }
+   
 
     @FXML
     private void medcin(ActionEvent event) {
@@ -294,5 +291,11 @@ public class OrderListeController implements Initializable {
     private void logoutIng(ActionEvent event) {
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+        
+         Routage.getInstance().GOTO(clientDash, "/view/users/pharmacien/PharmacienList.fxml");
     }
 }

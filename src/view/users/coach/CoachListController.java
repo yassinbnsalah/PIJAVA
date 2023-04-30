@@ -127,6 +127,7 @@ public class CoachListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        SessionManager.getInstance().getUser().getEmail(); 
         userName.setText(SessionManager.getInstance().getUser().getEmail());
         this.refreshTable();
     }

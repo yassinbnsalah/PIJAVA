@@ -99,7 +99,17 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private Label userName;
     @FXML
-    private AnchorPane bx;
+    private AnchorPane interfaceDet;
+    @FXML
+    private Button btnClient;
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
+    @FXML
+    private Button btnBan;
 
     /**
      * Initializes the controller class.
@@ -203,32 +213,40 @@ public class OrderdetailsController implements Initializable {
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
     }*/
+    @FXML
     private void Ticket(ActionEvent event) {
         Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
     }
 
+    @FXML
     private void medcin(ActionEvent event) {
         Routage.getInstance().GOTO(btnOrders, "/view/users/medecin/MedcinList.fxml");
     }
 
+    @FXML
     private void coach(ActionEvent event) {
         Routage.getInstance().GOTO(btnOrders, "/view/users/coach/CoachList.fxml");
     }
 
+    @FXML
     private void ban(ActionEvent event) {
         Routage.getInstance().GOTO(btnOrders, "/view/banliste/BanList.fxml");
     }
 
+    @FXML
     private void PharmacienListe(ActionEvent event) {
         Routage.getInstance().GOTO(btnOrders, "/view/users/pharmacien/PharmacienList.fxml");
     }
 
     
 
-    @FXML
     private void logoutIng(ActionEvent event) {
          SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void LogoutIng(ActionEvent event) {
     }
 
 

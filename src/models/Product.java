@@ -10,12 +10,15 @@ package models;
  * @author yacin
  */
 public class Product {
-    private int id ;
-    private String name ; 
-    private float sellprice ; 
-    private float buyprice ; 
-    private int quantity ; 
-    private String description ; 
+
+    private int id;
+    private String name;
+    private float sellprice;
+    private float buyprice;
+    private int quantity;
+    private String description;
+    private String image;
+    private double Rate;
 
     public Product() {
     }
@@ -89,5 +92,5 @@ public class Product {
     public String toString() {
         return "Product{" + "id=" + id + ", name=" + name + ", sellprice=" + sellprice + ", buyprice=" + buyprice + ", quantity=" + quantity + ", description=" + description + '}';
     }
-    
+
 }
