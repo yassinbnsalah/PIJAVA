@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="703.0" prefWidth="928.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="view.user.FXMLController">
+   <children>
+      <AnchorPane layoutX="179.0" layoutY="69.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutX="-173.0" layoutY="-54.0" prefHeight="135.0" prefWidth="918.0" style="-fx-background-color: #BF6FF0;">
+               <children>
+                  <Label layoutX="327.0" layoutY="41.0" text="Ajouter un rendez vous">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <Text layoutX="61.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de rendez vous:" wrappingWidth="196.53675842285156">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="61.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure de rendez vous:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="61.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date passage rendez vous:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="61.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note:" wrappingWidth="177.75878906249994">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="dtfield" layoutX="370.0" layoutY="269.0" />
+      <TextField fx:id="rdhe" layoutX="370.0" layoutY="350.0" />
+      <TextField fx:id="rdpsg" layoutX="371.0" layoutY="456.0" />
+      <TextField fx:id="rdnt" layoutX="372.0" layoutY="552.0" />
+      <Button fx:id="rdbttn" layoutX="709.0" layoutY="619.0" mnemonicParsing="false" text="Ajouter un rendez vous" />
+   </children>
+</AnchorPane>

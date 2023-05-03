@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="863.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Medcecin.BaseController">
+   <top>
+      <AnchorPane style="-fx-background-color: #fff;" BorderPane.alignment="CENTER" />
+   </top>
+   <left>
+      <VBox prefHeight="874.0" prefWidth="292.0" styleClass="sidebar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="81.0" prefWidth="291.0" style="-fx-background-color: #3F2B63;" text="Admin Panel" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <font>
+                  <Font name="Ebrima" size="19.0" />
+               </font>
+            </Label>
+            <HBox fx:id="gestionRVButton" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionRV" prefHeight="50.0" prefWidth="292.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="DASHBOARD" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label stylesheets="@style.css" text="Gestion Rendez-vous" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="GestionMedicamentButon" alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#LoadGestionMedicament" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label stylesheets="@style.css" text="Gestion Medicament " textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="GestionOrdonnanceButon1" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionOrdeonance" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label stylesheets="@style.css" text="Gestion Ordonnace" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+            <HBox fx:id="GestionOrdonnanceButon11" alignment="CENTER_LEFT" onMouseClicked="#LoadCalendar" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@style.css">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <children>
+                  <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill:#7c8184" size="1.3em" />
+                  <Label fx:id="calaendarButton" stylesheets="@style.css" text="Calendar" textFill="#7c8184">
+                     <font>
+                        <Font name="Calibri Light" size="18.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <StackPane fx:id="AnchorePaneLayout" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
