@@ -30,9 +30,10 @@ public class JavaApplicationPI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-      //Parent rootD= FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
-      Parent rootD= FXMLLoader.load(getClass().getResource("/view/admin/store/Produit.fxml"));
-       // Parent rootD = FXMLLoader.load(getClass().getResource("/view/Medecin/disponibilityListe.fxml"));
+    Parent rootD= FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"));
+     // Parent rootD= FXMLLoader.load(getClass().getResource("/view/admin/store/Produit.fxml"));
+      // Parent rootD = FXMLLoader.load(getClass().getResource("/view/Pharmacien/AddMedicamment.fxml"));
+     //Parent rootD = FXMLLoader.load(getClass().getResource("/view/Medecin/Calendar.fxml"));
         //  Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
       //Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/OrderListe.fxml"));
         //Parent rootD = FXMLLoader.load(getClass().getResource("/view/admin/order/CreateOrder.fxml"));

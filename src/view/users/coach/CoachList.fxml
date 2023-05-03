@@ -18,11 +18,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.users.coach.CoachListController">
    <children>
-      <AnchorPane layoutX="238.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="238.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Coach Liste" textFill="#6f0385" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="32.0">
                <font>
-                  <Font name="Arial Bold Italic" size="38.0" />
+                  <Font name="Arial Bold" size="25.0" />
                </font>
             </Label>
             <TableView fx:id="CoachTable" layoutX="24.0" layoutY="135.0" prefHeight="516.0" prefWidth="913.0" AnchorPane.bottomAnchor="138.60000000000002" AnchorPane.topAnchor="135.0">
@@ -240,7 +240,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <TextField fx:id="searchfld" layoutX="24.0" layoutY="97.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="914.0" promptText="search" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="97.0">
+            <TextField fx:id="searchfld" layoutX="24.0" layoutY="97.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="914.0" promptText="search" styleClass="textfield-design" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="97.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

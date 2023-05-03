@@ -15,11 +15,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateOrderController">
      <children>
-      <AnchorPane layoutX="238.0" prefHeight="752.0" prefWidth="1652.0" style="-fx-background-color: #f5f4f8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="238.0" prefHeight="752.0" prefWidth="1652.0" style="-fx-background-color: #f5f4f8;" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label layoutX="26.0" layoutY="37.0" text="Create Order :" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="37.0">
                <font>
-                  <Font size="24.0" />
+                  <Font name="System Bold" size="24.0" />
                </font></Label>
             <AnchorPane layoutX="1296.0" layoutY="91.0" prefHeight="402.0" prefWidth="324.0" style="-fx-background-color: #e4e3e9;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="91.0">
                <children>
@@ -32,35 +32,35 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TextArea fx:id="NoteTxt" layoutX="145.0" layoutY="289.0" prefHeight="73.0" prefWidth="158.0" />
+                  <TextArea fx:id="NoteTxt" layoutX="145.0" layoutY="289.0" prefHeight="73.0" prefWidth="158.0" styleClass="textfield-design" />
                   <Label layoutX="34.0" layoutY="248.0" prefHeight="18.0" prefWidth="102.0" text="Shipping Adress">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TextField fx:id="shppingtxt" layoutX="147.0" layoutY="244.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="shppingtxt" layoutX="147.0" layoutY="244.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
                   <Label layoutX="40.0" layoutY="75.0" prefHeight="18.0" prefWidth="90.0" text="User Name :">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TextField fx:id="nameuserTxt" disable="true" layoutX="147.0" layoutY="71.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="nameuserTxt" disable="true" layoutX="147.0" layoutY="71.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
                   <Label layoutX="38.0" layoutY="115.0" prefHeight="18.0" prefWidth="122.0" text="User Phone :">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="phoneusertxt" disable="true" layoutX="147.0" layoutY="111.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="phoneusertxt" disable="true" layoutX="147.0" layoutY="111.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
                   <Label layoutX="38.0" layoutY="206.0" prefHeight="18.0" prefWidth="78.0" text="Adress :">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="adressUserTxt" disable="true" layoutX="147.0" layoutY="202.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="adressUserTxt" disable="true" layoutX="147.0" layoutY="202.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
                   <Label layoutX="38.0" layoutY="161.0" prefHeight="18.0" prefWidth="78.0" text="User Email">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="emailUserTxt" disable="true" layoutX="147.0" layoutY="157.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="emailUserTxt" disable="true" layoutX="147.0" layoutY="157.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="14.0" layoutY="91.0" prefHeight="346.0" prefWidth="709.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="314.6" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0">
@@ -80,7 +80,7 @@
                         <TableColumn fx:id="categoryCol" prefWidth="123.199951171875" text="Category" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="searchfld" layoutX="26.0" layoutY="65.0" onKeyTyped="#searchproduct" prefHeight="26.0" prefWidth="642.0" promptText="search Product">
+                  <TextField fx:id="searchfld" layoutX="26.0" layoutY="65.0" onKeyTyped="#searchproduct" prefHeight="26.0" prefWidth="642.0" promptText="search Product" styleClass="textfield-design">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></TextField>
@@ -105,19 +105,19 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TextField fx:id="productNametxt" disable="true" layoutX="233.0" layoutY="73.0" prefHeight="26.0" prefWidth="158.0" />
-                  <TextField fx:id="productSellPricetxt" disable="true" layoutX="234.0" layoutY="113.0" prefHeight="26.0" prefWidth="157.0" />
-                  <TextField fx:id="productBuyPricetxt" disable="true" layoutX="234.0" layoutY="155.0" prefHeight="26.0" prefWidth="158.0" />
+                  <TextField fx:id="productNametxt" disable="true" layoutX="233.0" layoutY="73.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
+                  <TextField fx:id="productSellPricetxt" disable="true" layoutX="234.0" layoutY="113.0" prefHeight="26.0" prefWidth="157.0" styleClass="textfield-design" />
+                  <TextField fx:id="productBuyPricetxt" disable="true" layoutX="234.0" layoutY="155.0" prefHeight="26.0" prefWidth="158.0" styleClass="textfield-design" />
                   <Label layoutX="49.0" layoutY="194.0" prefHeight="18.0" prefWidth="101.0" text="Quantity :">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <TextField fx:id="qte" layoutX="234.0" layoutY="190.0" prefHeight="26.0" prefWidth="102.0" />
-                  <Button fx:id="updateOrderLine" layoutX="236.0" layoutY="249.0" mnemonicParsing="false" onAction="#updateOrderLineitem" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #6ad2ff;" text="Update IT" textFill="WHITE">
+                  <TextField fx:id="qte" layoutX="234.0" layoutY="190.0" prefHeight="26.0" prefWidth="102.0" styleClass="textfield-design" />
+                  <Button fx:id="updateOrderLine" layoutX="336.0" layoutY="249.0" mnemonicParsing="false" onAction="#updateOrderLineitem" prefHeight="26.0" prefWidth="170.0" styleClass="button-design2" text="Update IT" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button layoutX="51.0" layoutY="249.0" mnemonicParsing="false" onAction="#deleteOrderLine" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #e53f3c;" text="Delete this orderLine" textFill="WHITE">
+                  <Button layoutX="51.0" layoutY="249.0" mnemonicParsing="false" onAction="#deleteOrderLine" prefHeight="26.0" prefWidth="170.0" styleClass="button-design1" text="Delete this orderLine" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
@@ -169,11 +169,11 @@
                   </Label>
                   <TableView fx:id="tableUser" layoutX="7.0" layoutY="129.0" prefHeight="179.0" prefWidth="507.0" AnchorPane.bottomAnchor="38.19999999999999" AnchorPane.topAnchor="129.0">
                     <columns>
-                      <TableColumn fx:id="colNameUser" prefWidth="200.0" text="Name" />
-                      <TableColumn fx:id="ColEmailUser" prefWidth="306.0" text="Email" />
+                      <TableColumn fx:id="colNameUser" prefWidth="200.0" style="-fx-background-color: #e4e3e9;" text="Name" />
+                      <TableColumn fx:id="ColEmailUser" prefWidth="306.0" style="-fx-background-color: #e4e3e9;" text="Email" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="txtsearshUser" layoutX="14.0" layoutY="65.0" onKeyTyped="#searchUser" prefHeight="26.0" prefWidth="507.0" />
+                  <TextField fx:id="txtsearshUser" layoutX="14.0" layoutY="65.0" onKeyTyped="#searchUser" prefHeight="26.0" prefWidth="507.0" styleClass="textfield-design" />
                   <Label fx:id="ClientErrorlbl" layoutX="107.0" layoutY="26.0" prefHeight="20.0" prefWidth="206.0" style="-fx-background-color: #fad9d8;" textFill="#5c596d">
                      <font>
                         <Font name="System Bold" size="14.0" />
@@ -181,7 +181,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="btnorderCreate" layoutX="1336.0" layoutY="25.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="35.0" prefWidth="274.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE" AnchorPane.rightAnchor="41.60000000000002" AnchorPane.topAnchor="25.0">
+            <Button fx:id="btnorderCreate" layoutX="1336.0" layoutY="25.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="35.0" prefWidth="274.0" styleClass="button-design" text="Create Order" textFill="WHITE" AnchorPane.rightAnchor="41.60000000000002" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></Button>

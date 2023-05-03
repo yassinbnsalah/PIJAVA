@@ -18,11 +18,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.users.pharmacien.PharmacienListController">
     <children>
-        <AnchorPane layoutX="234.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutX="234.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #f5f4f8;" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Pharmacien Liste" textFill="#6f0385" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="32.0">
                     <font>
-                        <Font name="Arial Bold Italic" size="38.0" />
+                        <Font name="Arial Bold" size="25.0" />
                     </font>
                 </Label>
                 <TableView fx:id="PharmacienTable" layoutX="24.0" layoutY="141.0" prefHeight="516.0" prefWidth="931.0" AnchorPane.bottomAnchor="95.0" AnchorPane.topAnchor="141.0">
@@ -34,11 +34,11 @@
                         <TableColumn fx:id="ColAdresse" prefWidth="201.59991455078125" text="Adresse" />
                     </columns>
                 </TableView>
-                <AnchorPane layoutX="1109.0" layoutY="25.0" prefHeight="363.0" prefWidth="406.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                <AnchorPane layoutX="1109.0" layoutY="25.0" prefHeight="381.0" prefWidth="406.0" style="-fx-background-color: #e4e3e9;" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                     <children>
                         <Label layoutX="104.0" layoutY="7.0" prefHeight="35.0" prefWidth="229.0" text="Pharmacien Create" textFill="#6f0385">
                             <font>
-                                <Font name="System Bold Italic" size="24.0" />
+                                <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
                         <Label layoutX="24.0" layoutY="55.0" prefHeight="18.0" prefWidth="92.0" text="Cin">
@@ -71,7 +71,7 @@
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <Button layoutX="198.0" layoutY="325.0" mnemonicParsing="false" onAction="#CreatePharmacien" prefHeight="31.0" prefWidth="179.0" styleClass="button-design" stylesheets="@design.css" text="Create New Pharmacien">
+                        <Button layoutX="195.0" layoutY="336.0" mnemonicParsing="false" onAction="#CreatePharmacien" prefHeight="31.0" prefWidth="179.0" styleClass="button-design" stylesheets="@design.css" text="Create New Pharmacien">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -129,11 +129,11 @@
                         </PasswordField>
                     </children>
                 </AnchorPane>
-                <AnchorPane layoutX="1100.0" layoutY="410.0" prefHeight="341.0" prefWidth="414.0" style="-fx-background-color: #f7f7f7;" AnchorPane.rightAnchor="20.0">
+                <AnchorPane layoutX="1100.0" layoutY="410.0" prefHeight="334.0" prefWidth="406.0" style="-fx-background-color: #e4e3e9;" AnchorPane.rightAnchor="20.0">
                     <children>
                         <Label layoutX="103.0" layoutY="26.0" prefHeight="35.0" prefWidth="220.0" text="PharmacienDetails" textFill="#6f0385">
                             <font>
-                                <Font name="System Bold Italic" size="24.0" />
+                                <Font name="System Bold" size="23.0" />
                             </font>
                         </Label>
                         <Label layoutX="31.0" layoutY="80.0" prefHeight="18.0" prefWidth="92.0" text="Cin">
@@ -186,7 +186,7 @@
                                 <Font size="15.0" />
                             </font>
                         </TextField>
-                        <Button layoutX="244.0" layoutY="302.0" mnemonicParsing="false" onAction="#updatePharmacien" prefHeight="31.0" prefWidth="158.0" styleClass="button-design2" stylesheets="@design.css" text="Update Pharmacien">
+                        <Button layoutX="219.0" layoutY="287.0" mnemonicParsing="false" onAction="#updatePharmacien" prefHeight="31.0" prefWidth="158.0" styleClass="button-design2" stylesheets="@design.css" text="Update Pharmacien">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -212,7 +212,7 @@
                                 </RadialGradient>
                             </textFill>
                         </Button>
-                        <Button layoutX="56.0" layoutY="300.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="31.0" prefWidth="158.0" styleClass="button-design1" stylesheets="@design.css" text="Ban">
+                        <Button layoutX="31.0" layoutY="287.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="31.0" prefWidth="158.0" styleClass="button-design1" stylesheets="@design.css" text="Ban">
                             <font>
                                 <Font name="System Bold" size="14.0" />
                             </font>
@@ -240,7 +240,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <TextField fx:id="searchfld" layoutX="24.0" layoutY="97.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="931.0" promptText="search" AnchorPane.leftAnchor="24.0">
+                <TextField fx:id="searchfld" layoutX="24.0" layoutY="97.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="931.0" promptText="search" styleClass="textfield-design" AnchorPane.leftAnchor="24.0">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>

@@ -82,18 +82,18 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="back" layoutX="298.0" layoutY="395.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="107.0" stylesheets="@design.css" text="Back" textFill="WHITE">
+            <Button fx:id="back" layoutX="277.0" layoutY="400.0" mnemonicParsing="false" onAction="#back" prefHeight="31.0" prefWidth="158.0" stylesheets="@design.css" text="Back To Login" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <styleClass>
                   <String fx:value="button-design1" />
                   <String fx:value="button-design" />
                </styleClass>
             </Button>
-            <Button layoutX="65.0" layoutY="400.0" mnemonicParsing="false" onAction="#CreateClient" prefHeight="31.0" prefWidth="158.0" styleClass="button-design" stylesheets="@design.css" text="Confirm">
+            <Button layoutX="37.0" layoutY="400.0" mnemonicParsing="false" onAction="#CreateClient" prefHeight="31.0" prefWidth="158.0" styleClass="button-design" stylesheets="@design.css" text="Create Account">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">

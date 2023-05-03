@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Medecin.CalendarController">
+   <FlowPane fx:id="calendar" hgap="10.0" layoutX="440.0" layoutY="212.0" prefHeight="498.0" prefWidth="716.0" style="-fx-background-color: #e4e3e9;" vgap="5.0" />
+   <HBox alignment="CENTER" layoutX="588.0" layoutY="50.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0" style="-fx-background-color: #e3dcff;">
+      <children>
+         <Button mnemonicParsing="false" onAction="#backOneMonth" text="&lt;" />
+         <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Text>
+         <Text fx:id="month" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+            <font>
+               <Font size="22.0" />
+            </font>
+         </Text>
+         <Button mnemonicParsing="false" onAction="#forwardOneMonth" text="&gt;" />
+      </children>
+   </HBox>
+   <HBox alignment="CENTER" layoutX="440.0" layoutY="144.0" prefHeight="44.0" prefWidth="716.0" spacing="88.75" style="-fx-background-color: #e3dcff;">
+      <children>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Su" textAlignment="CENTER" />
+         <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mo" textAlignment="CENTER" />
+         <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tu" textAlignment="CENTER" />
+         <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We" textAlignment="CENTER" />
+         <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Th" textAlignment="CENTER" />
+         <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fr" textAlignment="CENTER" />
+         <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sa" textAlignment="CENTER" />
+      </children>
+      <padding>
+         <Insets right="9.0" />
+      </padding>
+   </HBox>
+   <ComboBox fx:id="doctorCB" layoutX="440.0" layoutY="59.0" onAction="#reload" prefWidth="150.0" promptText="Doctor" />
+   <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="14.0" prefHeight="759.0" prefWidth="238.0" style="-fx-background-color: #18113C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@/util/Images/jimmy-fallon.png" />
+            </image>
+            <VBox.margin>
+               <Insets bottom="10.0" top="50.0" />
+            </VBox.margin>
+         </ImageView>
+         <Label fx:id="userEmaillbl" text="Jimmy Fallon" textFill="WHITE">
+            <VBox.margin>
+               <Insets bottom="20.0" />
+            </VBox.margin>
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+         </Label>
+         <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToClientListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Client" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Home_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Disponnibilites" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Open_Envelope_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font>
+         </Button>
+         <Button fx:id="RendezVousbtn" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToRendezVous" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appoinetments" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Person_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnOrdennance" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToOrdennanceListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Ordennance" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Person_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial Bold" size="13.0" />
+            </font>
+         </Button>
+         <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Sign Out" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font>
+         </Button>
+         <Button fx:id="ClientDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToClientDashboard" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Client Dashboard" textFill="WHITE">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font>
+         </Button>
+      </children>
+   </VBox>
+
+</AnchorPane>

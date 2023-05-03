@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.admin.subscription.CreateSubscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.admin.subscription.CreateSubscriptionController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="-3.0" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;">
          <children>
@@ -159,11 +159,11 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane layoutX="268.0" layoutY="34.0" prefHeight="703.0" prefWidth="1343.0" style="-fx-background-color: #f5f4f8;">
+      <AnchorPane layoutX="268.0" layoutY="34.0" prefHeight="703.0" prefWidth="1346.0" style="-fx-background-color: #f5f4f8;">
          <children>
-            <Label layoutX="27.0" layoutY="27.0" prefHeight="35.0" prefWidth="238.0" text="Subscription Create">
+            <Label layoutX="27.0" layoutY="27.0" prefHeight="35.0" prefWidth="375.0" text="Subscription Create">
                <font>
-                  <Font name="Arial Bold" size="20.0" />
+                  <Font name="Arial Bold" size="25.0" />
                </font>
             </Label>
             <Label layoutX="27.0" layoutY="136.0" prefHeight="18.0" prefWidth="138.0" text="Client Liste : ">
@@ -174,13 +174,13 @@
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <ComboBox fx:id="CBPaiType" layoutX="992.0" layoutY="170.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #e4e3e9;" />
+            <ComboBox fx:id="CBPaiType" layoutX="992.0" layoutY="170.0" prefHeight="35.0" prefWidth="200.0" styleClass="textfield-design" />
             <Label layoutX="867.0" layoutY="256.0" prefHeight="26.0" prefWidth="86.0" text="Type">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <ComboBox fx:id="CBType" layoutX="992.0" layoutY="252.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #e4e3e9;" />
-            <Button fx:id="btnsub" layoutX="1011.0" layoutY="34.0" mnemonicParsing="false" onAction="#CreateSubscription" prefHeight="42.0" prefWidth="227.0" style="-fx-background-color: #754ffe;" text="Create New Subscription" textFill="WHITE">
+            <ComboBox fx:id="CBType" layoutX="992.0" layoutY="252.0" prefHeight="35.0" prefWidth="200.0" styleClass="textfield-design" />
+            <Button fx:id="btnsub" layoutX="923.0" layoutY="34.0" mnemonicParsing="false" onAction="#CreateSubscription" prefHeight="42.0" prefWidth="315.0" styleClass="button-design" text="Create New Subscription" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -189,7 +189,7 @@
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <DatePicker fx:id="DatePick" layoutX="992.0" layoutY="334.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #f5f4f8;" />
+            <DatePicker fx:id="DatePick" layoutX="992.0" layoutY="334.0" prefHeight="35.0" prefWidth="200.0" styleClass="textfield-design" />
             <TableView fx:id="userTable" layoutX="27.0" layoutY="216.0" prefHeight="459.0" prefWidth="588.0">
               <columns>
                 <TableColumn fx:id="clientNameCol" prefWidth="228.79998779296875" text="Client Name" />
@@ -197,7 +197,7 @@
                   <TableColumn fx:id="ClientPhoneCol" prefWidth="159.9998779296875" text="Client Phone" />
               </columns>
             </TableView>
-            <TextField layoutX="27.0" layoutY="170.0" prefHeight="26.0" prefWidth="588.0" />
+            <TextField layoutX="27.0" layoutY="170.0" prefHeight="26.0" prefWidth="588.0" styleClass="textfield-design" />
             <Label layoutX="867.0" layoutY="435.0" prefHeight="23.0" prefWidth="238.0" text="User Informations :">
                <font>
                   <Font name="Arial Bold" size="20.0" />
@@ -214,9 +214,9 @@
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font></Label>
-            <TextField fx:id="clientNamelbl" disable="true" layoutX="998.0" layoutY="484.0" prefHeight="26.0" prefWidth="200.0" />
-            <TextField fx:id="clientEmaillbl" disable="true" layoutX="998.0" layoutY="527.0" prefHeight="26.0" prefWidth="200.0" />
-            <TextField fx:id="clientphonelbl" disable="true" layoutX="998.0" layoutY="577.0" prefHeight="26.0" prefWidth="200.0" />
+            <TextField fx:id="clientNamelbl" disable="true" layoutX="998.0" layoutY="484.0" prefHeight="26.0" prefWidth="200.0" styleClass="textfield-design" />
+            <TextField fx:id="clientEmaillbl" disable="true" layoutX="998.0" layoutY="527.0" prefHeight="26.0" prefWidth="200.0" styleClass="textfield-design" />
+            <TextField fx:id="clientphonelbl" disable="true" layoutX="998.0" layoutY="577.0" prefHeight="26.0" prefWidth="200.0" styleClass="textfield-design" />
          </children>
       </AnchorPane>
    </children>

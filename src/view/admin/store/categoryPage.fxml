@@ -232,7 +232,7 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane layoutX="238.0" layoutY="-2.0" prefHeight="752.0" prefWidth="1616.0" style="-fx-background-color: #f5f4f8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="238.0" layoutY="-2.0" prefHeight="752.0" prefWidth="1616.0" style="-fx-background-color: #f5f4f8;" stylesheets="@../order/design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <TableView fx:id="tab" layoutX="21.0" layoutY="172.0" prefHeight="565.0" prefWidth="625.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="172.0">
               <columns>
@@ -241,17 +241,35 @@
                   <TableColumn fx:id="slug" prefWidth="363.0" text="Desc" />
               </columns>
             </TableView>
-            <AnchorPane layoutX="788.0" layoutY="172.0" prefHeight="357.0" prefWidth="394.0" style="-fx-background-color: #e4e3e9;">
+            <AnchorPane layoutX="886.0" layoutY="218.0" prefHeight="357.0" prefWidth="394.0" style="-fx-background-color: #e4e3e9;">
                <children>
-                  <Label layoutX="54.0" layoutY="97.0" text="Id" />
-                  <Label layoutX="50.0" layoutY="207.0" text="Description" />
-                  <TextField fx:id="sluug" layoutX="197.0" layoutY="204.0" />
-                  <TextField fx:id="nom" layoutX="197.0" layoutY="150.0" />
-                  <Label layoutX="50.0" layoutY="153.0" text="Category Name" />
-                  <TextField fx:id="idx" layoutX="197.0" layoutY="94.0" />
-                  <Button fx:id="add" layoutX="59.0" layoutY="276.0" mnemonicParsing="false" onAction="#ajouter" style="-fx-background-color: #cfa0e9;" text="Ajouter" />
-                  <Button fx:id="supp" layoutX="133.0" layoutY="276.0" mnemonicParsing="false" onAction="#supprimer" style="-fx-background-color: #cfa0e9;" text="Supprimer" />
-                  <Button fx:id="modif" layoutX="223.0" layoutY="276.0" mnemonicParsing="false" onAction="#modiff" style="-fx-background-color: #cfa0e9;" text="Modifier" />
+                  <Label layoutX="54.0" layoutY="97.0" text="Id">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label layoutX="50.0" layoutY="207.0" text="Description">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="sluug" layoutX="197.0" layoutY="204.0" styleClass="textfield-design" />
+                  <TextField fx:id="nom" layoutX="197.0" layoutY="150.0" styleClass="textfield-design" />
+                  <Label layoutX="50.0" layoutY="153.0" text="Category Name">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <TextField fx:id="idx" layoutX="197.0" layoutY="94.0" styleClass="textfield-design" />
+                  <Button fx:id="add" layoutX="24.0" layoutY="276.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="24.0" prefWidth="88.0" styleClass="button-design" text="Ajouter" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font></Button>
+                  <Button fx:id="supp" layoutX="153.0" layoutY="276.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="24.0" prefWidth="88.0" styleClass="button-design1" text="Supprimer" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font></Button>
+                  <Button fx:id="modif" layoutX="284.0" layoutY="276.0" mnemonicParsing="false" onAction="#modiff" prefHeight="24.0" prefWidth="72.0" styleClass="button-design2" text="Modifier" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font></Button>
                   <Label layoutX="41.0" layoutY="15.0" prefHeight="18.0" prefWidth="317.0" text="Category manipulation" textFill="#18113c">
                      <font>
                         <Font name="Arial Bold" size="22.0" />

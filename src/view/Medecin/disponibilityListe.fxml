@@ -66,11 +66,11 @@
             <TextField fx:id="heureStartTxt" layoutX="144.0" layoutY="150.0" prefHeight="25.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
             <TextField fx:id="heureEndTxt" layoutX="145.0" layoutY="189.0" prefHeight="25.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
             <TextArea fx:id="NoteTXT" layoutX="144.0" layoutY="231.0" prefHeight="62.0" prefWidth="174.0" styleClass="textfield-design" stylesheets="@design.css" />
-            <Button fx:id="updatebtn" layoutX="37.0" layoutY="313.0" mnemonicParsing="false" onAction="#UpdateDispo" prefHeight="26.0" prefWidth="303.0" style="-fx-background-color: #754ffe;" text="Update" textFill="WHITE">
+            <Button fx:id="updatebtn" layoutX="37.0" layoutY="313.0" mnemonicParsing="false" onAction="#UpdateDispo" prefHeight="26.0" prefWidth="303.0" styleClass="button-design" text="Update" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button layoutX="34.0" layoutY="365.0" mnemonicParsing="false" onAction="#DeleteDisponibility" prefHeight="26.0" prefWidth="303.0" style="-fx-background-color: #e53f3c;" text="Delete" textFill="WHITE">
+            <Button layoutX="34.0" layoutY="365.0" mnemonicParsing="false" onAction="#DeleteDisponibility" prefHeight="26.0" prefWidth="303.0" styleClass="button-design1" text="Delete" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -79,7 +79,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Button fx:id="updatebtn2" layoutX="37.0" layoutY="419.0" mnemonicParsing="false" onAction="#updateStateDispo" prefHeight="26.0" prefWidth="303.0" style="-fx-background-color: #19cb98;" text="Update State" textFill="WHITE">
+            <Button fx:id="updatebtn2" layoutX="37.0" layoutY="419.0" mnemonicParsing="false" onAction="#updateStateDispo" prefHeight="26.0" prefWidth="303.0" styleClass="button-design2" text="Update State" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -139,7 +139,22 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appoinetments" textFill="WHITE">
+            <Button fx:id="btnRendezVous" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToRendezVous" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appoinetments" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnOrdennance" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToOrdennanceListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Ordennance" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -232,7 +247,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TextField fx:id="SearchDispo" layoutX="290.0" layoutY="205.0" onKeyTyped="#searching" prefHeight="26.0" prefWidth="838.0" promptText="SearchDispo" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="205.0">
+      <TextField fx:id="SearchDispo" layoutX="290.0" layoutY="205.0" onKeyTyped="#searching" prefHeight="26.0" prefWidth="838.0" promptText="SearchDispo" styleClass="textfield-design" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="205.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

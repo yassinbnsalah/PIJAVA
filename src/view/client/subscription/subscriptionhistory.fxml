@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SubscriptionhistoryController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SubscriptionhistoryController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -144,7 +144,7 @@
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="searchsubfld" layoutX="275.0" layoutY="120.0" onKeyTyped="#searchSub" prefHeight="30.0" prefWidth="1514.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="64.59999999999991" />
+      <TextField fx:id="searchsubfld" layoutX="275.0" layoutY="120.0" onKeyTyped="#searchSub" prefHeight="30.0" prefWidth="1514.0" styleClass="textfield-design" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="64.59999999999991" />
       <TableView fx:id="subscriptionTable" layoutX="275.0" layoutY="179.0" prefHeight="556.0" prefWidth="1514.0" AnchorPane.bottomAnchor="17.0" AnchorPane.topAnchor="179.0">
         <columns>
           <TableColumn fx:id="referenceCol" prefWidth="322.40008544921875" style="-fx-background-color: #eaecee;" text="Reference" />

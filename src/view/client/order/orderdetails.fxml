@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="bx" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderdetailsController">
+<AnchorPane id="AnchorPane" fx:id="bx" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderdetailsController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -139,7 +139,7 @@
             </Button>
          </children>
       </VBox>
-      <Label layoutX="294.0" layoutY="59.0" text="Order Details" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="59.0">
+      <Label layoutX="275.0" layoutY="59.0" text="Order Details" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="59.0">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -179,7 +179,7 @@
                   <Font name="System Bold" size="17.0" />
                </font></Label>
             <Label layoutX="226.0" layoutY="23.0" text="DT" />
-            <Label fx:id="statelbl" layoutX="39.0" layoutY="100.0" prefHeight="18.0" prefWidth="130.0" style="-fx-background-color: #d1f5ea;" text="Label">
+            <Label fx:id="statelbl" layoutX="39.0" layoutY="100.0" prefHeight="18.0" prefWidth="130.0" style="-fx-background-color: #ffeeda;" text="Label">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -213,7 +213,7 @@
                   <TableColumn fx:id="pricelinecol" prefWidth="225.60009765625" style="-fx-background-color: #eaecee;" text="Price Line" />
               </columns>
             </TableView>
-            <Button fx:id="createOrderbtn" layoutX="1207.0" layoutY="22.0" mnemonicParsing="false" onAction="#DownloadInvoice" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Download Invoice" textFill="WHITE">
+            <Button fx:id="createOrderbtn" layoutX="1207.0" layoutY="22.0" mnemonicParsing="false" onAction="#DownloadInvoice" prefHeight="26.0" prefWidth="286.0" styleClass="button-design" text="Download Invoice" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -226,7 +226,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="backtoOrderListe" layoutX="1518.0" layoutY="57.0" mnemonicParsing="false" onAction="#GoToOrderListe" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #e53f3c;" text="Back To Order Liste" textFill="WHITE" AnchorPane.topAnchor="57.0">
+      <Button fx:id="backtoOrderListe" layoutX="1518.0" layoutY="57.0" mnemonicParsing="false" onAction="#GoToOrderListe" prefHeight="26.0" prefWidth="286.0" styleClass="button-design1" text="Back To Order Liste" textFill="WHITE" AnchorPane.topAnchor="57.0">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

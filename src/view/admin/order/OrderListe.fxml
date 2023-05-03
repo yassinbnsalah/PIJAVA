@@ -15,13 +15,13 @@
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderListeController">
     <children>
         
-          <AnchorPane layoutX="238.0" layoutY="3.0" prefHeight="752.0" prefWidth="1634.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <AnchorPane layoutX="238.0" layoutY="3.0" prefHeight="752.0" prefWidth="1634.0" style="-fx-background-color: #ffffff;" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Order Liste">
                <font>
-                  <Font name="Arial" size="36.0" />
+                  <Font name="Arial Bold" size="36.0" />
                </font></Label>
-            <Button fx:id="btnCreateOrder" layoutX="1286.0" layoutY="33.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="291.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE">
+            <Button fx:id="btnCreateOrder" layoutX="1286.0" layoutY="33.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="291.0" styleClass="button-design" text="Create Order" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
@@ -41,7 +41,7 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <TextField fx:id="searhOrderfld" layoutX="24.0" layoutY="93.0" onKeyTyped="#searchOrder" prefHeight="26.0" prefWidth="1554.0" promptText="SearchOrder" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.59999999999991" AnchorPane.topAnchor="93.0" />
+            <TextField fx:id="searhOrderfld" layoutX="24.0" layoutY="93.0" onKeyTyped="#searchOrder" prefHeight="26.0" prefWidth="1554.0" promptText="SearchOrder" styleClass="textfield-design" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="37.59999999999991" AnchorPane.topAnchor="93.0" />
           
            
             </children>

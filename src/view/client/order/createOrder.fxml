@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.client.order.CreateOrderController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.client.order.CreateOrderController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -147,7 +147,7 @@
                   <TableColumn fx:id="categoryCol" prefWidth="149.60003662109375" text="Category" />
                </columns>
             </TableView>
-            <TextField fx:id="searchfld" layoutX="26.0" layoutY="65.0" onKeyTyped="#searchproduct" prefHeight="26.0" prefWidth="746.0" />
+            <TextField fx:id="searchfld" layoutX="26.0" layoutY="65.0" onKeyTyped="#searchproduct" prefHeight="26.0" prefWidth="746.0" styleClass="textfield-design" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="294.0" layoutY="539.0" prefHeight="211.0" prefWidth="873.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="294.0">
@@ -160,17 +160,17 @@
             <Label layoutX="50.0" layoutY="77.0" prefHeight="18.0" prefWidth="158.0" text="Product Name : " />
             <Label layoutX="51.0" layoutY="110.0" prefHeight="18.0" prefWidth="158.0" text="Product Sell Price :" />
             <Label layoutX="51.0" layoutY="149.0" prefHeight="18.0" prefWidth="158.0" text="Product Buy Price :" />
-            <TextField fx:id="productNametxt" disable="true" layoutX="236.0" layoutY="73.0" prefHeight="26.0" prefWidth="209.0" />
-            <TextField fx:id="productSellPricetxt" disable="true" layoutX="237.0" layoutY="106.0" prefHeight="26.0" prefWidth="210.0" />
-            <TextField fx:id="productBuyPricetxt" disable="true" layoutX="236.0" layoutY="145.0" prefHeight="26.0" prefWidth="210.0" />
+            <TextField fx:id="productNametxt" disable="true" layoutX="236.0" layoutY="73.0" prefHeight="26.0" prefWidth="209.0" styleClass="textfield-design" />
+            <TextField fx:id="productSellPricetxt" disable="true" layoutX="237.0" layoutY="106.0" prefHeight="26.0" prefWidth="210.0" styleClass="textfield-design" />
+            <TextField fx:id="productBuyPricetxt" disable="true" layoutX="236.0" layoutY="145.0" prefHeight="26.0" prefWidth="210.0" styleClass="textfield-design" />
             <Label layoutX="515.0" layoutY="68.0" prefHeight="18.0" prefWidth="101.0" text="Quantity :" />
-            <TextField fx:id="qte" layoutX="582.0" layoutY="64.0" prefHeight="26.0" prefWidth="102.0" />
-            <Button fx:id="updateOrderLine" layoutX="515.0" layoutY="145.0" mnemonicParsing="false" onAction="#updateOrderLineitem" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #6ad2ff;" text="Update IT" textFill="WHITE">
+            <TextField fx:id="qte" layoutX="582.0" layoutY="64.0" prefHeight="26.0" prefWidth="102.0" styleClass="textfield-design" />
+            <Button fx:id="updateOrderLine" layoutX="515.0" layoutY="145.0" mnemonicParsing="false" onAction="#updateOrderLineitem" prefHeight="26.0" prefWidth="179.0" styleClass="button-design2" text="Update IT" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="515.0" layoutY="106.0" mnemonicParsing="false" onAction="#deleteOrderLine" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #e53f3c;" text="Delete this orderLine" textFill="WHITE">
+            <Button layoutX="515.0" layoutY="106.0" mnemonicParsing="false" onAction="#deleteOrderLine" prefHeight="26.0" prefWidth="179.0" styleClass="button-design1" text="Delete this orderLine" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -215,18 +215,18 @@
                </font>
             </Label>
             <Label layoutX="385.0" layoutY="31.0" prefHeight="18.0" prefWidth="90.0" text="User Name :" />
-            <TextField fx:id="nameuserTxt" disable="true" layoutX="476.0" layoutY="27.0" prefHeight="26.0" prefWidth="179.0" />
+            <TextField fx:id="nameuserTxt" disable="true" layoutX="476.0" layoutY="27.0" prefHeight="26.0" prefWidth="179.0" styleClass="textfield-design" />
             <Label layoutX="385.0" layoutY="78.0" prefHeight="18.0" prefWidth="122.0" text="User Phone :" />
-            <TextField fx:id="phoneusertxt" disable="true" layoutX="476.0" layoutY="74.0" prefHeight="26.0" prefWidth="179.0" />
+            <TextField fx:id="phoneusertxt" disable="true" layoutX="476.0" layoutY="74.0" prefHeight="26.0" prefWidth="179.0" styleClass="textfield-design" />
             <Label layoutX="23.0" layoutY="78.0" prefHeight="18.0" prefWidth="78.0" text="User Email" />
-            <TextField fx:id="emailUserTxt" disable="true" layoutX="145.0" layoutY="74.0" prefHeight="26.0" prefWidth="179.0" />
+            <TextField fx:id="emailUserTxt" disable="true" layoutX="145.0" layoutY="74.0" prefHeight="26.0" prefWidth="179.0" styleClass="textfield-design" />
             <Label layoutX="23.0" layoutY="129.0" prefHeight="18.0" prefWidth="135.0" text="Shipping Adress" />
-            <TextField fx:id="shppingtxt" layoutX="145.0" layoutY="125.0" prefHeight="26.0" prefWidth="179.0" />
-            <TextArea fx:id="NoteTxt" layoutX="476.0" layoutY="125.0" prefHeight="63.0" prefWidth="179.0" />
+            <TextField fx:id="shppingtxt" layoutX="145.0" layoutY="125.0" prefHeight="26.0" prefWidth="179.0" styleClass="textfield-design" />
+            <TextArea fx:id="NoteTxt" layoutX="476.0" layoutY="125.0" prefHeight="63.0" prefWidth="179.0" styleClass="textfield-design" />
             <Label layoutX="385.0" layoutY="129.0" prefHeight="18.0" prefWidth="122.0" text="Note : " />
          </children>
       </AnchorPane>
-      <Button fx:id="btnorderCreate" layoutX="1532.0" layoutY="47.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="38.0" prefWidth="297.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE" AnchorPane.topAnchor="70.0">
+      <Button fx:id="btnorderCreate" layoutX="1532.0" layoutY="47.0" mnemonicParsing="false" onAction="#createOrder" prefHeight="38.0" prefWidth="297.0" styleClass="button-design" text="Create Order" textFill="WHITE" AnchorPane.topAnchor="70.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>

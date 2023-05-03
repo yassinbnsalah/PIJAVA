@@ -16,19 +16,19 @@ and open the template in the editor.
     -fx-text-inner-color:#000;
 }
 .button-design{
-     -fx-background-color:linear-gradient(to bottom right,#2f466b,#662d60);
+     -fx-background-color:linear-gradient(to bottom right,#754ffe ,#662d60);
      -fx-background-radius:20px;
       -fx-cursor:hand;
      
 }
 .button-design1{
-     -fx-background-color:linear-gradient(to bottom right,#570000,#a60303);
+     -fx-background-color:linear-gradient(to bottom right,#e53f3c,#a60303);
      -fx-background-radius:20px;
       -fx-cursor:hand;
      
 }
 .button-design2{
-     -fx-background-color:linear-gradient(to bottom right,#021a63,#0230bd);
+     -fx-background-color:linear-gradient(to bottom right,#6ad2ff,#0230bd);
      -fx-background-radius:20px;
       -fx-cursor:hand;
      

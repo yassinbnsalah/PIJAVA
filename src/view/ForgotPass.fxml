@@ -20,7 +20,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button fx:id="sendmail" layoutX="446.0" layoutY="109.0" mnemonicParsing="false" onAction="#sendmail" prefHeight="22.0" prefWidth="107.0" style="-fx-background-color: #ae302e;" text="Send-Mail" textFill="WHITE">
+            <Button fx:id="sendmail" layoutX="446.0" layoutY="109.0" mnemonicParsing="false" onAction="#sendmail" prefHeight="22.0" prefWidth="107.0" styleClass="button-design2" stylesheets="@design.css" text="Send-Mail" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Button fx:id="save" layoutX="135.0" layoutY="327.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #754ffe;" text="Confirm" textFill="WHITE">
+            <Button fx:id="save" layoutX="135.0" layoutY="327.0" mnemonicParsing="false" onAction="#save" prefHeight="40.0" prefWidth="107.0" styleClass="button-design" stylesheets="@design.css" text="Confirm" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </Text>
-            <Button fx:id="back" layoutX="315.0" layoutY="327.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="107.0" style="-fx-background-color: #e53f3c;" text="Back" textFill="WHITE">
+            <Button fx:id="back" layoutX="315.0" layoutY="327.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="107.0" styleClass="button-design1" stylesheets="@design.css" text="Back" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

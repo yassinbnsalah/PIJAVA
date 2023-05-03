@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="rechercheField" prefHeight="752.0" prefWidth="1854.0" stylesheets="@../Medecin/design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Pharmacien.AddMedicammentController">
+   <children>
+      <AnchorPane layoutX="1238.0" layoutY="271.0" prefHeight="370.0" prefWidth="492.0">
+         <children>
+            <Label layoutX="84.0" layoutY="81.0" prefHeight="26.0" prefWidth="193.0" text="Nom de medicamment:" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <TextField fx:id="desctxt" layoutX="238.0" layoutY="129.0" styleClass="textfield-design" />
+            <Button fx:id="bttnajoutermedic" layoutX="268.0" layoutY="309.0" mnemonicParsing="false" onAction="#createMedicament" prefHeight="26.0" prefWidth="193.0" styleClass="button-design" text="Create new Medicamenet" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label layoutX="84.0" layoutY="129.0" prefHeight="28.0" prefWidth="139.0" text="Description:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <TextField fx:id="nomtxt" layoutX="239.0" layoutY="80.0" styleClass="textfield-design" />
+            <Text layoutX="84.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Text>
+            <TextField fx:id="qttext" layoutX="240.0" layoutY="177.0" styleClass="textfield-design" />
+            <Text layoutX="89.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix:" wrappingWidth="54.70819091796875">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Text>
+            <TextField fx:id="prixtxt" layoutX="239.0" layoutY="219.0" styleClass="textfield-design" />
+            <ButtonBar layoutX="153.0" layoutY="24.0" prefHeight="40.0" prefWidth="200.0" />
+          <Button fx:id="editbttn" layoutX="161.0" layoutY="310.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="71.0" styleClass="button-design2" text="Editer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <ButtonBar layoutX="329.0" layoutY="44.0" prefHeight="40.0" prefWidth="118.0" />
+          <Button fx:id="supbttn" layoutX="51.0" layoutY="310.0" mnemonicParsing="false" onAction="#suprimer" styleClass="button-design1" text="Supprimer" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="238.0" prefHeight="209.0" prefWidth="1226.0" style="-fx-background-color: #e3dcff;" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="119.0" layoutY="74.0" prefHeight="62.0" prefWidth="354.0" text="Medicament Liste" textFill="#18113c">
+               <font>
+                  <Font name="Arial Bold" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TableView fx:id="medicamentTableView" layoutX="351.0" layoutY="341.0" prefHeight="376.0" prefWidth="772.0" style="-fx-background-color: #e4e3e9;">
+        <columns>
+          <TableColumn fx:id="namecol" prefWidth="150.0" text="Name" />
+            <TableColumn fx:id="descCol" prefWidth="413.0" text="Description" />
+            <TableColumn fx:id="Qtcol" prefWidth="93.0" text="Quantité" />
+            <TableColumn fx:id="prixcol" minWidth="0.0" prefWidth="115.0" text="Prix" />
+        </columns>
+      </TableView>
+      <TextField fx:id="searchInput" layoutX="351.0" layoutY="271.0" prefHeight="28.0" prefWidth="772.0" promptText="Recherche" styleClass="textfield-design">
+         <font>
+            <Font name="Calibri Light" size="16.0" />
+         </font>
+      </TextField>
+      <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="14.0" prefHeight="759.0" prefWidth="238.0" style="-fx-background-color: #18113C;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/util/Images/jimmy-fallon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label fx:id="userEmaillbl" text="Jimmy Fallon" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnMedicament" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToMedicamentListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Medicament Liste" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#logout" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Sign Out" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="ClientDashboard" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToClientDashboard" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Client Dashboard" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

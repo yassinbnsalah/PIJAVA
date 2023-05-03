@@ -65,8 +65,6 @@ public class DisponibilityListeController implements Initializable {
     @FXML
     private Button btnOrders;
     @FXML
-    private Button btnSubscription;
-    @FXML
     private Button btnSignout;
     @FXML
     private Label userEmaillbl;
@@ -90,6 +88,10 @@ public class DisponibilityListeController implements Initializable {
     private Button ClientDashboard;
     @FXML
     private TextField SearchDispo;
+    @FXML
+    private Button btnRendezVous;
+    @FXML
+    private Button btnOrdennance;
 
     public DisponibilityListeController() {
 
@@ -264,9 +266,6 @@ public class DisponibilityListeController implements Initializable {
     private void handleClicks(ActionEvent event) {
     }
 
-    @FXML
-    private void GoToSubscriptionListe(ActionEvent event) {
-    }
 
     public boolean verifyHoure(String ch) {
         int ind = ch.indexOf(":");
@@ -371,5 +370,15 @@ public class DisponibilityListeController implements Initializable {
     @FXML
     private void searching(KeyEvent event) {
          TableDispo.setItems(FXCollections.observableArrayList(searchList(SearchDispo.getText(), DispoList)));
+    }
+
+    @FXML
+    private void GoToRendezVous(ActionEvent event) {
+        Routage.getInstance().GOTO(btnClient, "/view/Medecin/AddRendez-vous.fxml");
+    }
+
+    @FXML
+    private void GoToOrdennanceListe(ActionEvent event) {
+           Routage.getInstance().GOTO(btnClient, "/view/Medecin/AddOrdennance.fxml");
     }
 }

@@ -17,14 +17,14 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.banliste.BanListController">
    <children>
-      <AnchorPane layoutX="238.0" layoutY="2.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="238.0" layoutY="2.0" prefHeight="754.0" prefWidth="1339.0" style="-fx-background-color: #ffffff;" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Ban Liste" textFill="#6f0385" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="32.0">
+            <Label layoutX="71.0" layoutY="23.0" prefHeight="18.0" prefWidth="317.0" text="Ban Liste" AnchorPane.leftAnchor="71.0" AnchorPane.topAnchor="23.0">
                <font>
-                  <Font name="Arial Bold Italic" size="38.0" />
+                  <Font name="Arial Bold" size="29.0" />
                </font>
             </Label>
-            <TableView fx:id="BanTable" layoutX="24.0" layoutY="131.0" prefHeight="516.0" prefWidth="737.0" AnchorPane.bottomAnchor="105.0" AnchorPane.topAnchor="131.0">
+            <TableView fx:id="BanTable" layoutX="71.0" layoutY="122.0" prefHeight="516.0" prefWidth="737.0" AnchorPane.bottomAnchor="114.0" AnchorPane.topAnchor="122.0">
                <columns>
                   <TableColumn fx:id="ColCin" prefWidth="146.0" text="Cin" />
                   <TableColumn fx:id="ColName" minWidth="0.800018310546875" prefWidth="118.0" text="Name" />
@@ -33,11 +33,11 @@
                   <TableColumn fx:id="ColAdresse" prefWidth="128.0" text="Adresse" />
                </columns>
             </TableView>
-            <AnchorPane layoutX="796.0" layoutY="160.0" prefHeight="341.0" prefWidth="414.0" style="-fx-background-color: #f7f7f7;" AnchorPane.rightAnchor="40.0">
+            <AnchorPane layoutX="796.0" layoutY="160.0" prefHeight="365.0" prefWidth="477.0" style="-fx-background-color: #f7f7f7;" AnchorPane.rightAnchor="40.0">
                <children>
-                  <Label layoutX="74.0" layoutY="26.0" prefHeight="35.0" prefWidth="249.0" text="Banned User Details" textFill="#6f0385">
+                  <Label layoutX="33.0" layoutY="14.0" prefHeight="35.0" prefWidth="249.0" text="Banned User Details">
                      <font>
-                        <Font name="System Bold Italic" size="24.0" />
+                        <Font name="System Bold" size="23.0" />
                      </font>
                   </Label>
                   <Label layoutX="31.0" layoutY="80.0" prefHeight="18.0" prefWidth="92.0" text="Cin">
@@ -196,7 +196,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <TextField fx:id="searchfld" layoutX="20.0" layoutY="85.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="737.0" promptText="search banned user">
+            <TextField fx:id="searchfld" layoutX="67.0" layoutY="76.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="737.0" promptText="search banned user" styleClass="textfield-design">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

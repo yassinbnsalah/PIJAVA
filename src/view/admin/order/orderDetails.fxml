@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="interfaceDet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="741.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" 
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderdetailsController">
+<AnchorPane id="AnchorPane" fx:id="interfaceDet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="741.0" prefWidth="1854.0" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderdetailsController">
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -272,7 +271,7 @@
                     </font>
                 </Label>
                 <Label layoutX="249.0" layoutY="19.0" text="DT" />
-                <Label fx:id="statelbl" layoutX="30.0" layoutY="101.0" prefHeight="20.0" prefWidth="146.0" style="-fx-background-color: #d1f5ea;" text="state" textFill="#636363">
+                <Label fx:id="statelbl" layoutX="30.0" layoutY="101.0" prefHeight="20.0" prefWidth="146.0" style="-fx-background-color: #ffeeda;" text="state" textFill="#636363">
                     <font>
                         <Font name="Arial Bold" size="16.0" />
                     </font>
@@ -308,10 +307,10 @@
                         <TableColumn fx:id="productnameCol" prefWidth="828.0" style="-fx-background-color: #eaecee;" text="Product Name" />
                         <TableColumn fx:id="productPricecol" prefWidth="166.39996337890625" style="-fx-background-color: #eaecee;" text="Product Price" />
                         <TableColumn fx:id="quantitycol" prefWidth="265.5999755859375" style="-fx-background-color: #eaecee;" text="Quantity" />
-                        <TableColumn fx:id="pricelinecol" prefWidth="225.60009765625" style="-fx-background-color: #e3dcff;" text="Price Line" />
+                        <TableColumn fx:id="pricelinecol" prefWidth="225.60009765625" style="-fx-background-color: #eaecee;" text="Price Line" />
                     </columns>
                 </TableView>
-              <Button fx:id="createOrderbtn" layoutX="1213.0" layoutY="21.0" mnemonicParsing="false" onAction="#DownloadInvoice" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Download Invoice" textFill="WHITE">
+              <Button fx:id="createOrderbtn" layoutX="1213.0" layoutY="21.0" mnemonicParsing="false" onAction="#DownloadInvoice" prefHeight="26.0" prefWidth="286.0" styleClass="button-design" text="Download Invoice" textFill="WHITE">
                   <font>
                       <Font name="Arial Bold" size="18.0" />
                   </font>
@@ -321,13 +320,13 @@
         </AnchorPane>
       <AnchorPane layoutX="304.0" layoutY="62.0" prefHeight="63.0" prefWidth="1494.0" AnchorPane.bottomAnchor="616.0" AnchorPane.leftAnchor="304.0" AnchorPane.topAnchor="62.0">
          <children>
-              <ComboBox fx:id="orderStateCB" layoutX="747.0" layoutY="14.0" prefHeight="26.0" prefWidth="191.0" />
-              <Button fx:id="updateState" layoutX="993.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateStateOrder" prefHeight="34.0" prefWidth="174.0" style="-fx-background-color: #754ffe;" text="update State" textFill="WHITE">
+              <ComboBox fx:id="orderStateCB" layoutX="747.0" layoutY="14.0" prefHeight="26.0" prefWidth="191.0" styleClass="textfield-design" />
+              <Button fx:id="updateState" layoutX="993.0" layoutY="10.0" mnemonicParsing="false" onAction="#updateStateOrder" prefHeight="34.0" prefWidth="174.0" styleClass="button-design2" text="update State" textFill="WHITE">
                   <font>
                       <Font name="Arial Bold" size="18.0" />
                   </font>
               </Button>
-              <Button fx:id="backtoOrderListe" layoutX="1196.0" layoutY="10.0" mnemonicParsing="false" onAction="#GoToOrderListe" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #e53f3c;" text="Back To Order Liste" textFill="WHITE">
+              <Button fx:id="backtoOrderListe" layoutX="1196.0" layoutY="10.0" mnemonicParsing="false" onAction="#GoToOrderListe" prefHeight="26.0" prefWidth="286.0" styleClass="button-design1" text="Back To Order Liste" textFill="WHITE">
                   <font>
                       <Font name="Arial Bold" size="18.0" />
                   </font>

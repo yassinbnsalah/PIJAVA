@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderHistoryController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.OrderHistoryController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="-6.0" prefHeight="758.0" prefWidth="238.0" style="-fx-background-color: #18113c;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -144,7 +144,7 @@
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <TextField fx:id="searchtxt" layoutX="285.0" layoutY="130.0" onInputMethodTextChanged="#KeyPressedData2" onKeyTyped="#KeyPressedData" prefHeight="30.0" prefWidth="1522.0" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="130.0" />
+      <TextField fx:id="searchtxt" layoutX="285.0" layoutY="130.0" onInputMethodTextChanged="#KeyPressedData2" onKeyTyped="#KeyPressedData" prefHeight="30.0" prefWidth="1522.0" styleClass="textfield-design" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="130.0" />
       <TableView fx:id="OrderTable" layoutX="285.0" layoutY="189.0" prefHeight="556.0" prefWidth="1522.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="285.0" AnchorPane.topAnchor="189.0">
          <columns>
             <TableColumn fx:id="referenceCol" prefWidth="380.0" style="-fx-background-color: #eaecee;" text="Reference" />
@@ -155,7 +155,7 @@
             <TableColumn fx:id="stateCOl" prefWidth="226.4000244140625" style="-fx-background-color: #eaecee;" text="State" />
          </columns>
       </TableView>
-      <Button fx:id="createOrderbtn" layoutX="1517.0" layoutY="58.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" text="Create Order" textFill="WHITE" AnchorPane.rightAnchor="50.60000000000002" AnchorPane.topAnchor="58.0">
+      <Button fx:id="createOrderbtn" layoutX="1517.0" layoutY="58.0" mnemonicParsing="false" onAction="#GoToCreateOrder" prefHeight="26.0" prefWidth="286.0" style="-fx-background-color: #754ffe;" styleClass="button-design" text="Create Order" textFill="WHITE" AnchorPane.rightAnchor="50.60000000000002" AnchorPane.topAnchor="58.0">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>

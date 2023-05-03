@@ -17,11 +17,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClientListeController">
     <children>
-        <AnchorPane layoutX="238.0" layoutY="14.0" prefHeight="754.0" prefWidth="1594.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="21.59999999999991" AnchorPane.topAnchor="14.0">
+        <AnchorPane layoutX="238.0" layoutY="14.0" prefHeight="754.0" prefWidth="1594.0" style="-fx-background-color: #ffffff;" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="21.59999999999991" AnchorPane.topAnchor="14.0">
             <children>
-                <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Client Liste" textFill="#6f0385" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="32.0">
+                <Label layoutX="24.0" layoutY="32.0" prefHeight="18.0" prefWidth="317.0" text="Client Liste" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="32.0">
                     <font>
-                        <Font name="Arial Bold Italic" size="38.0" />
+                        <Font name="Arial Bold" size="26.0" />
                     </font>
                 </Label>
                 <TableView fx:id="ClientTable" layoutX="14.0" layoutY="133.0" prefHeight="516.0" prefWidth="737.0" AnchorPane.bottomAnchor="105.39999999999998" AnchorPane.topAnchor="133.0">
@@ -144,7 +144,7 @@
                         </Button>
                     </children>
                 </AnchorPane>
-                <TextField fx:id="searchfld" layoutX="14.0" layoutY="87.0" onKeyTyped="#search" prefHeight="26.0" prefWidth="642.0" promptText="search">
+                <TextField fx:id="searchfld" layoutX="14.0" layoutY="87.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="737.0" promptText="search" styleClass="textfield-design">
                     <font>
                         <Font name="System Bold" size="13.0" />
                     </font>
