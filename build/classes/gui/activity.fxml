@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="697.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ActivityController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7854f57d" height="572.0" layoutX="315.0" layoutY="128.0" smooth="false" stroke="WHITE" strokeType="INSIDE" width="835.0" />
+      <GridPane layoutX="25.0" layoutY="115.0" prefHeight="253.0" prefWidth="273.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="67.1999755859375" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.40002441406253" minWidth="10.0" prefWidth="206.40002441406253" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="141.9999755859375" minHeight="10.0" prefHeight="141.9999755859375" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="79.60001220703126" minHeight="10.0" prefHeight="26.800024414062506" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label prefHeight="18.0" prefWidth="42.0" text="Nom" />
+            <Label text="Description" GridPane.rowIndex="1" />
+            <TextField fx:id="nomField" promptText="Nom de l'activité" GridPane.columnIndex="1" />
+            <TextArea fx:id="descriptionArea" prefHeight="109.0" prefWidth="192.0" promptText="Décrivez l'activité" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addActivity" prefHeight="26.0" prefWidth="97.0" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <TableView fx:id="tableView" blendMode="DARKEN" layoutX="335.0" layoutY="198.0" prefHeight="408.0" prefWidth="794.0">
+        <columns>
+          <TableColumn fx:id="nomColumn" prefWidth="215.20001220703125" text="nom" />
+          <TableColumn fx:id="descriptionColumn" prefWidth="394.4000122070313" text="description" />
+        </columns>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </TableView>
+      <Button fx:id="deleteButton" layoutX="745.0" layoutY="619.0" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="26.0" prefWidth="98.0" text="Supprimer" />
+      <Button fx:id="updateButton" layoutX="624.0" layoutY="619.0" mnemonicParsing="false" onAction="#updateActivity" prefHeight="26.0" prefWidth="98.0" text="Modifier" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+      <Button fx:id="ActualiserButton" layoutX="94.0" layoutY="375.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="98.0" text="Actualiser" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+      <TextField fx:id="tf_search" layoutX="513.0" layoutY="149.0" prefHeight="26.0" prefWidth="242.0" promptText="Rechercher une activité par nom" />
+      <Button fx:id="bt_search" layoutX="778.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="144.0" text="Rechercher" />
+      <ImageView fitHeight="103.0" fitWidth="98.0" layoutX="122.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../Downloads/325597153_1995060900699281_1749393037698724411_n.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="600.0" layoutY="51.0" prefHeight="47.0" prefWidth="314.0" text="Gestion des activités" textFill="#7854f5">
+         <font>
+            <Font name="Trebuchet MS Bold" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

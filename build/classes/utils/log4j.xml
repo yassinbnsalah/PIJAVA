@@ -1,0 +1,38 @@
+<project name="example" default="run">
+    <path id="classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <taskdef name="run" classname="example.Runner">
+        <classpath refid="classpath"/>
+    </taskdef>
+
+    <target name="run">
+        <java classname="example.Runner" fork="true">
+            <classpath refid="classpath"/>
+        </java>
+    </target>
+
+    <target name="init">
+        <mkdir dir="logs"/>
+
+        <property name="log4j.configuration" value="file:${basedir}/log4j.xml"/>
+        <property name="log4j.log.dir" value="${basedir}/logs"/>
+
+        <pathconvert property="log4j.classpath" refid="classpath">
+            <path prefix="lib/" />
+        </pathconvert>
+
+        <property name="log4j.classpath" value="${basedir}/${log4j.classpath}"/>
+
+        <echo message="Log4j classpath: ${log4j.classpath}" />
+
+        <taskdef name="java" classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+            <classpath>
+                <pathelement location="${log4j.classpath}"/>
+            </classpath>
+        </taskdef>
+    </target>
+</project>

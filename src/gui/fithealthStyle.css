@@ -1,0 +1,23 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 avr. 2023, 08:27:47
+    Author     : djoum
+*/
+
+/* Modifie la couleur de l'arrière-plan de la fenêtre principale */
+.root {
+    -fx-background-color: #ffffff;
+}
+
+/* Modifie la couleur de l'arrière-plan d'un composant */
+.barreHaut {
+    -fx-background-color: #7854f5;
+}
+
+.btn_ajouter {
+    -fx-background-color: #7854f5;
+}
