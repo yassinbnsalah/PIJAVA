@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -26,6 +27,8 @@ import javafx.scene.layout.VBox;
 import models.Activity;
 import services.CRUD_Activity;
 import util.MyConnection;
+import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -62,6 +65,14 @@ public class ActivityController  {
     private TextField tf_search;
     @FXML
     private Button bt_search;
+    @FXML
+    private Button btnActivity;
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnSignout;
+    @FXML
+    private Button btnClientDash;
     
     @FXML
     private void handleSearch() {
@@ -175,6 +186,27 @@ public class ActivityController  {
     private void clearFields() {
     nomField.setText("");
     descriptionArea.setText("");
+    }
+
+    @FXML
+    private void GoToActivityListe(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(addButton, "/view/coach/seance.fxml");
+    }
+
+    @FXML
+    private void handleLogout(ActionEvent event) {
+         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(addButton, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void GoToClientDash(ActionEvent event) {
+         Routage.getInstance().GOTO(addButton, "/view/client/order/orderHistory.fxml");
     }
     
 }

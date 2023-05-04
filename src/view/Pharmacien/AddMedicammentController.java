@@ -23,6 +23,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.Medicamment;
 import services.MedicamantService;
+import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -274,10 +276,13 @@ public class AddMedicammentController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) {
+         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
     @FXML
     private void GoToClientDashboard(ActionEvent event) {
+             Routage.getInstance().GOTO(btnSignout, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
     

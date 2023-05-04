@@ -116,11 +116,16 @@ public class SubscriptionhistoryController implements Initializable {
 
     @FXML
     private void GoToadminDash(ActionEvent event) {
-        if( SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
-                 Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
-        }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_MEDCIN\"]")){
-             Routage.getInstance().GOTO(adminDash, "/view/Medecin/disponibilityListe.fxml");
-        }
+          if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
+                }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_MEDCIN\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/Medecin/disponibilityListe.fxml");
+                }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_PHARMACIEN\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/Pharmacien/AddMedicamment.fxml");
+                }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_COACH\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/coach/activity.fxml");
+                }
+        
     
     }
 

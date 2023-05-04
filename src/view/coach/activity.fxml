@@ -1,74 +1,162 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane"  prefHeight="752.0" prefWidth="1854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.coach.ActivityController">
+<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" stylesheets="@../Ticket/design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.coach.ActivityController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7854f57d" height="572.0" layoutX="315.0" layoutY="128.0" smooth="false" stroke="WHITE" strokeType="INSIDE" width="835.0" />
-      <GridPane layoutX="25.0" layoutY="115.0" prefHeight="253.0" prefWidth="273.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="67.1999755859375" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.40002441406253" minWidth="10.0" prefWidth="206.40002441406253" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="141.9999755859375" minHeight="10.0" prefHeight="141.9999755859375" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="79.60001220703126" minHeight="10.0" prefHeight="26.800024414062506" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Label prefHeight="18.0" prefWidth="42.0" text="Nom" />
-            <Label text="Description" GridPane.rowIndex="1" />
-            <TextField fx:id="nomField" promptText="Nom de l'activité" GridPane.columnIndex="1" />
-            <TextArea fx:id="descriptionArea" prefHeight="109.0" prefWidth="192.0" promptText="Décrivez l'activité" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#addActivity" prefHeight="26.0" prefWidth="97.0" text="Ajouter" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-         </children>
-      </GridPane>
-      <TableView fx:id="tableView" blendMode="DARKEN" layoutX="335.0" layoutY="198.0" prefHeight="408.0" prefWidth="794.0">
+      <TableView fx:id="tableView" blendMode="LIGHTEN" layoutX="335.0" layoutY="198.0" prefHeight="408.0" prefWidth="794.0">
         <columns>
-          <TableColumn fx:id="nomColumn" prefWidth="215.20001220703125" text="nom" />
+          <TableColumn fx:id="nomColumn" prefWidth="215.20001220703125" text="name" />
           <TableColumn fx:id="descriptionColumn" prefWidth="394.4000122070313" text="description" />
         </columns>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant />
-               </light>
-            </Lighting>
-         </effect>
       </TableView>
-      <Button fx:id="deleteButton" layoutX="745.0" layoutY="619.0" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="26.0" prefWidth="98.0" text="Supprimer" />
-      <Button fx:id="updateButton" layoutX="624.0" layoutY="619.0" mnemonicParsing="false" onAction="#updateActivity" prefHeight="26.0" prefWidth="98.0" text="Modifier" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
-      <Button fx:id="ActualiserButton" layoutX="94.0" layoutY="375.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="98.0" text="Actualiser" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
-      <TextField fx:id="tf_search" layoutX="513.0" layoutY="149.0" prefHeight="26.0" prefWidth="242.0" promptText="Rechercher une activité par nom" />
-      <Button fx:id="bt_search" layoutX="778.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="144.0" text="Rechercher" />
-      <ImageView fitHeight="103.0" fitWidth="98.0" layoutX="122.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../Downloads/325597153_1995060900699281_1749393037698724411_n.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="600.0" layoutY="51.0" prefHeight="47.0" prefWidth="314.0" text="Gestion des activités" textFill="#7854f5">
+      <Button fx:id="deleteButton" layoutX="985.0" layoutY="632.0" mnemonicParsing="false" onAction="#deleteActivity" prefHeight="27.0" prefWidth="108.0" styleClass="button-design1" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="updateButton" layoutX="833.0" layoutY="632.0" mnemonicParsing="false" onAction="#updateActivity" prefHeight="27.0" prefWidth="117.0" styleClass="button-design2" text="Modifier" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Button>
+      <TextField fx:id="tf_search" layoutX="335.0" layoutY="151.0" prefHeight="26.0" prefWidth="607.0" promptText="Rechercher une activité par nom" styleClass="textfield-design" />
+      <Button fx:id="bt_search" layoutX="985.0" layoutY="149.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="144.0" style="-fx-background-color: #79758f;" styleClass="button-design" text="Search" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label layoutX="315.0" layoutY="50.0" prefHeight="47.0" prefWidth="314.0" text="Activity Managment" textFill="#7854f5">
          <font>
             <Font name="Trebuchet MS Bold" size="32.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="1395.0" layoutY="149.0" prefHeight="421.0" prefWidth="392.0" style="-fx-background-color: #e4e3e9;">
+         <children>
+            <TextArea fx:id="descriptionArea" layoutX="142.0" layoutY="162.0" prefHeight="109.0" prefWidth="192.0" promptText="Décrivez l'activité" styleClass="textfield-design" />
+            <Label layoutX="26.0" layoutY="162.0" text="Description">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <TextField fx:id="nomField" layoutX="142.0" layoutY="109.0" promptText="Nom de l'activité" styleClass="textfield-design" />
+            <Label layoutX="26.0" layoutY="113.0" prefHeight="18.0" prefWidth="42.0" text="Name">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Button fx:id="addButton" layoutX="214.0" layoutY="349.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="31.0" prefWidth="126.0" styleClass="button-design" text="Ajouter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="ActualiserButton" layoutX="40.0" layoutY="349.0" mnemonicParsing="false" onAction="#refresh" prefHeight="26.0" prefWidth="126.0" styleClass="button-design1" text="Actualiser" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="35.0" layoutY="10.0" prefHeight="47.0" prefWidth="314.0" text="Create New Activity" textFill="#7854f5">
+               <font>
+                  <Font name="Trebuchet MS Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/util/Images/jimmy-fallon.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="50.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label text="Jimmy Fallon" textFill="#3b3b3b">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btnActivity" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToActivityListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Activity" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPharmacien" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Pharmacien" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Seance" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Sign Out">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnClientDash" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToClientDash" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="ClientDashboard" textFill="#000000">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/util/Images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <font>
+                  <Font name="Arial" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

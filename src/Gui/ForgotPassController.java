@@ -135,7 +135,7 @@ public class ForgotPassController implements Initializable {
             m.sendEmail(U.getEmail(), finalcontant);
             Stage stage = new Stage();
             stage.setTitle("Login");
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/Gui/Login.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/LoginPage.fxml"))));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.show();

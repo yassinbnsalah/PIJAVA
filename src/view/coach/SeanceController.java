@@ -5,7 +5,6 @@
  */
 package view.coach;
 
-import services.ExcelExporter;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.sql.Connection;
@@ -44,6 +43,8 @@ import services.CsvExporter;
 import util.MyConnection;
 import java.io.File;
 import javafx.scene.layout.VBox;
+import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -103,7 +104,16 @@ public class SeanceController implements Initializable {
     @FXML
     private Button bt_exp;
     private Connection connection;
+    @FXML
+    private Button btn_excel;
+    @FXML
+    private Button btnActivity;
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnSignout;
 
+    @FXML
     public void handleExportSeances(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export Seances");
@@ -135,7 +145,7 @@ public class SeanceController implements Initializable {
                 filename += ".xlsx";
             }
             List<Seance> seances = crud.getAllSeances();
-            ExcelExporter.exportSeancesToExcel(seances, filename);
+          //  ExcelExporter.exportSeancesToExcel(seances, filename);
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Exportation terminée");
             alert.setHeaderText(null);
@@ -321,6 +331,21 @@ public class SeanceController implements Initializable {
         tf_duree.setText("");
         cb_niveau.setValue("");
         dp_date.setValue(null);
+    }
+
+    @FXML
+    private void GoToActivityListe(ActionEvent event) {
+        Routage.getInstance().GOTO(bt_act, "/view/coach/activity.fxml");
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleLogout(ActionEvent event) {
+         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(bt_act, "/view/LoginPage.fxml");
     }
 
 }
