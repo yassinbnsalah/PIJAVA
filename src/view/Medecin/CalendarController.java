@@ -221,7 +221,7 @@ public class CalendarController implements Initializable {
     @FXML
     private void GoToRendezVous(ActionEvent event) {
         
-         Routage.getInstance().GOTO(RendezVousbtn, "/view/Medecin/AddRendezvous.fxml");
+         Routage.getInstance().GOTO(RendezVousbtn, "/view/Medecin/AddRendez-vous.fxml");
     }
 
     @FXML

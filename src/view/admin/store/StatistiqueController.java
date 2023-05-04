@@ -38,7 +38,7 @@ import util.MyConnection;
 
 public class StatistiqueController implements Initializable {
 
-    @FXML
+ @FXML
     private BarChart<String, Number> barChart;
     @FXML
     private PieChart pie;
@@ -83,14 +83,14 @@ public class StatistiqueController implements Initializable {
             dataset.setValue(produit.getStat(), "Nombre d'achats", produit.getStat2());
         }
 
-        JFreeChart chart = ChartFactory.createBarChart("Les 10 livres les plus achetÃ©s", "name", "Nombre d'achats", dataset);
+        JFreeChart chart = ChartFactory.createBarChart("Les 10 livres les plus achetÃ©s", "sellprice", "Nombre d'achats", dataset);
 
         javafx.scene.chart.Axis<String> xAxis = barChart.getXAxis();
         javafx.scene.chart.Axis<Number> yAxis = barChart.getYAxis();
-        xAxis.setLabel("nom");
+        xAxis.setLabel("prix de vente");
         xAxis.setTickLabelsVisible(false);
         barChart.getXAxis().setTickLabelRotation(90);
-        yAxis.setLabel("Nombre de produit par nom ");
+        yAxis.setLabel("Nombre de produit par prix de vente ");
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         for (Object columnKey : dataset.getColumnKeys()) {
@@ -140,7 +140,7 @@ public class StatistiqueController implements Initializable {
     
        java.sql.Connection cnx;
      cnx = MyConnection.getInstance().getCnx();
-          String sql = "SELECT COUNT(*), name FROM produit GROUP BY name ";
+          String sql = "SELECT COUNT(*), sellprice FROM produit GROUP BY sellprice ";
     try {
        
         PreparedStatement st = (PreparedStatement) cnx.prepareStatement(sql);
@@ -179,5 +179,4 @@ public class StatistiqueController implements Initializable {
         getChildren().setAll(valueLabel, dataLabel);
     }
      }
-    
 }
