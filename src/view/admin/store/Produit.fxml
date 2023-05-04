@@ -135,7 +135,7 @@
                         <Insets left="50.0" />
                     </padding>
                     <font>
-                        <Font name="Arial Bold" size="13.0" />
+                        <Font name="Arial" size="13.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
@@ -150,7 +150,7 @@
                         <Insets left="50.0" />
                     </padding>
                     <font>
-                        <Font name="Arial" size="13.0" />
+                        <Font name="Arial Bold" size="13.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
@@ -233,7 +233,7 @@
                 </Button>
             </children>
         </VBox>
-        <AnchorPane layoutX="238.0" prefHeight="752.0" prefWidth="1619.0" style="-fx-background-color: #f5f4f8;" stylesheets="@../order/design.css">
+        <AnchorPane layoutX="248.0" prefHeight="752.0" prefWidth="1619.0" style="-fx-background-color: #f5f4f8;" stylesheets="@../order/design.css">
             <children>
                 <TableView fx:id="tab" layoutX="77.0" layoutY="209.0" prefHeight="436.0" prefWidth="876.0" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="209.0">
                     <columns>
@@ -331,6 +331,11 @@
                 <AnchorPane fx:id="RatingAna" layoutX="129.0" layoutY="623.0" prefHeight="81.0" prefWidth="386.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="129.0">
                     <Rating fx:id="stars" layoutX="220.0" layoutY="433.0" onMouseClicked="#Rate" />
                 </AnchorPane>
+            <Button fx:id="statistique" layoutX="703.0" layoutY="65.0" mnemonicParsing="false" onAction="#GoToState" prefHeight="25.0" prefWidth="214.0" style="-fx-background-color: #c28135;" styleClass="button-design" text="Statistique" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
     </children>

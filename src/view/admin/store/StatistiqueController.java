@@ -6,8 +6,6 @@
 package view.admin.store;
 
 
-import Entity.Produit;
-import Entity.stat;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,7 +25,11 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-
+import models.stat;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
+import models.stat ; 
 import services.ServiceProduit;
 import services.ServiceCategory;
 import util.MyConnection;

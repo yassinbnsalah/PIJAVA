@@ -314,6 +314,7 @@ public class SubscriptionListeController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
+        Routage.getInstance().GOTO(btnsub, "/view/admin/store/Produit.fxml");
     }
 
     private List<Subscription> searchList(String searchWords, List<Subscription> listOfStrings) {

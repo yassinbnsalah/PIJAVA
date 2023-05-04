@@ -55,6 +55,7 @@ import org.controlsfx.control.Rating;
 
 import services.ServiceProduit;
 import util.MyConnection;
+import util.Routage;
 
 
 /**
@@ -134,6 +135,8 @@ public class ProduitController implements Initializable {
     private Button clDash;
     @FXML
     private AnchorPane RatingAna;
+    @FXML
+    private Button statistique;
 
     public ProduitController() {
         Connection cnx = MyConnection.getInstance().getCnx();
@@ -459,6 +462,11 @@ public class ProduitController implements Initializable {
 
     @FXML
     private void GoToClientDash(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToState(ActionEvent event) {
+        Routage.getInstance().GOTO(btnBan, "/view/admin/store/Statistique.fxml");
     }
 
 }
