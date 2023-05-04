@@ -240,13 +240,12 @@ public class OrderdetailsController implements Initializable {
 
     
 
-    private void logoutIng(ActionEvent event) {
-         SessionManager.getInstance().Logout();
-        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
-    }
+   
 
     @FXML
     private void LogoutIng(ActionEvent event) {
+        SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
     }
 
 

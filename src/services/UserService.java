@@ -70,8 +70,8 @@ public class UserService {
 
     public void AddUser(User user) {
         try {
-            String req = "INSERT INTO `user`(`cin`, `name`, `numero`, `email`, `adresse`, `password`)"
-                    + " VALUES (?,?,?,?,?,?)";
+            String req = "INSERT INTO `user`(`cin`, `name`, `numero`, `email`, `adresse`, `password`,`roles`)"
+                    + " VALUES (?,?,?,?,?,?,?)";
             PreparedStatement pst = cnx2.prepareStatement(req);
             pst.setString(1, user.getCIN());
             pst.setString(2, user.getName());
@@ -79,6 +79,7 @@ public class UserService {
             pst.setString(4, user.getEmail());
             pst.setString(5, user.getAdresse());
             pst.setString(6, user.getPassword());
+            pst.setString(7, "[\"ROLE_CLIENT\"]");
             pst.executeUpdate();
             System.out.println("Client created");
         } catch (SQLException ex) {

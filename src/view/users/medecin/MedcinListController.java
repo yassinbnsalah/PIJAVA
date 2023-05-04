@@ -330,23 +330,17 @@ ObservableList<User> MedcinList = FXCollections.observableArrayList();
 
     @FXML
     private void Ticket(ActionEvent event) throws IOException {
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/TicketListe.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+              Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) throws IOException {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/CoachList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+          Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) throws IOException {
-           FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gui/BanList.fxml"));
-            Parent root = loader.load();
-            btnTicket.getScene().setRoot(root);
+           Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
     }
 
     @FXML
