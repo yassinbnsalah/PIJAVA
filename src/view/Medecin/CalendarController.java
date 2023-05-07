@@ -48,8 +48,6 @@ public class CalendarController implements Initializable {
     @FXML
     private Label userEmaillbl;
     @FXML
-    private Button btnClient;
-    @FXML
     private Button btnOrders;
     @FXML
     private Button RendezVousbtn;
@@ -62,6 +60,7 @@ public class CalendarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
         rendezvousService = new RendezvousService();
         userService = new UserService();
         ObservableList<User> list = FXCollections.observableArrayList();
@@ -210,13 +209,6 @@ public class CalendarController implements Initializable {
         drawCalendar();
     }
 
-    @FXML
-    private void GoToClientListe(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void GoToRendezVous(ActionEvent event) {
@@ -226,7 +218,7 @@ public class CalendarController implements Initializable {
 
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
-                     Routage.getInstance().GOTO(btnSignout, "/view/Medecin/AddOrdennance.fxml");
+                     Routage.getInstance().GOTO(btnOrdennance, "/view/Medecin/AddOrdennance.fxml");
     }
 
     @FXML
@@ -238,5 +230,10 @@ public class CalendarController implements Initializable {
     @FXML
     private void GoToClientDashboard(ActionEvent event) {
          Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
+    }
+
+    @FXML
+    private void Availability(ActionEvent event) {
+         Routage.getInstance().GOTO(btnOrders, "/view/Medecin/Calendar.fxml");
     }
 }

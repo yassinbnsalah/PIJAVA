@@ -62,8 +62,6 @@ public class AddLigneOrdonanceController implements Initializable {
     @FXML
     private Label userEmaillbl;
     @FXML
-    private Button btnClient;
-    @FXML
     private Button btnOrders;
     @FXML
     private Button btnSignout;
@@ -79,6 +77,7 @@ public class AddLigneOrdonanceController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
         medicamantService = new MedicamantService();
         ordennanceLigneService = new OrdennanceLigneService();
 
@@ -178,9 +177,6 @@ public class AddLigneOrdonanceController implements Initializable {
         return true;
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
 
     @FXML
@@ -195,17 +191,19 @@ public class AddLigneOrdonanceController implements Initializable {
         Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
-    @FXML
-    private void GoToClientListe(ActionEvent event) {
-    }
 
     @FXML
     private void GoToRendezVous(ActionEvent event) {
-        Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddRendezvous.fxml");
+        Routage.getInstance().GOTO(RendezVousbtn, "/view/Medecin/AddRendezvous.fxml");
     }
 
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
-             Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddOrdennance.fxml");
+             Routage.getInstance().GOTO(btnOrdennance, "/view/Medecin/AddOrdennance.fxml");
+    }
+
+    @FXML
+    private void Availability(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/Medecin/disponibilityListe.fxml");
     }
 }

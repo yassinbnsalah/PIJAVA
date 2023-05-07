@@ -83,8 +83,6 @@ public class AddRendezvousController implements Initializable {
     @FXML
     private Label userEmaillbl;
     @FXML
-    private Button btnClient;
-    @FXML
     private Button btnOrders;
     @FXML
     private Button btnSignout;
@@ -102,6 +100,7 @@ public class AddRendezvousController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
         rendezvousService = new RendezvousService();
         userService = new UserService();
         LoadData();
@@ -307,9 +306,6 @@ public class AddRendezvousController implements Initializable {
         rv = null;
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void logout(ActionEvent event) {
@@ -317,29 +313,32 @@ public class AddRendezvousController implements Initializable {
         Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
-    @FXML
+  
+
+  @FXML
     private void GoToClientDashboard(ActionEvent event) {
         Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
-    }
-
-    @FXML
-    private void GoToClientListe(ActionEvent event) {
 
     }
-
     @FXML
     private void GoToRendezVous(ActionEvent event) {
-        Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddRendezvous.fxml");
+        Routage.getInstance().GOTO(btnRendezVous, "/view/Medecin/AddRendezvous.fxml");
     }
 
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
-           Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddOrdennance.fxml");
+           Routage.getInstance().GOTO(btnOrdennance, "/view/Medecin/AddOrdennance.fxml");
+    }
+
+  
+
+    @FXML
+    private void Availability(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/Medecin/Calendar.fxml");
     }
 
     @FXML
     private void DisplayCalender(ActionEvent event) {
-        Routage.getInstance().GOTO(supbttn, "/view/Medecin/Calendar.fxml");
     }
 
 }

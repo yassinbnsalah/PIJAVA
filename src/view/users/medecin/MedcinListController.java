@@ -5,12 +5,15 @@
  */
 package view.users.medecin;
 
+import controllers.OrderListeController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -125,6 +128,7 @@ ObservableList<User> MedcinList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+         userName.setText(SessionManager.getInstance().getUser().getEmail());
          this.refreshTable();
     }    
     private void refreshTable() {
@@ -322,8 +326,13 @@ ObservableList<User> MedcinList = FXCollections.observableArrayList();
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-          Routage rtg = Routage.getInstance();
-        rtg.GOTO(btnSubscription, "/view/client/subscription/subscriptionhistory.fxml");
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

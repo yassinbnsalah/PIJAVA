@@ -33,7 +33,7 @@
                         <Insets bottom="20.0" />
                     </VBox.margin>
                 </Label>
-                <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
+                <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#client" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -123,7 +123,7 @@
                         <Font name="Arial" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Subscriptions" textFill="#000000">
+                <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Subscription" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Subscriptions" textFill="#000000">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -138,7 +138,7 @@
                         <Font name="Arial" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
+                <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#product" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -153,7 +153,7 @@
                         <Font name="Arial Bold" size="13.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
+                <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#category" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
                     <graphic>
                         <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                             <image>

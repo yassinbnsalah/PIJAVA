@@ -52,10 +52,6 @@ public class OrderHistoryController implements Initializable {
     @FXML
     private Button btnSubscription;
     @FXML
-    private Button btnProduct;
-    @FXML
-    private Button btnCategory;
-    @FXML
     private Button btnTicket;
     @FXML
     private Button btnSignout;
@@ -137,18 +133,17 @@ public class OrderHistoryController implements Initializable {
         });
     }
 
-    @FXML
+     @FXML
     private void GoToOrderListe(ActionEvent event) {
+        Routage.getInstance().GOTO(btnOrders, "/view/client/order/orderHistory.fxml");
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
+
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
         Routage rtg = Routage.getInstance();
-        rtg.GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
+        rtg.GOTO(btnSubscription, "/view/client/subscription/subscriptionhistory.fxml");
 
     }
 
@@ -190,7 +185,12 @@ public class OrderHistoryController implements Initializable {
     @FXML
     private void logout(ActionEvent event) {
         SessionManager.getInstance().Logout();
-        Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void ticket(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketCreate.fxml");
     }
 
 }

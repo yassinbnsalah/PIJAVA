@@ -79,6 +79,7 @@ public class AddMedicammentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
         medicammentService = new MedicamantService();
         LoadData();
     }

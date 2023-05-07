@@ -28,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -93,6 +94,8 @@ public class TicketListeController implements Initializable {
     private TextField txtTitle;
     @FXML
     private Button clDash;
+    @FXML
+    private Label userName;
 
     public int getIDToUpdate() {
         return IDToUpdate;
@@ -124,7 +127,7 @@ public class TicketListeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-   
+   userName.setText(SessionManager.getInstance().getUser().getEmail());
         this.refreshTable();
     }
 

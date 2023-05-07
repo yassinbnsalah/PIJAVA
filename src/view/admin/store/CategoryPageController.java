@@ -107,6 +107,7 @@ public class CategoryPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
         // TODO
         table();
         

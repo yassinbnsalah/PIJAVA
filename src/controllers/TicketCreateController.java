@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -42,10 +43,6 @@ public class TicketCreateController implements Initializable {
     @FXML
     private Button btnSubscription;
     @FXML
-    private Button btnProduct;
-    @FXML
-    private Button btnCategory;
-    @FXML
     private Button btnTicket;
     @FXML
     private Button btnSignout;
@@ -57,6 +54,10 @@ public class TicketCreateController implements Initializable {
     private Button btnCreate;
     public static final String ACCOUNT_SID = "AC861f71d7aac3551d77d339a99370346e";
     public static final String AUTH_TOKEN = "9977080a69c468ee2434850e50eb58c5";
+    @FXML
+    private Button adminDash;
+    @FXML
+    private Label username;
 
    
 
@@ -67,17 +68,14 @@ public class TicketCreateController implements Initializable {
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-          Routage.getInstance().GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
+          Routage.getInstance().GOTO(btnSubscription, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void Logout(ActionEvent event) {
         SessionManager.getInstance().Logout();
-        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
 
@@ -126,7 +124,26 @@ public class TicketCreateController implements Initializable {
      @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        username.setText(SessionManager.getInstance().getUser().getEmail());
       
+    }
+
+
+    @FXML
+    private void ticketCreate(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToadminDash(ActionEvent event) {
+           if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/admin/subscription/subscriptionListe.fxml");
+                }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_MEDCIN\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/Medecin/disponibilityListe.fxml");
+                }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_PHARMACIEN\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/Pharmacien/AddMedicamment.fxml");
+                }else if(SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_COACH\"]")){
+                     Routage.getInstance().GOTO(adminDash, "/view/coach/activity.fxml");
+                }
     }
     
 }

@@ -52,10 +52,6 @@ public class CreateOrderController implements Initializable {
     @FXML
     private Button btnSubscription;
     @FXML
-    private Button btnProduct;
-    @FXML
-    private Button btnCategory;
-    @FXML
     private Button btnTicket;
     @FXML
     private Button btnSignout;
@@ -196,6 +192,7 @@ public class CreateOrderController implements Initializable {
     @FXML
     private void GoToOrderListe(ActionEvent event) {
         Routage.getInstance().GOTO(btnOrders, "/view/client/order/orderHistory.fxml");
+        
     }
 
     @FXML
@@ -203,9 +200,6 @@ public class CreateOrderController implements Initializable {
          Routage.getInstance().GOTO(btnOrders, "/view/client/subscription/subscriptionhistory.fxml");
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void updateOrderLineitem(ActionEvent event) {

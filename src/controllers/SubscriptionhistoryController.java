@@ -39,10 +39,6 @@ public class SubscriptionhistoryController implements Initializable {
     @FXML
     private Button btnSubscription;
     @FXML
-    private Button btnProduct;
-    @FXML
-    private Button btnCategory;
-    @FXML
     private Button btnTicket;
     @FXML
     private Button btnSignout;
@@ -110,9 +106,6 @@ public class SubscriptionhistoryController implements Initializable {
         rtg.GOTO(btnOrders, "/view/client/order/orderHistory.fxml");
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void GoToadminDash(ActionEvent event) {
@@ -132,7 +125,7 @@ public class SubscriptionhistoryController implements Initializable {
     @FXML
     private void logout(ActionEvent event) {
         SessionManager.getInstance().Logout();
-        Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
     @FXML
@@ -153,5 +146,15 @@ public class SubscriptionhistoryController implements Initializable {
                     -> input.getDatesub().toString().toLowerCase().contains(word.toLowerCase()))||searchWordsArray.stream().allMatch(word
                     -> input.getDateExpire().toString().toLowerCase().contains(word.toLowerCase()))  ;
         }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void subscription(ActionEvent event) {
+    }
+
+
+    @FXML
+    private void ticketCreate(ActionEvent event) {
+         Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketCreate.fxml");
     }
 }

@@ -60,7 +60,6 @@ public class DisponibilityListeController implements Initializable {
 
     @FXML
     private AnchorPane updateForm;
-    @FXML
     private Button btnClient;
     @FXML
     private Button btnOrders;
@@ -262,9 +261,6 @@ public class DisponibilityListeController implements Initializable {
         updateForm.setVisible(false);
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
 
     public boolean verifyHoure(String ch) {
@@ -374,11 +370,16 @@ public class DisponibilityListeController implements Initializable {
 
     @FXML
     private void GoToRendezVous(ActionEvent event) {
-        Routage.getInstance().GOTO(btnClient, "/view/Medecin/AddRendez-vous.fxml");
+        Routage.getInstance().GOTO(btnRendezVous, "/view/Medecin/AddRendez-vous.fxml");
     }
 
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
-           Routage.getInstance().GOTO(btnClient, "/view/Medecin/AddOrdennance.fxml");
+           Routage.getInstance().GOTO(btnOrdennance, "/view/Medecin/AddOrdennance.fxml");
+    }
+
+    @FXML
+    private void Availability(ActionEvent event) {
+         Routage.getInstance().GOTO(btnOrders, "/view/Medecin/Calendar.fxml");
     }
 }
