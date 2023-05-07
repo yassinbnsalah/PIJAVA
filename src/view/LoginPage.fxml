@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="791.0" prefWidth="1688.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
     <children>
         <AnchorPane prefHeight="752.0" prefWidth="914.0" style="-fx-background-color: #e3dcff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label alignment="CENTER" layoutX="190.0" layoutY="155.0" prefHeight="48.0" prefWidth="434.0" text="FITHAELTH CENTER" textFill="#79758f">
+                <Label alignment="CENTER" layoutX="190.0" layoutY="155.0" prefHeight="48.0" prefWidth="434.0" text="FITHEALTH CENTER" textFill="#79758f">
                     <font>
                         <Font name="Arial Bold" size="39.0" />
                     </font>
@@ -32,7 +32,7 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Pane layoutX="1156.0" layoutY="278.0" prefHeight="433.0" prefWidth="490.0" style="-fx-background-color: #e4e3e9;" AnchorPane.topAnchor="278.0">
+        <Pane layoutX="1037.0" layoutY="269.0" prefHeight="433.0" prefWidth="490.0" style="-fx-background-color: #e4e3e9;" AnchorPane.topAnchor="269.0">
             <children>
                 <TextField fx:id="txtUsername" layoutX="108.0" layoutY="161.0" prefHeight="34.0" prefWidth="275.0" promptText="username or email" styleClass="textfield-design" stylesheets="@design.css" />
                 <PasswordField fx:id="txtPassword" layoutX="108.0" layoutY="235.0" prefHeight="34.0" prefWidth="275.0" promptText="password" styleClass="textfield-design" stylesheets="@design.css" />
@@ -50,12 +50,12 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="29.0" layoutY="321.0" onAction="#openForget" styleClass="hypertext-design" stylesheets="@design.css" text="Mot de passe oublié ?">
+            <Hyperlink layoutX="29.0" layoutY="321.0" onAction="#openForget" styleClass="hypertext-design" stylesheets="@design.css" text="Forgot your password ?">
                <font>
                   <Font name="Microsoft Sans Serif" size="15.0" />
                </font>
             </Hyperlink>
-            <Hyperlink fx:id="create_acc" layoutX="29.0" layoutY="349.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Create new account ?">
+            <Hyperlink fx:id="create_acc" layoutX="29.0" layoutY="349.0" onAction="#changeForm" styleClass="hypertext-design" stylesheets="@design.css" text="Create new account?">
                <font>
                   <Font name="Microsoft Sans Serif" size="15.0" />
                </font>
@@ -72,7 +72,7 @@
             </Label>
             </children>
         </Pane>
-      <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="1252.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="383.0" fitWidth="275.0" layoutX="1166.0" layoutY="-37.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../util/Images/logoJavaFX.png" />
          </image>

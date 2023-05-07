@@ -56,6 +56,7 @@ import org.controlsfx.control.Rating;
 import services.ServiceProduit;
 import util.MyConnection;
 import util.Routage;
+import util.SessionManager;
 
 
 /**
@@ -430,43 +431,64 @@ public class ProduitController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
+                  Routage.getInstance().GOTO(btnClient, "/view/users/client/ClientListe.fxml");
+                  Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
+
     }
+    
 
     @FXML
     private void Pharmacien(ActionEvent event) {
+                Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
+
     }
 
     @FXML
     private void medcin(ActionEvent event) {
+                Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
+
     }
 
     @FXML
     private void coach(ActionEvent event) {
+                Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
+
+        
     }
 
     @FXML
     private void GoToOrderListe(ActionEvent event) {
+           Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
 
     @FXML
     private void Ticket(ActionEvent event) {
+        Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) {
+                Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
+
     }
 
     @FXML
     private void signout(ActionEvent event) {
+         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
     @FXML
     private void GoToClientDash(ActionEvent event) {
+                Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
+
     }
 
     @FXML
     private void GoToState(ActionEvent event) {
-        Routage.getInstance().GOTO(btnBan, "/view/admin/store/Statistique.fxml");
+        Routage.getInstance().GOTO(statistique, "/view/admin/store/Statistique.fxml");
     }
 
 }

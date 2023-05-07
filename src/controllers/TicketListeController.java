@@ -89,12 +89,10 @@ public class TicketListeController implements Initializable {
     private AnchorPane ticketDetaillbl;
     @FXML
     private AnchorPane createTicketlbl;
-    @FXML
     private TextField txtSubject;
-    @FXML
     private TextField txtTitle;
     @FXML
-    private Button btnCreate;
+    private Button clDash;
 
     public int getIDToUpdate() {
         return IDToUpdate;
@@ -104,8 +102,6 @@ public class TicketListeController implements Initializable {
         this.IDToUpdate = IDToUpdate;
     }
     ObservableList<Ticket> TicketList = FXCollections.observableArrayList();
-    @FXML
-    private Button btnAddTicket;
     @FXML
     private TableColumn<Ticket, String> colTitle;
     @FXML
@@ -128,26 +124,11 @@ public class TicketListeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ticketDetaillbl.setVisible(false);
-        createTicketlbl.setVisible(false);
+   
         this.refreshTable();
     }
 
-    @FXML
-    private void CreateNewTicket(ActionEvent event) {
-        /*try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Gui/AddTicket.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage1 = new Stage();
-            stage1.setScene(new Scene(root1));
-            stage1.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        ticketDetaillbl.setVisible(false);
-        createTicketlbl.setVisible(true);
-    }
+ 
 
     @FXML
     private void SupprimerTicket(ActionEvent event) {
@@ -207,8 +188,8 @@ public class TicketListeController implements Initializable {
             myRow.setOnMouseClicked(event
                     -> {
                 if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
-                    ticketDetaillbl.setVisible(true);
-                    createTicketlbl.setVisible(false);
+                  
+  
                     int myIndex = TableTicket.getSelectionModel().getSelectedIndex();
                     int id = Integer.parseInt(String.valueOf(TableTicket.getItems().get(myIndex).getId()));
                     SubjectTXT.setText(TableTicket.getItems().get(myIndex).getMessage().toString());
@@ -239,7 +220,6 @@ public class TicketListeController implements Initializable {
         }).collect(Collectors.toList());
     }
 
-    @FXML
     private void OnHandleClickCreate(ActionEvent event) throws IOException {
         if (txtTitle.getText().length() <= 5) {
             Alert a = new Alert(Alert.AlertType.ERROR, "Le Titre doit contenir au moins 5 caractéres!", ButtonType.APPLY.OK);
@@ -285,46 +265,40 @@ public class TicketListeController implements Initializable {
 
     @FXML
     private void Ticket(ActionEvent event) throws IOException {
-        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+        Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
     }
 
     @FXML
     void handleLogout(ActionEvent event)  {
         // clear user session data
         SessionManager.getInstance().Logout();
-        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
 
     }
 
-    private void Client(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
-    }
+
 
     @FXML
     private void Pharmacien(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
+        Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
     }
 
     @FXML
     private void medcin(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+        Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-        Routage rtg = Routage.getInstance();
-        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
-    }
+   
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
@@ -343,6 +317,34 @@ public class TicketListeController implements Initializable {
 
     @FXML
     private void textfieldDesign1(KeyEvent event) {
+    }
+
+    @FXML
+    private void client(ActionEvent event) {
+                Routage.getInstance().GOTO(btnClient, "/view/users/client/ClientListe.fxml");
+
+    }
+
+    @FXML
+    private void order(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
+    }
+
+    @FXML
+    private void product(ActionEvent event) {
+        Routage.getInstance().GOTO(btnProduct, "/view/admin/store/Produit.fxml");
+    }
+
+    @FXML
+    private void category(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
+    }
+
+    @FXML
+    private void GoToClientDash(ActionEvent event) {
+        Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
     }
     
 

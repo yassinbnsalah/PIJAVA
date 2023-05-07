@@ -15,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="752.0" prefWidth="1854.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TicketListeController">
+<AnchorPane id="AnchorPane" prefHeight="742.0" prefWidth="1501.0" style="-fx-background-color: #f5f4f8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TicketListeController">
     <TableView fx:id="TableTicket" layoutX="257.0" layoutY="198.0" prefHeight="483.0" prefWidth="675.0" style="-fx-background-color: #e4e3e9;" AnchorPane.bottomAnchor="70.80000000000001" AnchorPane.topAnchor="198.00000000000006">
             <columns>
                 <TableColumn fx:id="colTitle" prefWidth="107.19998168945312" text="Title" />
@@ -25,85 +25,6 @@
                 <TableColumn fx:id="ColState" prefWidth="157.60003662109375" text="State" />
             </columns>
         </TableView>
-      <AnchorPane fx:id="ticketDetaillbl" layoutX="1443.0" layoutY="221.0" prefHeight="352.0" prefWidth="367.0" style="-fx-background-color: #e4e3e9;">
-         <children>
-            <Label layoutX="18.0" layoutY="14.0" prefHeight="30.0" prefWidth="198.0" text="Ticket Details" textFill="#18113c">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <Label layoutX="18.0" layoutY="139.0" prefHeight="17.0" prefWidth="62.0" text="Subject">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <Label layoutX="18.0" layoutY="69.0" prefHeight="17.0" prefWidth="93.0" text="Title">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-            <TextField fx:id="titleTxt" disable="true" layoutX="85.0" layoutY="61.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <TextField fx:id="SubjectTXT" alignment="TOP_LEFT" disable="true" layoutX="85.0" layoutY="131.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="106.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <Button layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#SupprimerTicket" prefHeight="31.0" prefWidth="158.0" styleClass="button-design1" stylesheets="@design.css" text="Delete">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <textFill>
-                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.7774390243902438">
-                           <color>
-                              <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </textFill>
-            </Button>
-            <Button fx:id="updatebtn2" layoutX="183.0" layoutY="300.0" mnemonicParsing="false" onAction="#UpdateStateTicket" prefHeight="31.0" prefWidth="158.0" styleClass="button-design2" stylesheets="@design.css" text="Update State">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-               <textFill>
-                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="0.7774390243902438">
-                           <color>
-                              <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </RadialGradient>
-               </textFill>
-            </Button>
-         </children>
-      </AnchorPane>
       <VBox alignment="TOP_CENTER" prefHeight="752.0" prefWidth="238.0" style="-fx-background-color: #e3dcff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
@@ -119,7 +40,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
+            <Button fx:id="btnClient" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#client" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -194,7 +115,7 @@
                <Font name="Arial" size="13.0" />
             </font>
          </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Orders" textFill="#000000">
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#order" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Orders" textFill="#000000">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -224,7 +145,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
+            <Button fx:id="btnProduct" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#product" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Products">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -239,7 +160,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
+            <Button fx:id="btnCategory" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#category" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Category">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -302,6 +223,21 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
+         <Button fx:id="clDash" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToClientDash" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #e3dcff;" text="Client Dashboard">
+            <graphic>
+               <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@/util/Images/icons8_Sign_Out_32px.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+            <padding>
+               <Insets left="50.0" />
+            </padding>
+            <font>
+               <Font name="Arial" size="13.0" />
+            </font>
+         </Button>
          </children>
       </VBox>
    <TextField fx:id="searchfld" layoutX="257.0" layoutY="158.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="675.0" promptText="search" styleClass="textfield-design" stylesheets="@design.css" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="922.0" AnchorPane.topAnchor="158.0">
@@ -309,68 +245,89 @@
          <Font name="System Bold" size="13.0" />
       </font>
    </TextField>
-   <Button fx:id="btnAddTicket" layoutX="1481.0" layoutY="77.0" mnemonicParsing="false" onAction="#CreateNewTicket" prefHeight="26.0" prefWidth="291.0" style="-fx-background-color: #754ffe;" text="Create New Ticket" textFill="WHITE">
-      <font>
-         <Font name="System Bold" size="19.0" />
-      </font>
-   </Button>
    <AnchorPane id="AnchorPane" fx:id="createTicketlbl" layoutX="1003.0" layoutY="172.0" prefHeight="438.0" prefWidth="409.0">
       <children>
-         <AnchorPane layoutX="22.0" layoutY="54.0" prefHeight="352.0" prefWidth="365.0" style="-fx-background-color: #e4e3e9;">
-            <children>
-               <Label layoutX="24.0" layoutY="14.0" prefHeight="34.0" prefWidth="234.0" text="Create New Ticket" textFill="#18113c">
-                  <font>
-                     <Font name="Arial Bold" size="25.0" />
-                  </font>
+            <AnchorPane fx:id="ticketDetaillbl" layoutX="21.0" layoutY="49.0" prefHeight="352.0" prefWidth="367.0" style="-fx-background-color: #e4e3e9;">
+               <children>
+                  <Label layoutX="18.0" layoutY="14.0" prefHeight="30.0" prefWidth="198.0" text="Ticket Details" textFill="#18113c">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="139.0" prefHeight="17.0" prefWidth="62.0" text="Subject">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                </Label>
-               <Label layoutX="24.0" layoutY="67.0" prefHeight="18.0" prefWidth="102.0" text="Title">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font>
+                  <Label layoutX="18.0" layoutY="69.0" prefHeight="17.0" prefWidth="93.0" text="Title">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                </Label>
-               <Label layoutX="24.0" layoutY="146.0" prefHeight="18.0" prefWidth="102.0" text="Subject">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font>
-               </Label>
-               <TextField fx:id="txtSubject" alignment="TOP_LEFT" layoutX="100.0" layoutY="134.0" prefHeight="106.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
-                  <font>
-                     <Font size="15.0" />
-                  </font>
-               </TextField>
-               <TextField fx:id="txtTitle" layoutX="100.0" layoutY="59.0" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
-                  <font>
-                     <Font size="15.0" />
-                  </font>
-               </TextField>
-               <Button fx:id="btnCreate" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" onAction="#OnHandleClickCreate" prefHeight="17.0" prefWidth="198.0" styleClass="button-design" stylesheets="@design.css" text="Create">
-                  <font>
-                     <Font name="System Bold" size="14.0" />
-                  </font>
-                  <textFill>
-                     <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                        <stops>
-                           <Stop>
-                              <color>
-                                 <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
-                              </color>
-                           </Stop>
-                           <Stop offset="0.7774390243902438">
-                              <color>
-                                 <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
-                              </color>
-                           </Stop>
-                           <Stop offset="1.0">
-                              <color>
-                                 <Color red="1.0" green="1.0" blue="1.0" />
-                              </color>
-                           </Stop>
-                        </stops>
-                     </RadialGradient>
-                  </textFill>
-               </Button>
-            </children>
-         </AnchorPane>
+                  <TextField fx:id="titleTxt" disable="true" layoutX="85.0" layoutY="61.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="28.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="SubjectTXT" alignment="TOP_LEFT" disable="true" layoutX="85.0" layoutY="131.0" onKeyTyped="#textfieldDesign1" onMouseClicked="#textfieldDesign1" onMouseDragged="#textfieldDesign1" prefHeight="106.0" prefWidth="220.0" styleClass="textfield-design" stylesheets="@design.css">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#SupprimerTicket" prefHeight="31.0" prefWidth="158.0" styleClass="button-design1" stylesheets="@design.css" text="Delete">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.7774390243902438">
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+                  <Button fx:id="updatebtn2" layoutX="183.0" layoutY="300.0" mnemonicParsing="false" onAction="#UpdateStateTicket" prefHeight="31.0" prefWidth="158.0" styleClass="button-design2" stylesheets="@design.css" text="Update State">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.7774390243902438">
+                                 <color>
+                                    <Color red="0.8901960849761963" green="0.8627451062202454" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
+                  </Button>
+               </children>
+            </AnchorPane>
       </children>
    </AnchorPane>
    <Label layoutX="257.0" layoutY="66.0" prefHeight="62.0" prefWidth="354.0" text="Ticket Liste" textFill="#18113c">

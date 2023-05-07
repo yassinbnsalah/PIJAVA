@@ -23,7 +23,7 @@ public class Ticket {
     
   public Ticket() {
     }
-   public Ticket(Date dateticket, String message, String titre, User user) {
+   public Ticket(Date dateticket, String titre, String message, User user) {
         this.dateticket = dateticket;
         this.titre = titre;
         this.message = message;

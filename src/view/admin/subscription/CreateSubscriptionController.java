@@ -5,16 +5,22 @@
  */
 package view.admin.subscription;
 
+import controllers.OrderListeController;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -28,6 +34,7 @@ import models.User;
 import services.SubServices;
 import services.UserService;
 import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -78,6 +85,14 @@ public class CreateSubscriptionController implements Initializable {
     @FXML
     private Button clDash;
  private User SubOwner ; 
+    @FXML
+    private Button btnPharmacien;
+    @FXML
+    private Button btnMedcin;
+    @FXML
+    private Button btnCoach;
+    @FXML
+    private Button btnBan;
     public User getSubOwner() {
         return SubOwner;
     }
@@ -139,12 +154,11 @@ public class CreateSubscriptionController implements Initializable {
         });
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void GoToOrderListe(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
         
     }
 
@@ -173,6 +187,65 @@ public class CreateSubscriptionController implements Initializable {
     @FXML
     private void GoToClientDash(ActionEvent event) {
          Routage.getInstance().GOTO(clDash, "/view/client/order/orderHistory.fxml");
+    }
+
+    @FXML
+    private void client(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnClient, "/view/users/client/ClientListe.fxml");
+    }
+
+    @FXML
+    private void Pharmacien(ActionEvent event) {
+         Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    @FXML
+    private void medcin(ActionEvent event) {
+         Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
+    }
+
+    @FXML
+    private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
+    }
+
+    @FXML
+    private void subscription(ActionEvent event) {
+          try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void product(ActionEvent event) {
+         Routage.getInstance().GOTO(btnProduct, "/view/admin/store/Produit.fxml");
+    }
+
+    @FXML
+    private void category(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
+    }
+
+    @FXML
+    private void ticket(ActionEvent event) {
+         Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
+    }
+
+    @FXML
+    private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
+    }
+
+    @FXML
+    private void Logout(ActionEvent event) {
+         SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
 }

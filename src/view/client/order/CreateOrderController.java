@@ -337,4 +337,9 @@ public class CreateOrderController implements Initializable {
         SessionManager.getInstance().Logout();
          Routage.getInstance().GOTO(btnOrders, "/view/LoginPage.fxml");
     }
+
+    @FXML
+    private void Ticket(ActionEvent event) {
+          Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketCreate.fxml");
+    }
 }

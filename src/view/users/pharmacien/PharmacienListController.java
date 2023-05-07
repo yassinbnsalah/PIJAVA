@@ -112,6 +112,8 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     private TextField searchfld;
     @FXML
     private Label userName;
+    @FXML
+    private Button clDash;
     public int getIDPharmacienToUpdate() {
         return IDPharmacienToUpdate;
     }
@@ -294,11 +296,7 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
         txtPassword.setText("");
 
     }
-    @FXML
-    private void handleClicks(ActionEvent event) {
-           Routage rtg = Routage.getInstance();
-            rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
-    }
+  
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
@@ -320,39 +318,37 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
     }
     @FXML
     private void Ticket(ActionEvent event) throws IOException {
-               Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+               Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
     }
 
     @FXML
     void handleLogout(ActionEvent event) throws IOException {
         // clear user session data
         SessionManager.getInstance().Logout();
-           Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+           Routage.getInstance().GOTO(logoutButton, "/view/LoginPage.fxml");
       
     }
 
     @FXML
     private void Client(ActionEvent event) throws IOException {
-         Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
+         Routage.getInstance().GOTO(btnClient, "/view/users/client/ClientListe.fxml");
     }
 
-    private void Pharmacien(ActionEvent event) {
-           Routage.getInstance().GOTO(btnOrders, "/view/users/coach/CoachList.fxml");
-    }
+   
 
     @FXML
     private void medcin(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) {
-        Routage.getInstance().GOTO(btnOrders, "/view/users/coach/CoachList.fxml");
+        Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+        Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
     }
 
     @FXML
@@ -373,5 +369,32 @@ ObservableList<User> PharmacienList = FXCollections.observableArrayList();
                     -> input.getName().toLowerCase().contains(word.toLowerCase())) || searchWordsArray.stream().allMatch(word
                     -> input.getEmail().contains(word.toLowerCase()));
         }).collect(Collectors.toList());
+    }
+
+    @FXML
+    private void pharmacien(ActionEvent event) {
+         Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    @FXML
+    private void order(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+            rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
+    }
+
+    @FXML
+    private void product(ActionEvent event) {
+        Routage.getInstance().GOTO(btnProduct, "/view/admin/store/Produit.fxml");
+    }
+
+    @FXML
+    private void category(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
+    }
+
+    @FXML
+    private void GoToClientDash(ActionEvent event) {
+        Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
     }
 }

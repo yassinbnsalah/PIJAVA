@@ -371,9 +371,6 @@ public class CreateOrderController implements Initializable {
 
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
@@ -428,26 +425,26 @@ public class CreateOrderController implements Initializable {
     @FXML
     private void Pharmacien(ActionEvent event) throws IOException {
      
-                  Routage.getInstance().GOTO(btnTicket,"/view/users/pharmacien/PharmacienList.fxml");
+                  Routage.getInstance().GOTO(btnPharmacien,"/view/users/pharmacien/PharmacienList.fxml");
     }
 
     @FXML
     private void medcin(ActionEvent event) throws IOException {
           
-                  Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+                  Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) throws IOException {
              
-               Routage.getInstance().GOTO(btnTicket, "/view/users/coach/CoachList.fxml");
+               Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) throws IOException {
          
             
-             Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+             Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
     }
 
    
@@ -460,6 +457,28 @@ public class CreateOrderController implements Initializable {
     @FXML
     private void logoutIng(ActionEvent event) {
         SessionManager.getInstance().Logout();
-         Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+         Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
+    }
+
+    @FXML
+    private void client(ActionEvent event) {
+          Routage.getInstance().GOTO(btnClient, "/view/users/client/ClientListe.fxml");
+    }
+
+    @FXML
+    private void Order(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
+    }
+
+    @FXML
+    private void Product(ActionEvent event) {
+         Routage.getInstance().GOTO(btnProduct, "/view/admin/store/Produit.fxml");
+    }
+
+    @FXML
+    private void Category(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
     }
 }

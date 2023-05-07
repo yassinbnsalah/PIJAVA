@@ -54,7 +54,7 @@
       </AnchorPane>
       <AnchorPane layoutX="238.0" prefHeight="209.0" prefWidth="1617.0" style="-fx-background-color: #e3dcff;" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="74.0" layoutY="74.0" prefHeight="62.0" prefWidth="354.0" text="Ordonnace Liste" textFill="#18113c">
+            <Label layoutX="74.0" layoutY="74.0" prefHeight="62.0" prefWidth="354.0" text="Ordinance List" textFill="#18113c">
                <font>
                   <Font name="Arial Bold" size="29.0" />
                </font>
@@ -109,7 +109,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Disponnibilites" textFill="WHITE">
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Availability" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -124,7 +124,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appoinetments" textFill="WHITE">
+            <Button fx:id="btnSubscription" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToSubscriptionListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appointments" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

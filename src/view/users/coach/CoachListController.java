@@ -112,6 +112,8 @@ public class CoachListController implements Initializable {
     private TextField searchfld;
     @FXML
     private Label userName;
+    @FXML
+    private Button clDash;
 
     public int getIDCoachToUpdate() {
         return IDCoachToUpdate;
@@ -303,47 +305,40 @@ public class CoachListController implements Initializable {
 
     @FXML
     private void Ticket(ActionEvent event) throws IOException {
-        Routage.getInstance().GOTO(btnOrders, "/view/Ticket/TicketListe.fxml");
+        Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
     }
 
     @FXML
     void handleLogout(ActionEvent event)  {
         // clear user session data
         SessionManager.getInstance().Logout();
-        Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
+        Routage.getInstance().GOTO(logoutButton, "/view/LoginPage.fxml");
 
     }
 
     @FXML
     private void Client(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/client/ClientListe.fxml");
+        Routage.getInstance().GOTO(btnClient, "/view/users/client/ClientListe.fxml");
     }
 
-    @FXML
-    private void Pharmacien(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/pharmacien/PharmacienList.fxml");
-    }
+    
 
     @FXML
     private void medcin(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(btnCoach, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void ban(ActionEvent event) {
-        Routage.getInstance().GOTO(btnTicket, "/view/banliste/BanList.fxml");
+        Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-        Routage rtg = Routage.getInstance();
-        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
-    }
+  
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
@@ -378,6 +373,30 @@ public class CoachListController implements Initializable {
 
     @FXML
     private void pharmacien(ActionEvent event) {
+        Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
+    }
+
+    @FXML
+    private void order(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
+    }
+
+    @FXML
+    private void product(ActionEvent event) {
+        Routage.getInstance().GOTO(btnProduct, "/view/admin/store/Produit.fxml");
+    }
+
+    @FXML
+    private void category(ActionEvent event) {
+         Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
+    }
+
+    @FXML
+    private void GoToClientDash(ActionEvent event) {
+                 Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
+
     }
 
 }

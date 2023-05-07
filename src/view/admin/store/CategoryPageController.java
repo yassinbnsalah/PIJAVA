@@ -5,6 +5,8 @@
  */
 package view.admin.store;
 
+import controllers.OrderListeController;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -25,6 +29,8 @@ import javax.swing.JOptionPane;
 import models.Category;
 import services.ServiceCategory;
 import util.MyConnection;
+import util.Routage;
+import util.SessionManager;
 
 /**
  * FXML Controller class
@@ -200,40 +206,76 @@ table();
         
     }
 
-    @FXML
-    private void handleClicks(ActionEvent event) {
-    }
 
     @FXML
     private void Pharmacien(ActionEvent event) {
+          Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
     }
 
     @FXML
     private void medcin(ActionEvent event) {
+          Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
     }
 
     @FXML
     private void coach(ActionEvent event) {
+        Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
     }
 
     @FXML
     private void GoToOrderListe(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
 
     @FXML
     private void Ticket(ActionEvent event) {
+                Routage.getInstance().GOTO(btnTicket, "/view/Ticket/TicketListe.fxml");
+
     }
 
     @FXML
     private void ban(ActionEvent event) {
+        Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
     }
 
     @FXML
     private void signout(ActionEvent event) {
+           SessionManager.getInstance().Logout();
+        Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
     @FXML
     private void GoToClientDash(ActionEvent event) {
+         Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
+    }
+
+    @FXML
+    private void Client(ActionEvent event) {
+          Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnClient, "/view/users/client/ClientListe.fxml");
+    }
+
+    @FXML
+    private void Subscriptions(ActionEvent event) {
+             try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
+            Parent root = loader.load();
+            btnSubscription.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(OrderListeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void Product(ActionEvent event) {
+         Routage.getInstance().GOTO(btnProduct, "/view/admin/store/Produit.fxml");
+    }
+
+    @FXML
+    private void Category(ActionEvent event) {
+        Routage rtg = Routage.getInstance();
+        rtg.GOTO(btnCategory, "/view/admin/store/categoryPage.fxml");
     }
 
 }
