@@ -18,12 +18,12 @@
     <children>
         <AnchorPane layoutX="198.0" prefHeight="179.0" prefWidth="1656.0" style="-fx-background-color: #e3dcff;" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label layoutX="79.0" layoutY="67.0" prefHeight="62.0" prefWidth="354.0" text="Disponnibility Liste" textFill="#18113c">
+                <Label layoutX="79.0" layoutY="67.0" prefHeight="62.0" prefWidth="354.0" text="Availability Liste" textFill="#18113c">
                     <font>
                         <Font name="Arial Bold" size="29.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnAddDisponnibility" layoutX="1324.0" layoutY="76.0" mnemonicParsing="false" onAction="#CreateNewDIsponnibility" prefHeight="44.0" prefWidth="262.0" style="-fx-background-color: #754ffe;" text="Create New Disponnibility" textFill="WHITE">
+                <Button fx:id="btnAddDisponnibility" layoutX="1324.0" layoutY="76.0" mnemonicParsing="false" onAction="#CreateNewDIsponnibility" prefHeight="44.0" prefWidth="262.0" style="-fx-background-color: #754ffe;" text="Create New Availability " textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
@@ -33,9 +33,9 @@
         <TableView fx:id="TableDispo" layoutX="290.0" layoutY="252.0" prefHeight="470.0" prefWidth="838.0" AnchorPane.bottomAnchor="29.600000000000023" AnchorPane.leftAnchor="290.0" AnchorPane.topAnchor="252.0">
             <columns>
                 <TableColumn fx:id="colReference" prefWidth="151.99996948242188" text="Reference" />
-                <TableColumn fx:id="colDateDispo" prefWidth="217.60003662109375" text="Date Disponibility" />
-                <TableColumn fx:id="ColHeureStart" prefWidth="140.800048828125" text="Heure Start" />
-                <TableColumn fx:id="ColHeureEnd" prefWidth="128.79998779296875" text="Heure End" />
+                <TableColumn fx:id="colDateDispo" prefWidth="217.60003662109375" text="Date Availability" />
+                <TableColumn fx:id="ColHeureStart" prefWidth="140.800048828125" text="Start at" />
+                <TableColumn fx:id="ColHeureEnd" prefWidth="128.79998779296875" text="End At" />
                 <TableColumn fx:id="ColState" prefWidth="199.1998291015625" text="State" />
             </columns>
         </TableView>
@@ -50,11 +50,11 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label layoutX="34.0" layoutY="154.0" prefHeight="17.0" prefWidth="69.0" text="Heure Start">
+            <Label layoutX="34.0" layoutY="154.0" prefHeight="17.0" prefWidth="69.0" text="Hour Start">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label layoutX="34.0" layoutY="193.0" prefHeight="17.0" prefWidth="69.0" text="Heure End">
+            <Label layoutX="34.0" layoutY="193.0" prefHeight="17.0" prefWidth="69.0" text="Hour End">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
@@ -118,7 +118,7 @@
                   <Font name="Arial Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnRendezVous" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToRendezVous" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appoinetments" textFill="WHITE">
+            <Button fx:id="btnRendezVous" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToRendezVous" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Appointment" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +133,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrdennance" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToOrdennanceListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Ordennance" textFill="WHITE">
+            <Button fx:id="btnOrdennance" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToOrdennanceListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Arrangement" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

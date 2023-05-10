@@ -121,7 +121,7 @@ public class OrderdetailsController implements Initializable {
         orderStateCB.getItems().add("Cancel");
         orderStateCB.getItems().add("Confirmed");
         orderStateCB.getItems().add("Shipped");
-        orderStateCB.getItems().add("ready To Shipp");
+        orderStateCB.getItems().add("ready To Ship");
         informationlbl.setVisible(false);
         if (SessionManager.getInstance().getUser().getRoles().equals("[\"ROLE_ADMIN\"]")) {
             adminDash.setVisible(true);
@@ -172,7 +172,7 @@ public class OrderdetailsController implements Initializable {
 
     @FXML
     private void handleClicks(ActionEvent event) {
-         Routage.getInstance().GOTO(btnOrders, "/view/users/client/ClientListe.fxml");
+        Routage.getInstance().GOTO(btnOrders, "/view/users/client/ClientListe.fxml");
     }
 
     @FXML
@@ -184,6 +184,9 @@ public class OrderdetailsController implements Initializable {
     @FXML
     private void DownloadInvoice(ActionEvent event) {
         System.out.println("GGG");
+        OrderService os = new OrderService();
+        OrderHolder orderh = OrderHolder.getInstance();
+        os.updateOrderInvoice(orderh.getIdOrder(), 1);
         informationlbl.setVisible(true);
         GenerateInvoice gn = new GenerateInvoice();
         gn.createPDF(order);
@@ -238,15 +241,10 @@ public class OrderdetailsController implements Initializable {
         Routage.getInstance().GOTO(btnOrders, "/view/users/pharmacien/PharmacienList.fxml");
     }
 
-    
-
-   
-
     @FXML
     private void LogoutIng(ActionEvent event) {
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnTicket, "/view/LoginPage.fxml");
     }
-
 
 }

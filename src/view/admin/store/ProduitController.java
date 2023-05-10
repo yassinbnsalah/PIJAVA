@@ -5,7 +5,6 @@
  */
 package view.admin.store;
 
-
 import controllers.OrderListeController;
 import java.io.File;
 import java.io.IOException;
@@ -43,6 +42,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -53,15 +53,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
+import models.Category;
 import models.Produit;
+import models.User;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.Rating;
+import services.ProductService;
+import services.ServiceCategory;
 
 import services.ServiceProduit;
 import util.MyConnection;
 import util.Routage;
 import util.SessionManager;
-
 
 /**
  * FXML Controller class
@@ -88,8 +91,7 @@ public class ProduitController implements Initializable {
     private TableColumn<Produit, Integer> rate;
     @FXML
     private TableView<Produit> tab;
-    @FXML
-    private TextField idx;
+
     @FXML
     private TextField n;
     @FXML
@@ -103,7 +105,7 @@ public class ProduitController implements Initializable {
     @FXML
     private TextField urlx;
     @FXML
-    private ComboBox<Integer> comm;
+    private ComboBox<String> comm;
     @FXML
     private TextField recherche;
 
@@ -142,35 +144,25 @@ public class ProduitController implements Initializable {
     private AnchorPane RatingAna;
     @FXML
     private Button statistique;
+    @FXML
+    private TextField CategoryOld;
+    private int IDProduct;
+    @FXML
+    private Button btnUpdate;
+
+    public int getIDProduct() {
+        return IDProduct;
+    }
+
+    public void setIDProduct(int IDProduct) {
+        this.IDProduct = IDProduct;
+    }
 
     public ProduitController() {
         Connection cnx = MyConnection.getInstance().getCnx();
     }
 
     ServiceProduit prod = new ServiceProduit();
-
-    public void table() {
-
-//        r.setCellValueFactory( new PropertyValueFactory<>("Role"));
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-
-        cat.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Produit, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Produit, String> param) {
-                return new SimpleStringProperty(param.getValue().getCategory_id().getName());
-            }
-        });
-        name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        desc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        prix.setCellValueFactory(new PropertyValueFactory<>("buyprice"));
-        prix2.setCellValueFactory(new PropertyValueFactory<>("sellprice"));
-        quant.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        rate.setCellValueFactory(new PropertyValueFactory<>("Rate"));
-
-        tab.setItems(prod.RecupBase2());
-        System.out.println(prod.RecupBase2());
-
-    }
 
     @FXML
     private void Ajoutefichier(ActionEvent event) {
@@ -197,12 +189,12 @@ public class ProduitController implements Initializable {
             String prix2 = String.valueOf(f.getSellprice());
             String quntite = String.valueOf(f.getQuantity());
 
-            idx.setText(id);
             n.setText(f.getName());
             d.setText(f.getDescription());
             p.setText(prix);
             p2.setText(prix2);
             q.setText(quntite);
+            CategoryOld.setText(String.valueOf(f.getCategory_id()));
             urlx.setText(f.getImage());
             System.out.println(f.getImage());
 
@@ -214,35 +206,62 @@ public class ProduitController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        userName.setText(SessionManager.getInstance().getUser().getEmail());
-        // TODO
-        urlx.setVisible(false);
         table();
-        ChercheFichier();
         comm.setItems(prod.RecupCombo());
-        idx.setVisible(false);
+        userName.setText(SessionManager.getInstance().getUser().getEmail());
 
-//        try {
-//            read();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        tab.setOnMouseClicked((MouseEvent event) -> {
-            if (event.getClickCount() > 0) {
-                try {
-                    onEdit();
-                    String s = urlx.getText();
+        urlx.setVisible(false);
 
-                    File file = new File(s);
-                    System.out.println(s);
-                    Image image = new Image(file.toURI().toURL().toExternalForm());
-                    img.setImage(image);
-                } catch (MalformedURLException ex) {
-                    Logger.getLogger(ProduitController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        ChercheFichier();
 
+    }
+
+    public void table() {
+
+//        r.setCellValueFactory( new PropertyValueFactory<>("Role"));
+        id.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+        cat.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Produit, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Produit, String> param) {
+                return new SimpleStringProperty(param.getValue().getCategory_id().getName());
             }
         });
+        name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        desc.setCellValueFactory(new PropertyValueFactory<>("description"));
+        prix.setCellValueFactory(new PropertyValueFactory<>("buyprice"));
+        prix2.setCellValueFactory(new PropertyValueFactory<>("sellprice"));
+        quant.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        rate.setCellValueFactory(new PropertyValueFactory<>("Rate"));
+
+        tab.setItems(prod.RecupBase2());
+        tab.setRowFactory(tv -> {
+            TableRow<Produit> myRow = new TableRow<>();
+
+            myRow.setOnMouseClicked(event
+                    -> {
+
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+
+                    Produit f = tab.getSelectionModel().getSelectedItem();
+                    String id = String.valueOf(f.getId());
+                    String prix = String.valueOf(f.getBuyprice());
+                    String prix2 = String.valueOf(f.getSellprice());
+                    String quntite = String.valueOf(f.getQuantity());
+                    setIDProduct(f.getId());
+                    n.setText(f.getName());
+                    d.setText(f.getDescription());
+                    p.setText(prix);
+                    p2.setText(prix2);
+                    q.setText(quntite);
+                    CategoryOld.setText(String.valueOf(f.getCategory_id().getName()));
+                    urlx.setText(f.getImage());
+                }
+            });
+            return myRow;
+        });
+        //System.out.println(prod.RecupBase2());
+
     }
 
     public void read() throws SQLException {
@@ -285,9 +304,9 @@ public class ProduitController implements Initializable {
 
             int quantitée = Integer.valueOf(q.getText());
 
-            Integer i = comm.getValue();
+            String i = comm.getValue();
             System.out.println(i);
-            st.setInt(1, i);
+            // st.setInt(1, i);
             st.setString(2, name.getText());
             st.setString(3, d.getText());
             st.setInt(4, prix1);
@@ -320,7 +339,7 @@ public class ProduitController implements Initializable {
 
             EnregistrerVersBase();
             table();
-   
+
         }
         Notifications.create()
                 .title("Notification")
@@ -384,8 +403,8 @@ public class ProduitController implements Initializable {
 
     @FXML
     private void Supp(ActionEvent event) throws SQLException {
-        String idf = idx.getText();
-        int i = Integer.valueOf(idf);
+
+        int i = Integer.valueOf(getIDProduct());
         Produit r = new Produit();
 
         r.setId(i);
@@ -404,26 +423,26 @@ public class ProduitController implements Initializable {
 
         Produit p = new Produit();
 
-        String n = idx.getText();
-        int id = Integer.valueOf(n);
+        int id = getIDProduct();
         String nn = p2.getText();
         int prix = Integer.valueOf(nn);
         p.setSellprice(prix);
         p.setId(id);
-       p.setRate(stars.getRating());
+        p.setRate(stars.getRating());
         System.out.println(p);
 
         prod.updaterating(p);
-
+        ProductService ps = new ProductService();
+        int avg = ps.Rating((int) p.getRate(), SessionManager.getInstance().getUser().getId(), p.getId());
         table();
-      if (p.getRate() == 1.0) {
+        if (avg <= 1.0) {
 
             prod.reduction(p, p.getSellprice());
             table();
 
         }
 
-        if (p.getRate() == 2.0) {
+        if (avg <= 2.0) {
 
             prod.reduction1(p, p.getSellprice());
             table();
@@ -433,32 +452,27 @@ public class ProduitController implements Initializable {
         System.out.println(stars.getRating());
     }
 
-
-    
-    
-
     @FXML
     private void Pharmacien(ActionEvent event) {
-                Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
+        Routage.getInstance().GOTO(btnPharmacien, "/view/users/pharmacien/PharmacienList.fxml");
 
     }
 
     @FXML
     private void medcin(ActionEvent event) {
-                Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
+        Routage.getInstance().GOTO(btnMedcin, "/view/users/medecin/MedcinList.fxml");
 
     }
 
     @FXML
     private void coach(ActionEvent event) {
-                Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
+        Routage.getInstance().GOTO(btnCoach, "/view/users/coach/CoachList.fxml");
 
-        
     }
 
     @FXML
     private void GoToOrderListe(ActionEvent event) {
-           Routage rtg = Routage.getInstance();
+        Routage rtg = Routage.getInstance();
         rtg.GOTO(btnOrders, "/view/admin/order/OrderListe.fxml");
     }
 
@@ -469,19 +483,19 @@ public class ProduitController implements Initializable {
 
     @FXML
     private void ban(ActionEvent event) {
-                Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
+        Routage.getInstance().GOTO(btnBan, "/view/banliste/BanList.fxml");
 
     }
 
     @FXML
     private void signout(ActionEvent event) {
-         SessionManager.getInstance().Logout();
+        SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
     @FXML
     private void GoToClientDash(ActionEvent event) {
-                Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
+        Routage.getInstance().GOTO(clDash, "/view/client/subscription/subscriptionhistory.fxml");
 
     }
 
@@ -497,7 +511,7 @@ public class ProduitController implements Initializable {
 
     @FXML
     private void Subscription(ActionEvent event) {
-           try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/admin/subscription/subscriptionListe.fxml"));
             Parent root = loader.load();
             btnSubscription.getScene().setRoot(root);
@@ -518,7 +532,28 @@ public class ProduitController implements Initializable {
     }
 
     @FXML
-    private void Rate(MouseEvent event) {
+    private void updateProduct(ActionEvent event) {
+
+        Produit p1 = new Produit();
+        p1.setName(n.getText());
+        p1.setQuantity(Integer.parseInt(q.getText()));
+        p1.setBuyprice(Integer.parseInt(p.getText()));
+        p1.setSellprice(Integer.parseInt(p2.getText()));
+        p1.setDescription(d.getText());
+        ServiceCategory c = new ServiceCategory();
+        System.out.println("UPDATING TO " + comm.getValue());
+        Category ca = c.SelectCategoryByName(comm.getValue());
+        System.out.println("CATEGORY NAMEEE " + ca.getName());
+        p1.setCategory_id(ca);
+        n.setText("");
+        d.setText("");
+        p.setText("");
+        p2.setText("");
+        q.setText("");
+        ServiceProduit s = new ServiceProduit();
+        s.updateProduct(p1, getIDProduct());
+
+        table();
     }
 
 }

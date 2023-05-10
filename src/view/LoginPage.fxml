@@ -36,7 +36,7 @@
             <children>
                 <TextField fx:id="txtUsername" layoutX="108.0" layoutY="161.0" prefHeight="34.0" prefWidth="275.0" promptText="username or email" styleClass="textfield-design" stylesheets="@design.css" />
                 <PasswordField fx:id="txtPassword" layoutX="108.0" layoutY="235.0" prefHeight="34.0" prefWidth="275.0" promptText="password" styleClass="textfield-design" stylesheets="@design.css" />
-                <Label fx:id="lblErrors" alignment="CENTER" layoutX="133.0" layoutY="90.0" prefHeight="23.0" prefWidth="275.0" style="-fx-background-color: #fad9d8;" textFill="#79758f">
+                <Label fx:id="lblErrors" alignment="CENTER" layoutX="108.0" layoutY="91.0" prefHeight="23.0" prefWidth="275.0" style="-fx-background-color: #fad9d8;" textFill="#79758f">
                     <font>
                         <Font name="Segoe UI Bold" size="14.0" />
                     </font>

@@ -248,48 +248,36 @@
                     </columns>
                 </TableView>
                 <TextField fx:id="recherche" layoutX="77.0" layoutY="165.0" prefHeight="25.0" prefWidth="876.0" styleClass="textfield-design" />
-                <AnchorPane layoutX="1069.0" layoutY="80.0" prefHeight="505.0" prefWidth="502.0" style="-fx-background-color: #e4e3e9;">
+                <AnchorPane layoutX="1070.0" layoutY="81.0" prefHeight="505.0" prefWidth="502.0" style="-fx-background-color: #e4e3e9;">
                     <children>
-                        <TextField fx:id="idx" layoutX="216.0" layoutY="20.0" styleClass="textfield-design" />
-                        <TextField fx:id="n" layoutX="216.0" layoutY="98.0" styleClass="textfield-design" />
-                        <TextField fx:id="d" layoutX="216.0" layoutY="141.0" styleClass="textfield-design" />
-                        <TextField fx:id="p" layoutX="216.0" layoutY="176.0" styleClass="textfield-design" />
-                        <TextField fx:id="p2" layoutX="216.0" layoutY="219.0" styleClass="textfield-design" />
-                        <TextField fx:id="q" layoutX="216.0" layoutY="264.0" styleClass="textfield-design" />
-                        <TextField fx:id="urlx" layoutX="216.0" layoutY="302.0" styleClass="textfield-design" />
+                        <TextField fx:id="n" layoutX="215.0" layoutY="22.0" styleClass="textfield-design" />
+                        <TextField fx:id="d" layoutX="213.0" layoutY="65.0" styleClass="textfield-design" />
+                        <TextField fx:id="p" layoutX="213.0" layoutY="100.0" styleClass="textfield-design" />
+                        <TextField fx:id="p2" layoutX="213.0" layoutY="143.0" styleClass="textfield-design" />
+                        <TextField fx:id="q" layoutX="213.0" layoutY="188.0" styleClass="textfield-design" />
                         <Button layoutX="216.0" layoutY="355.0" mnemonicParsing="false" onAction="#Ajoutefichier" prefHeight="25.0" prefWidth="151.0" text="Ajouter Image" />
-                        <ComboBox fx:id="comm" layoutX="217.0" layoutY="61.0" prefWidth="150.0" promptText="ID Category" />
-                        <Label layoutX="128.0" layoutY="24.0" text="Id" textFill="#18113c">
+                        <ComboBox fx:id="comm" layoutX="221.0" layoutY="301.0" prefWidth="150.0" promptText="ID Category" />
+                        <Label layoutX="127.0" layoutY="26.0" text="Name" textFill="#18113c">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label layoutX="128.0" layoutY="102.0" text="Name" textFill="#18113c">
+                        <Label layoutX="127.0" layoutY="69.0" text="Description" textFill="#18113c">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label layoutX="130.0" layoutY="145.0" text="Description" textFill="#18113c">
+                        <Label layoutX="131.0" layoutY="104.0" text="Prix" textFill="#18113c">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label layoutX="134.0" layoutY="180.0" text="Prix" textFill="#18113c">
+                        <Label layoutX="131.0" layoutY="147.0" text="Prix de vente" textFill="#18113c">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label layoutX="134.0" layoutY="223.0" text="Prix de vente" textFill="#18113c">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="135.0" layoutY="268.0" text="Quantitée" textFill="#18113c">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="141.0" layoutY="306.0" text="Rate" textFill="#18113c">
+                        <Label layoutX="132.0" layoutY="192.0" text="Quantitée" textFill="#18113c">
                             <font>
                                 <Font name="System Bold" size="13.0" />
                             </font>
@@ -304,15 +292,22 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
-                        <Button layoutX="179.0" layoutY="438.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" styleClass="button-design2" text="Modifier" textFill="WHITE">
+                        <Button fx:id="btnUpdate" layoutX="179.0" layoutY="438.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="106.0" styleClass="button-design2" text="Modifier" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
-                  <Label layoutX="127.0" layoutY="64.0" text="Category" textFill="#18113c">
+                  <Label layoutX="104.0" layoutY="304.0" text="Category Update" textFill="#18113c">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
+                  <Label layoutX="131.0" layoutY="230.0" text="Category" textFill="#18113c">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="CategoryOld" layoutX="210.0" layoutY="226.0" styleClass="textfield-design" />
+                  <TextField fx:id="urlx" layoutX="41.0" layoutY="354.0" styleClass="textfield-design" />
                     </children>
                 </AnchorPane>
                 <Button layoutX="751.0" layoutY="670.0" mnemonicParsing="false" onAction="#print" prefHeight="25.0" prefWidth="190.0" styleClass="button-design" text="Imprimer" textFill="WHITE">

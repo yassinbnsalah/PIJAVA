@@ -33,7 +33,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <Text layoutX="33.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="rendez vous" wrappingWidth="110.0">
+            <Text layoutX="33.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="appointment" wrappingWidth="110.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Text>
@@ -54,7 +54,7 @@
       </AnchorPane>
       <AnchorPane layoutX="238.0" prefHeight="209.0" prefWidth="1617.0" style="-fx-background-color: #e3dcff;" AnchorPane.leftAnchor="238.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="74.0" layoutY="74.0" prefHeight="62.0" prefWidth="354.0" text="Ordinance List" textFill="#18113c">
+            <Label layoutX="74.0" layoutY="74.0" prefHeight="62.0" prefWidth="354.0" text="Arrangement List" textFill="#18113c">
                <font>
                   <Font name="Arial Bold" size="29.0" />
                </font>
@@ -66,7 +66,7 @@
             <TableColumn fx:id="datecol" prefWidth="95.9999771118164" text="date" />
             <TableColumn fx:id="ammountCol" prefWidth="114.0" text="amount" />
             <TableColumn fx:id="doctorcell" prefWidth="151.0" text="doctor" />
-            <TableColumn fx:id="rendezvous" minWidth="0.0" prefWidth="122.0" text="rende vous" />
+            <TableColumn fx:id="rendezvous" minWidth="0.0" prefWidth="122.0" text="appointment" />
             <TableColumn fx:id="ActionButton" minWidth="0.0" prefWidth="257.0" text="List medicament" />
          </columns>
       </TableView>
@@ -118,7 +118,7 @@
                   <Font name="Arial" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="btnOrdennance" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToOrdennanceListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Ordennance" textFill="WHITE">
+            <Button fx:id="btnOrdennance" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#GoToOrdennanceListe" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Arrangement" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

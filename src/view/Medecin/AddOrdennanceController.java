@@ -83,6 +83,8 @@ public class AddOrdennanceController implements Initializable {
     @FXML
     private Label userEmaillbl;
     @FXML
+    private Button btnClient;
+    @FXML
     private Button btnOrders;
     @FXML
     private Button btnSubscription;
@@ -308,11 +310,14 @@ public class AddOrdennanceController implements Initializable {
         return true;
     }
 
-    
+    @FXML
+    private void handleClicks(ActionEvent event) {
+          Routage.getInstance().GOTO(supbttn, "/view/Medecin/disponibilityListe.fxml");
+    }
 
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-        Routage.getInstance().GOTO(btnSubscription, "/view/Medecin/AddRendezvous.fxml");
+        Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddRendezvous.fxml");
     }
 
     @FXML
@@ -323,17 +328,12 @@ public class AddOrdennanceController implements Initializable {
 
     @FXML
     private void GoToClientDashboard(ActionEvent event) {
-        Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");    }
+        Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
+    }
 
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
-        Routage.getInstance().GOTO(btnOrdennance, "/view/Medecin/AddOrdennance.fxml");
-    }
-
-
-    @FXML
-    private void Availability(ActionEvent event) {
-           Routage.getInstance().GOTO(btnOrders, "/view/Medecin/disponibilityListe.fxml");
+        Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddOrdennance.fxml");
     }
 
 }

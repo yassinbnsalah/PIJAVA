@@ -74,7 +74,6 @@ public class AddRendezvousController implements Initializable {
     private TableColumn<Rendezvous, String> heurePCol;
     @FXML
     private ComboBox<User> userCB;
-    @FXML
     private ComboBox<User> userCB1;
     @FXML
     private TableColumn<Rendezvous, String> patientCell;
@@ -109,7 +108,7 @@ public class AddRendezvousController implements Initializable {
         list.addAll(userService.userListe());
         userCB.setItems(list);
 
-        userCB1.setItems(list);
+        //userCB1.setItems(list);
 
         ObservableList<String> list1 = FXCollections.observableArrayList();
         list1.addAll("confirm", "Cancel", "inconfirmed");
@@ -332,13 +331,19 @@ public class AddRendezvousController implements Initializable {
 
   
 
-    @FXML
-    private void Availability(ActionEvent event) {
-        Routage.getInstance().GOTO(btnOrders, "/view/Medecin/Calendar.fxml");
-    }
+   
 
     @FXML
     private void DisplayCalender(ActionEvent event) {
+         Routage.getInstance().GOTO(btnOrders, "/view/Medecin/Calendar.fxml");
     }
+
+  
+
+    @FXML
+    private void handleClicks(ActionEvent event) {
+          Routage.getInstance().GOTO(btnOrders, "/view/Medecin/disponibilityListe.fxml");
+    }
+
 
 }

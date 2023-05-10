@@ -59,11 +59,6 @@
                   <Font name="System Bold" size="12.0" />
                </font></Text>
             <ComboBox fx:id="userCB" layoutX="159.0" layoutY="197.0" prefWidth="150.0" styleClass="textfield-design" />
-            <Text layoutX="48.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor" wrappingWidth="71.0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Text>
-            <ComboBox fx:id="userCB1" layoutX="159.0" layoutY="248.0" prefWidth="150.0" styleClass="textfield-design" />
             <Button fx:id="supbttn" layoutX="66.0" layoutY="369.0" mnemonicParsing="false" onAction="#suprimer" prefHeight="34.0" prefWidth="75.0" styleClass="button-design1" text="Delete" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -122,7 +117,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#Availability" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Availability" textFill="WHITE">
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #18113C;" text="Disponnibilites" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>

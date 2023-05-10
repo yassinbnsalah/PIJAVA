@@ -44,8 +44,6 @@ public class CalendarController implements Initializable {
     @FXML
     private FlowPane calendar;
     @FXML
-    private ComboBox<User> doctorCB;
-    @FXML
     private Label userEmaillbl;
     @FXML
     private Button btnOrders;
@@ -60,12 +58,8 @@ public class CalendarController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
         rendezvousService = new RendezvousService();
         userService = new UserService();
-        ObservableList<User> list = FXCollections.observableArrayList();
-        list.addAll(userService.userListe());
-        doctorCB.setItems(list);
 
         dateFocus = ZonedDateTime.now();
         today = ZonedDateTime.now();
@@ -192,8 +186,8 @@ public class CalendarController implements Initializable {
         List<Rendezvous> calendarActivities;
         int year = dateFocus.getYear();
         int month = dateFocus.getMonth().getValue();
-        if (doctorCB.getSelectionModel().getSelectedItem() != null) {
-            calendarActivities = rendezvousService.rendezVousDateYear(year, month, doctorCB.getSelectionModel().getSelectedItem().getId());
+        if (SessionManager.getInstance().getUser() != null) {
+            calendarActivities = rendezvousService.rendezVousDateYear(year, month, SessionManager.getInstance().getUser().getId());
         } else {
             calendarActivities = rendezvousService.rendezVousDateYear(year, month, 0);
         }
@@ -203,7 +197,6 @@ public class CalendarController implements Initializable {
         return createCalendarMap(calendarActivities);
     }
 
-    @FXML
     private void reload(ActionEvent event) {
         calendar.getChildren().clear();
         drawCalendar();
@@ -211,29 +204,28 @@ public class CalendarController implements Initializable {
 
 
     @FXML
+    private void handleClicks(ActionEvent event) {
+    }
+
+    @FXML
     private void GoToRendezVous(ActionEvent event) {
-        
-         Routage.getInstance().GOTO(RendezVousbtn, "/view/Medecin/AddRendez-vous.fxml");
+
+        Routage.getInstance().GOTO(RendezVousbtn, "/view/Medecin/AddRendez-vous.fxml");
     }
 
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
-                     Routage.getInstance().GOTO(btnOrdennance, "/view/Medecin/AddOrdennance.fxml");
+        Routage.getInstance().GOTO(btnSignout, "/view/Medecin/AddOrdennance.fxml");
     }
 
     @FXML
     private void logout(ActionEvent event) {
-         SessionManager.getInstance().Logout();
+        SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
 
     @FXML
     private void GoToClientDashboard(ActionEvent event) {
-         Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
-    }
-
-    @FXML
-    private void Availability(ActionEvent event) {
-         Routage.getInstance().GOTO(btnOrders, "/view/Medecin/Calendar.fxml");
+        Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
     }
 }

@@ -18,7 +18,7 @@
    <children>
       <AnchorPane layoutX="1238.0" layoutY="271.0" prefHeight="370.0" prefWidth="492.0">
          <children>
-            <Label layoutX="84.0" layoutY="81.0" prefHeight="26.0" prefWidth="193.0" text="Nom de medicamment:" textOverrun="CLIP">
+            <Label layoutX="84.0" layoutY="81.0" prefHeight="26.0" prefWidth="193.0" text="Medicament Name" textOverrun="CLIP">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Label>
@@ -32,23 +32,23 @@
                   <Font name="System Bold" size="14.0" />
                </font></Label>
             <TextField fx:id="nomtxt" layoutX="239.0" layoutY="80.0" styleClass="textfield-design" />
-            <Text layoutX="84.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantité:">
+            <Text layoutX="84.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Text>
             <TextField fx:id="qttext" layoutX="240.0" layoutY="177.0" styleClass="textfield-design" />
-            <Text layoutX="89.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix:" wrappingWidth="54.70819091796875">
+            <Text layoutX="89.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="54.70819091796875">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Text>
             <TextField fx:id="prixtxt" layoutX="239.0" layoutY="219.0" styleClass="textfield-design" />
             <ButtonBar layoutX="153.0" layoutY="24.0" prefHeight="40.0" prefWidth="200.0" />
-          <Button fx:id="editbttn" layoutX="161.0" layoutY="310.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="71.0" styleClass="button-design2" text="Editer" textFill="WHITE">
+          <Button fx:id="editbttn" layoutX="161.0" layoutY="310.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="71.0" styleClass="button-design2" text="Update" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
             <ButtonBar layoutX="329.0" layoutY="44.0" prefHeight="40.0" prefWidth="118.0" />
-          <Button fx:id="supbttn" layoutX="51.0" layoutY="310.0" mnemonicParsing="false" onAction="#suprimer" styleClass="button-design1" text="Supprimer" textFill="WHITE">
+          <Button fx:id="supbttn" layoutX="51.0" layoutY="310.0" mnemonicParsing="false" onAction="#suprimer" styleClass="button-design1" text="Delete" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -68,8 +68,8 @@
         <columns>
           <TableColumn fx:id="namecol" prefWidth="150.0" text="Name" />
             <TableColumn fx:id="descCol" prefWidth="413.0" text="Description" />
-            <TableColumn fx:id="Qtcol" prefWidth="93.0" text="Quantité" />
-            <TableColumn fx:id="prixcol" minWidth="0.0" prefWidth="115.0" text="Prix" />
+            <TableColumn fx:id="Qtcol" prefWidth="93.0" text="Quantity" />
+            <TableColumn fx:id="prixcol" minWidth="0.0" prefWidth="115.0" text="Price" />
         </columns>
       </TableView>
       <TextField fx:id="searchInput" layoutX="351.0" layoutY="271.0" prefHeight="28.0" prefWidth="772.0" promptText="Recherche" styleClass="textfield-design">

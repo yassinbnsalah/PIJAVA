@@ -77,7 +77,7 @@ public class OrderService {
         UserService userservice = new UserService(); 
         User user ; 
         try {
-            String req = "SELECT * FROM `order` ";
+            String req = "SELECT * FROM `order` ORDER BY date_order desc";
             Statement st = MyConnection.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(req);
 
@@ -192,6 +192,21 @@ public class OrderService {
             pst.setString(1, state);
             pst.executeUpdate();
             System.out.println("Order Updated");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+     public void updateOrderInvoice(int id, int state) {
+
+        try {
+            String req = "UPDATE `order` SET `invoiced`= ? WHERE id = ?";
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req);
+            pst.setInt(2, id);
+            pst.setInt(1, state);
+            pst.executeUpdate();
+            System.out.println("Order Invoiced Updated");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

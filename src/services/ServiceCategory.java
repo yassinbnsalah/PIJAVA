@@ -77,6 +77,30 @@ public class ServiceCategory {
         }
         return r;
     }
+    
+     public Category SelectCategoryByName(String name) {
+        Category r = new Category();
+        
+        
+        String req = "SELECT * FROM category where name ='" + name +"'";
+         System.out.println(req);
+
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+
+            ResultSet rs = ps.executeQuery(req);
+
+            while (rs.next()) {
+
+                r = new Category(rs.getInt("id"), rs.getString("name"), rs.getString("slug"));
+                System.out.println("rrr "+r);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiceCategory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return r;
+    }
 
     public List<Category> read_all() throws SQLException {
         List<Category> arr = new ArrayList<>();
