@@ -50,11 +50,11 @@ import util.SessionManager;
  * @author Houssem Charef
  */
 public class AddOrdennanceController implements Initializable {
-
+    
     OrdennanceService ordennanceService;
     ObservableList<Ordennance> listOrdennances = FXCollections.observableArrayList();
     Ordennance ordennance;
-
+    
     RendezvousService rendezvousService;
     @FXML
     private Button bttnajoutermedic;
@@ -83,8 +83,6 @@ public class AddOrdennanceController implements Initializable {
     @FXML
     private Label userEmaillbl;
     @FXML
-    private Button btnClient;
-    @FXML
     private Button btnOrders;
     @FXML
     private Button btnSubscription;
@@ -102,24 +100,24 @@ public class AddOrdennanceController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ordennanceService = new OrdennanceService();
         rendezvousService = new RendezvousService();
-
+        userEmaillbl.setText(SessionManager.getInstance().getUser().getEmail());
         LoadData();
-
+        
         ObservableList<Rendezvous> list = FXCollections.observableArrayList();
         list.addAll(rendezvousService.RendezvousListe());
         RVCB.setItems(list);
     }
-
+    
     public void refreshTable() {
-
+        
         listOrdennances.clear();
         listOrdennances.addAll(ordennanceService.OrdennanceListe());
         ordonnaceTableView.setItems(listOrdennances);
-
+        
     }
-
+    
     private void LoadData() {
-
+        
         refreshTable();
         datecol.setCellValueFactory(new PropertyValueFactory<>("dateordenance"));
         ammountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
@@ -129,9 +127,9 @@ public class AddOrdennanceController implements Initializable {
             return new SimpleStringProperty(cellData.getValue().getRendezvous().getDate_rv().toString());
         });;
         ActionButton.setCellFactory(createActionButton());
-
+        
     }
-
+    
     private Callback<TableColumn<Ordennance, String>, TableCell<Ordennance, String>> createActionButton() {
         Callback<TableColumn<Ordennance, String>, TableCell<Ordennance, String>> cellFoctory = (TableColumn<Ordennance, String> param) -> {
             // make cell containing buttons
@@ -143,29 +141,29 @@ public class AddOrdennanceController implements Initializable {
                     if (empty) {
                         setGraphic(null);
                         setText(null);
-
+                        
                     } else {
-
+                        
                         FontAwesomeIconView logoIcon = new FontAwesomeIconView(FontAwesomeIcon.PLUS_CIRCLE);
                         logoIcon.setStyle(
                                 " -fx-cursor: hand ;"
                                 + "-glyph-size:28px;"
                                 + "-fx-fill:#ff1744;"
                         );
-
+                        
                         logoIcon.setOnMouseClicked((MouseEvent event) -> {
                             try {
-
+                                
                                 ordennance = ordonnaceTableView.getSelectionModel().getSelectedItem();
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AddLigneOrdonance.fxml"));
-
+                                
                                 Parent root;
                                 root = loader.load();
-
+                                
                                 AddLigneOrdonanceController addLigneOrdonanceController = loader.getController();
                                 addLigneOrdonanceController.initOrder(ordennance);
                                 addLigneOrdonanceController.LoadData();
-
+                                
                                 Scene scene = new Scene(root);
                                 Stage stage = new Stage();
                                 stage.setScene(scene);
@@ -174,55 +172,55 @@ public class AddOrdennanceController implements Initializable {
                                 Logger.getLogger(AddOrdennanceController.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         });
-
+                        
                         HBox managebtn = new HBox(logoIcon);
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(logoIcon, new Insets(2, 3, 0, 2));
                         setGraphic(managebtn);
-
+                        
                         setText(null);
-
+                        
                     }
                 }
-
+                
             };
-
+            
             return cell;
         };
         return cellFoctory;
     }
-
+    
     @FXML
     private void createMedicament(ActionEvent event) {
         if (controleSaisie()) {
-
+            
             ordennance = new Ordennance();
             ordennance.setAmount(Float.parseFloat(amountF.getText()));
             ordennance.setRendezvous(RVCB.getSelectionModel().getSelectedItem());
             ordennance.setDateordenance(Timestamp.valueOf(dateF.getValue().atStartOfDay()));
             ordennanceService.AddOrdennance(ordennance);
-
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("ajout suuccess");
             alert.setTitle("success");
             alert.show();
-
+            
             refreshTable();
-
+            
             amountF.setText("");
             RVCB.getSelectionModel().select(null);
             dateF.setValue(null);
-
+            
             ordennance = null;
-
+            
         }
     }
-
+    
     @FXML
     private void edit(ActionEvent event) {
-
+        
         ordennance = ordonnaceTableView.getSelectionModel().getSelectedItem();
-
+        
         if (RVCB.getSelectionModel().getSelectedItem() == null && amountF.getText().equals("")) {
             if (ordennance == null) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -232,33 +230,33 @@ public class AddOrdennanceController implements Initializable {
                 return;
             }
             dateF.setValue(ordennance.getDateordenance().toLocalDateTime().toLocalDate());
-
+            
             RVCB.getSelectionModel().select(ordennance.getRendezvous());
             amountF.setText(ordennance.getAmount() + "");
-
+            
         } else {
-
+            
             ordennance.setAmount(Float.parseFloat(amountF.getText()));
             ordennance.setRendezvous(RVCB.getSelectionModel().getSelectedItem());
             ordennance.setDateordenance(Timestamp.valueOf(dateF.getValue().atStartOfDay()));
-
+            
             if (controleSaisie()) {
                 ordennanceService.modifier(ordennance.getId(), ordennance);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("modif suuccess");
                 alert.setTitle("success");
                 alert.show();
-
+                
                 refreshTable();
                 amountF.setText("");
                 RVCB.getSelectionModel().select(null);
                 dateF.setValue(null);
-
+                
                 ordennance = null;
             }
         }
     }
-
+    
     @FXML
     private void suprimer(ActionEvent event) {
         ordennance = ordonnaceTableView.getSelectionModel().getSelectedItem();
@@ -269,19 +267,19 @@ public class AddOrdennanceController implements Initializable {
             alert.show();
             return;
         }
-
+        
         ordennanceService.delete(ordennance.getId());
         refreshTable();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText("delete avec succès");
         alert.setTitle("Succès");
         alert.show();
-
+        
         ordennance = null;
     }
-
+    
     private boolean controleSaisie() {
-
+        
         if (dateF.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Veuillez saisir le date");
@@ -289,7 +287,7 @@ public class AddOrdennanceController implements Initializable {
             alert.show();
             return false;
         }
-
+        
         if (RVCB.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Veuillez saisir le randez vous");
@@ -297,7 +295,7 @@ public class AddOrdennanceController implements Initializable {
             alert.show();
             return false;
         }
-
+        
         try {
             Float.parseFloat(amountF.getText());
         } catch (NumberFormatException e) {
@@ -309,31 +307,34 @@ public class AddOrdennanceController implements Initializable {
         }
         return true;
     }
-
-    @FXML
+    
     private void handleClicks(ActionEvent event) {
-          Routage.getInstance().GOTO(supbttn, "/view/Medecin/disponibilityListe.fxml");
+        Routage.getInstance().GOTO(supbttn, "/view/Medecin/disponibilityListe.fxml");
     }
-
+    
     @FXML
     private void GoToSubscriptionListe(ActionEvent event) {
-        Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddRendezvous.fxml");
+        Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddRendez-vous.fxml");
     }
-
+    
     @FXML
     private void logout(ActionEvent event) {
         SessionManager.getInstance().Logout();
         Routage.getInstance().GOTO(btnSignout, "/view/LoginPage.fxml");
     }
-
+    
     @FXML
     private void GoToClientDashboard(ActionEvent event) {
         Routage.getInstance().GOTO(ClientDashboard, "/view/client/subscription/subscriptionhistory.fxml");
     }
-
+    
     @FXML
     private void GoToOrdennanceListe(ActionEvent event) {
         Routage.getInstance().GOTO(supbttn, "/view/Medecin/AddOrdennance.fxml");
     }
-
+    
+    @FXML
+    private void Availability(ActionEvent event) {
+    }
+    
 }

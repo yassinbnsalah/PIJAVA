@@ -71,7 +71,7 @@ public class ProductService {
     }
 
     public int Rating(int note, int IDUser, int IDProduct) {
-        ArrayList<Product> listeProduit = new ArrayList<>();
+     
         int avrage =0 ; 
         try {
             String req = "SELECT * FROM `rating` WHERE user_id  = ? and produit_id  = ?";
